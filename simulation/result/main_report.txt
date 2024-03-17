@@ -1,0 +1,22 @@
+
+************************************
+****** 4.M.B. TEST BEGIN AT 0 ns ******
+************************************
+
+########## Version Register Test BEGIN at 110 ns ##########
+
+ miso data = 903  
+
+ data send = 9   3
+########## Version Register  Test is passed O.K. at 57014 ns 
+
+########## Revision Data Register Test BEGIN at 57014 ns ##########
+
+ miso data = 17051f08  
+
+ data send = 17051f08 
+########## Revision Data Register  Test is passed O.K. at 114014 ns 
+
+****************************************************
+****** FULL TEST WAS PASSED O.K. AT 114014 ns ******
+****************************************************

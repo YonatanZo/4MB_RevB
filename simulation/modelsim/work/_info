@@ -1,0 +1,240 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11f vlog 2021.2 2021.04, Apr 14 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/TracePCB/ForsightRobotics/4.M.B/FPGA_4MB/FPGA_4MB_9.3/simulation/modelsim
+T4mb_opt
+!s110 1685515622
+VkXbB5nmnAXJbUoS[1DoP81
+04 7 4 work top_4mb fast 0
+04 2 4 work tb fast 0
+!s124 OEM10U18 
+o+acc
+Z1 tCvgOpt 0
+n4mb_opt
+OL;O;2021.2;73
+vmotor4_control
+Z2 !s110 1685515621
+!i10b 1
+!s100 VJJVXl?SEMnf=lHb:JA>F0
+In9>lbIGX@d0P?bRTIi@EI1
+R0
+Z3 w1685514815
+8../../source/motor4_control.v
+F../../source/motor4_control.v
+Z4 F../../source//parameters_4mb.v
+!i122 0
+L0 11 691
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 OL;L;2021.2;73
+r1
+!s85 0
+31
+Z7 !s108 1685515621.000000
+Z8 !s107 ../../source//parameters_4mb.v|../../source/top_4mb.v|../../source/motor4_control.v|../../source/motor_control.v|../../source/registers_4mb.v|../../source/spi_4mb.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns / 100ps|+define+RTL_SIM|+incdir+../../source/|../../source/spi_4mb.v|../../source/registers_4mb.v|../../source/motor_control.v|../../source/motor4_control.v|../../source/top_4mb.v|
+!i113 0
+Z10 o-timescale {1ns / 100ps} -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z11 !s92 -timescale {1ns / 100ps} +define+RTL_SIM +incdir+../../source/ -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+vmotor_control
+R2
+!i10b 1
+!s100 BW:D02G70HiH8P1Yb>6]N2
+I5eCKJEDbHYS1mb2PFnXZP1
+R0
+R3
+8../../source/motor_control.v
+F../../source/motor_control.v
+R4
+!i122 0
+L0 11 680
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R11
+R1
+vregisters_4mb
+R2
+!i10b 1
+!s100 ge8OS_F:Nz600Pmk8^9i22
+Ic452d`oBH9JdgmgHUKffg2
+R0
+R3
+8../../source/registers_4mb.v
+F../../source/registers_4mb.v
+R4
+!i122 0
+L0 11 300
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R11
+R1
+vspi_4mb
+R2
+!i10b 1
+!s100 mEL39NFcaHNSWQ`g@XaSO1
+IKMWaiEVRTeRcfRdKaaZ^22
+R0
+R3
+8../../source/spi_4mb.v
+F../../source/spi_4mb.v
+R4
+!i122 0
+L0 12 475
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R11
+R1
+vspi_interface
+R2
+!i10b 1
+!s100 L0UOO=b>:ZFGd]9J`=3H12
+ISkcT6kY6hTBHM;X_K:ZnT1
+R0
+R3
+8.././testbench/spi_interface.v
+F.././testbench/spi_interface.v
+R4
+Z12 F.././testbench/tb_parameters.v
+!i122 1
+L0 12 328
+R5
+R6
+r1
+!s85 0
+31
+R7
+Z13 !s107 .././testbench/tb_tasks.v|.././testbench/tb_tests_list.v|.././testbench/tb_parameters.v|../../source//parameters_4mb.v|.././testbench/tb.v|.././testbench/tb_tester.v|.././testbench/tb_tests.v|.././testbench/spi_interface.v|
+Z14 !s90 -reportprogress|300|-timescale|1ns / 100ps|+incdir+.././testbench+../../source/|.././testbench/spi_interface.v|.././testbench/tb_tests.v|.././testbench/tb_tester.v|.././testbench/tb.v|
+!i113 0
+R10
+Z15 !s92 -timescale {1ns / 100ps} +incdir+.././testbench+../../source/ -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+vtb
+R2
+!i10b 1
+!s100 2z<k?BFb^a6h]laf0IPOf0
+IZ]h=<oIjA0R9mmK8a1PAH0
+R0
+w1667904319
+8.././testbench/tb.v
+F.././testbench/tb.v
+!i122 1
+L0 14 353
+R5
+R6
+r1
+!s85 0
+31
+R7
+R13
+R14
+!i113 0
+R10
+R15
+R1
+vtb_tester
+R2
+!i10b 1
+!s100 HKY_I^Y9Y^K>?D40SOBol3
+I90?C=Ji29Ye84kIJPl3d72
+R0
+w1667223575
+8.././testbench/tb_tester.v
+F.././testbench/tb_tester.v
+!i122 1
+L0 12 559
+R5
+R6
+r1
+!s85 0
+31
+R7
+R13
+R14
+!i113 0
+R10
+R15
+R1
+vtb_tests
+R2
+!i10b 1
+!s100 NiKW3Jb84c42o3KM`UI?X3
+I3^ZjlPE3SIL_m_M0M9Y4B0
+R0
+w1685515613
+8.././testbench/tb_tests.v
+F.././testbench/tb_tests.v
+R4
+R12
+F.././testbench/tb_tests_list.v
+F.././testbench/tb_tasks.v
+!i122 1
+L0 12 2773
+R5
+R6
+r1
+!s85 0
+31
+R7
+R13
+R14
+!i113 0
+R10
+R15
+R1
+vtop_4mb
+R2
+!i10b 1
+!s100 acoOAX?4?]HdS9`o5:JoL3
+IT=mz^Gg;iUCXj:5U2dmiM3
+R0
+R3
+8../../source/top_4mb.v
+F../../source/top_4mb.v
+R4
+!i122 0
+L0 11 850
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R11
+R1

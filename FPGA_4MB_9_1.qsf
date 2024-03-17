@@ -1,0 +1,1131 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2022  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions
+# and other software and tools, and any partner logic
+# functions, and any output files from any of the foregoing
+# (including device programming or simulation files), and any
+# associated documentation or information are expressly subject
+# to the terms and conditions of the Intel Program License
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details, at
+# https://fpgasoftware.intel.com/eula.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
+# Date created = 14:46:48  October 31, 2022
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		FPGA_4MB_9_1_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Intel recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "MAX 10"
+set_global_assignment -name DEVICE 10M40DCF256I7G
+set_global_assignment -name TOP_LEVEL_ENTITY fpga_4mb
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 21.1.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:29:35  MAY 28, 2023"
+set_global_assignment -name LAST_QUARTUS_VERSION "21.1.1 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP "-40"
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
+set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 256
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
+set_global_assignment -name EDA_SIMULATION_TOOL "QuestaSim (Verilog)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_timing
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_simulation
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name SDC_FILE FPGA_4MB.out.sdc
+set_global_assignment -name BDF_FILE source/fpga_4mb.bdf
+set_global_assignment -name VERILOG_FILE source/top_4mb.v
+set_global_assignment -name VERILOG_FILE source/spi_4mb.v
+set_global_assignment -name VERILOG_FILE source/registers_4mb.v
+set_global_assignment -name VERILOG_FILE source/motor4_control.v
+set_global_assignment -name VERILOG_FILE source/motor_control.v
+set_global_assignment -name SOURCE_FILE db/FPGA_4MB.cmp.rdb
+set_location_assignment PIN_A9 -to spare0_io[23]
+set_location_assignment PIN_A11 -to spare0_io[22]
+set_location_assignment PIN_C10 -to spare0_io[21]
+set_location_assignment PIN_C9 -to spare0_io[20]
+set_location_assignment PIN_J2 -to spare0_io[19]
+set_location_assignment PIN_J3 -to spare0_io[18]
+set_location_assignment PIN_H6 -to spare0_io[17]
+set_location_assignment PIN_J5 -to spare0_io[16]
+set_location_assignment PIN_B1 -to spare0_io[15]
+set_location_assignment PIN_C1 -to spare0_io[14]
+set_location_assignment PIN_D1 -to spare0_io[13]
+set_location_assignment PIN_E1 -to spare0_io[12]
+set_location_assignment PIN_B2 -to spare0_io[11]
+set_location_assignment PIN_C2 -to spare0_io[10]
+set_location_assignment PIN_G2 -to spare0_io[9]
+set_location_assignment PIN_F1 -to spare0_io[8]
+set_location_assignment PIN_F2 -to spare0_io[7]
+set_location_assignment PIN_E3 -to spare0_io[6]
+set_location_assignment PIN_G5 -to spare0_io[5]
+set_location_assignment PIN_H5 -to spare0_io[4]
+set_location_assignment PIN_C3 -to spare0_io[3]
+set_location_assignment PIN_C4 -to spare0_io[2]
+set_location_assignment PIN_F4 -to spare0_io[1]
+set_location_assignment PIN_F5 -to spare0_io[0]
+set_location_assignment PIN_T7 -to spare1_io[16]
+set_location_assignment PIN_L8 -to spare1_io[15]
+set_location_assignment PIN_M7 -to spare1_io[14]
+set_location_assignment PIN_T4 -to spare1_io[13]
+set_location_assignment PIN_T5 -to spare1_io[12]
+set_location_assignment PIN_R5 -to spare1_io[11]
+set_location_assignment PIN_R6 -to spare1_io[10]
+set_location_assignment PIN_N4 -to spare1_io[9]
+set_location_assignment PIN_M1 -to spare1_io[8]
+set_location_assignment PIN_A15 -to spare1_io[7]
+set_location_assignment PIN_A14 -to spare1_io[6]
+set_location_assignment PIN_F12 -to spare1_io[5]
+set_location_assignment PIN_F11 -to spare1_io[4]
+set_location_assignment PIN_L1 -to spare1_io[3]
+set_location_assignment PIN_M3 -to spare1_io[2]
+set_location_assignment PIN_A5 -to spare1_io[1]
+set_location_assignment PIN_B4 -to spare1_io[0]
+set_location_assignment PIN_N1 -to ain_1
+set_location_assignment PIN_K5 -to ain_2
+set_location_assignment PIN_L6 -to ain_3
+set_location_assignment PIN_N3 -to ain_4
+set_location_assignment PIN_A7 -to brake1
+set_location_assignment PIN_A6 -to brake2
+set_location_assignment PIN_B5 -to brake3
+set_location_assignment PIN_C5 -to brake4
+set_location_assignment PIN_N16 -to btn1nc
+set_location_assignment PIN_P16 -to btn1no
+set_location_assignment PIN_K11 -to btn2nc
+set_location_assignment PIN_K12 -to btn2no
+set_location_assignment PIN_M16 -to btn3nc
+set_location_assignment PIN_L16 -to btn3no
+set_location_assignment PIN_L3 -to clk_100m
+set_location_assignment PIN_D9 -to clk_100m_1
+set_location_assignment PIN_M2 -to cs_1
+set_location_assignment PIN_L2 -to cs_2
+set_location_assignment PIN_N2 -to cs_3
+set_location_assignment PIN_P1 -to cs_4
+set_location_assignment PIN_A3 -to dipsw0
+set_location_assignment PIN_A2 -to dipsw1
+set_location_assignment PIN_B3 -to dipsw2
+set_location_assignment PIN_A4 -to dipsw3
+set_location_assignment PIN_A12 -to droff1
+set_location_assignment PIN_B7 -to droff2
+set_location_assignment PIN_B8 -to droff3
+set_location_assignment PIN_A10 -to droff4
+set_location_assignment PIN_P11 -to fcan_rx0
+set_location_assignment PIN_R11 -to fcan_shdn
+set_location_assignment PIN_R12 -to fcan_stb
+set_location_assignment PIN_P10 -to fcan_tx0
+set_location_assignment PIN_F10 -to fgout1
+set_location_assignment PIN_E10 -to fgout2
+set_location_assignment PIN_B13 -to fgout3
+set_location_assignment PIN_A13 -to fgout4
+set_location_assignment PIN_P13 -to frx_0
+set_location_assignment PIN_M11 -to frx_1
+set_location_assignment PIN_M10 -to frx_01
+set_location_assignment PIN_P12 -to ftx_0
+set_location_assignment PIN_L10 -to ftx_1
+set_location_assignment PIN_L9 -to ftx_01
+set_location_assignment PIN_T11 -to led1_1
+set_location_assignment PIN_R10 -to led1_2
+set_location_assignment PIN_R9 -to led1m4
+set_location_assignment PIN_R15 -to led2_1
+set_location_assignment PIN_R16 -to led2_2
+set_location_assignment PIN_D15 -to led2_3
+set_location_assignment PIN_M8 -to led2m4
+set_location_assignment PIN_K14 -to led3_1
+set_location_assignment PIN_L15 -to led3_2
+set_location_assignment PIN_C15 -to led3_3
+set_location_assignment PIN_M9 -to led3m4
+set_location_assignment PIN_P8 -to lsw_1
+set_location_assignment PIN_T9 -to lsw_2
+set_location_assignment PIN_T12 -to m4brk
+set_location_assignment PIN_T13 -to m5brk
+set_location_assignment PIN_D12 -to mclk_0
+set_location_assignment PIN_E11 -to mosi_0
+set_location_assignment PIN_K2 -to mclk_1
+set_location_assignment PIN_K6 -to miso_1
+set_location_assignment PIN_J6 -to mosi_1
+set_location_assignment PIN_F9 -to nfault1
+set_location_assignment PIN_E9 -to nfault2
+set_location_assignment PIN_B12 -to nfault3
+set_location_assignment PIN_B11 -to nfault4
+set_location_assignment PIN_B9 -to pwm1
+set_location_assignment PIN_A8 -to pwm2
+set_location_assignment PIN_B6 -to pwm3
+set_location_assignment PIN_C6 -to pwm4
+set_location_assignment PIN_P4 -to qc1a
+set_location_assignment PIN_N5 -to qc1b
+set_location_assignment PIN_P2 -to qc1i
+set_location_assignment PIN_R1 -to qc2a
+set_location_assignment PIN_R3 -to qc3a
+set_location_assignment PIN_R2 -to qc3b
+set_location_assignment PIN_R4 -to qc3i
+set_location_assignment PIN_P5 -to qc4a
+set_location_assignment PIN_T3 -to qc4b
+set_location_assignment PIN_T2 -to qc4i
+set_location_assignment PIN_B10 -to rst_n
+set_location_assignment PIN_T14 -to ssi_c1
+set_location_assignment PIN_R14 -to ssi_c2
+set_location_assignment PIN_L11 -to ssi_c3
+set_location_assignment PIN_N14 -to ssi_c4
+set_location_assignment PIN_M15 -to ssi_c5
+set_location_assignment PIN_P14 -to ssi_d1
+set_location_assignment PIN_T15 -to ssi_d2
+set_location_assignment PIN_L12 -to ssi_d3
+set_location_assignment PIN_P15 -to ssi_d4
+set_location_assignment PIN_M14 -to ssi_d5
+set_location_assignment PIN_J11 -to tclk
+set_location_assignment PIN_J12 -to trw
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to brake1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to brake2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to brake3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to brake4
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to btn1nc
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to btn1no
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to btn2nc
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to btn2no
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to btn3nc
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to btn3no
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk_100m
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk_100m_1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cs_1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cs_2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cs_3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cs_4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dipsw0
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dipsw1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dipsw2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dipsw3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to droff1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to droff2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to droff3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to droff4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fcan_rx0
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fcan_shdn
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fcan_stb
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fcan_tx0
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fgout1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fgout2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fgout3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fgout4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to frx_0
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to frx_1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to frx_01
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ftx_0
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ftx_1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ftx_01
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led1_1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led1_2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led1m4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led2_1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led2_2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led2_3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led2m4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led3_1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led3_2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led3_3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led3m4
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to lsw_1
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to lsw_2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to m4brk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to m5brk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to mclk_0
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to mclk_1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to miso_0
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to miso_1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to mosi_0
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to mosi_1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nfault1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nfault2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nfault3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nfault4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to pwm1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to pwm2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to pwm3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to pwm4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qc1a
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qc1b
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qc1i
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qc2a
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qc2i
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qc3a
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qc3b
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qc3i
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qc4a
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qc4b
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qc4i
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to rst_n
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[10]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[9]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[8]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[7]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[6]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[5]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[4]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[3]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[2]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[1]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[16]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ssi_c1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ssi_c2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ssi_c3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ssi_c4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ssi_c5
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ssi_d1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ssi_d2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ssi_d3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ssi_d4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ssi_d5
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to tclk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to trw
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cs_00
+set_location_assignment PIN_C12 -to cs_00
+set_location_assignment PIN_C13 -to miso_0
+set_location_assignment PIN_M6 -to qc2b
+set_location_assignment PIN_L7 -to qc2i
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qc2b
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ain_1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ain_2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ain_3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ain_4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare0_io[23]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare0_io[22]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare0_io[21]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare0_io[20]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare0_io[19]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare0_io[18]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare0_io[17]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare0_io[16]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spare1_io
+set_location_assignment PIN_J14 -to tsp0
+set_location_assignment PIN_K15 -to tsp1
+set_location_assignment PIN_J16 -to tsp2
+set_location_assignment PIN_J15 -to tsp3
+set_location_assignment PIN_H15 -to tsp4
+set_location_assignment PIN_H16 -to tsp5
+set_location_assignment PIN_D16 -to tsp6
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to tsp6
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to tsp5
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to tsp4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to tsp3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to tsp2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to tsp1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to tsp0
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[15]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[14]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[13]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[12]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to spare0_io[11]
+set_global_assignment -name QIP_FILE pll_100x1.qip
+set_location_assignment PIN_H11 -to io_led[6]
+set_location_assignment PIN_C16 -to io_led[5]
+set_location_assignment PIN_P9 -to io_led[4]
+set_location_assignment PIN_R8 -to io_led[3]
+set_location_assignment PIN_T8 -to io_led[2]
+set_location_assignment PIN_P6 -to io_led[1]
+set_location_assignment PIN_R7 -to io_led[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to io_led[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to io_led[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to io_led[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to io_led[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to io_led[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to io_led[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to io_led[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to io_led
+set_global_assignment -name ENABLE_SIGNALTAP ON
+set_global_assignment -name USE_SIGNALTAP_FILE stp1.stp
+set_global_assignment -name SIGNALTAP_FILE stp1.stp
+set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "pll_100x1:inst1|altpll:altpll_component|pll_100x1_altpll:auto_generated|wire_pll1_clk[0]~clkctrl" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334528" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_GAP_RECORD=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_MODE=TRANSITIONAL" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INCREMENTAL_ROUTING=1" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[2] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[26] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_PIPELINE=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_PIPELINE=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_COUNTER_PIPELINE=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id auto_signaltap_0
+set_global_assignment -name CDF_FILE ../../Chain5.cdf
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[16] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[19] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=2048" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=2048" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[3] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[4] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[5] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[6] -to "top_4mb:inst|motor4_control:motor4_control|ssi_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[7] -to "top_4mb:inst|motor4_control:motor4_control|state_ssi.SSI_FALL_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[8] -to "top_4mb:inst|motor4_control:motor4_control|state_ssi.SSI_IDLE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[9] -to "top_4mb:inst|motor4_control:motor4_control|state_ssi.SSI_RISE_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[10] -to "top_4mb:inst|motor4_control:motor4_control|state_ssi.SSI_START" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[11] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[12] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[13] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[15] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[16] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[17] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[18] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[19] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[20] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[21] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[22] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[23] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[24] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[25] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[26] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[27] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[28] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[29] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[30] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[31] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[32] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[33] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[34] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[35] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[36] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[37] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[38] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[39] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[40] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[41] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[42] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[43] -to "top_4mb:inst|motor_control:motor1_control|ssi_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[44] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[45] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[46] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[47] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[48] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[49] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[50] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[51] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[52] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[53] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[54] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[55] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[56] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[57] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[58] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[59] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[60] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[61] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[62] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[63] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[64] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[65] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[66] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[67] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[68] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[69] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[70] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[71] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[72] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[73] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[74] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[75] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[76] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[77] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[78] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[79] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[80] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[81] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[82] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[83] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[84] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[85] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[86] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[87] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[88] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[89] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[90] -to "top_4mb:inst|motor_control:motor2_control|ssi_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[91] -to "top_4mb:inst|motor_control:motor2_control|state_ssi.SSI_FALL_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[92] -to "top_4mb:inst|motor_control:motor2_control|state_ssi.SSI_IDLE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[93] -to "top_4mb:inst|motor_control:motor2_control|state_ssi.SSI_RISE_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[94] -to "top_4mb:inst|motor_control:motor2_control|state_ssi.SSI_START" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[95] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[96] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[97] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[98] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[99] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[100] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[101] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[102] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[103] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[104] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[105] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[106] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[107] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[108] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[109] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[110] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[111] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[112] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[113] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[114] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[115] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[116] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[117] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[118] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[119] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[120] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[121] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[122] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[123] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[124] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[125] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[126] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[127] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[128] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[129] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[130] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[131] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[132] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[133] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[134] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[135] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[136] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[137] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[138] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[139] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[140] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[141] -to "top_4mb:inst|motor_control:motor3_control|ssi_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[142] -to "top_4mb:inst|motor_control:motor3_control|state_ssi.SSI_FALL_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[143] -to "top_4mb:inst|motor_control:motor3_control|state_ssi.SSI_IDLE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[144] -to "top_4mb:inst|motor_control:motor3_control|state_ssi.SSI_RISE_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[145] -to "top_4mb:inst|motor_control:motor3_control|state_ssi.SSI_START" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to "top_4mb:inst|motor4_control:motor4_control|ssi_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to "top_4mb:inst|motor4_control:motor4_control|state_ssi.SSI_FALL_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to "top_4mb:inst|motor4_control:motor4_control|state_ssi.SSI_IDLE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to "top_4mb:inst|motor4_control:motor4_control|state_ssi.SSI_RISE_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to "top_4mb:inst|motor4_control:motor4_control|state_ssi.SSI_START" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[24] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[25] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[26] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[27] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[28] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[29] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[38] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[39] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[40] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[41] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[42] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[43] -to "top_4mb:inst|motor_control:motor1_control|ssi_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[44] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[45] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[46] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[47] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[48] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[49] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[50] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[51] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[52] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[53] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[54] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[55] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[56] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[57] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[58] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[59] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[60] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[61] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[62] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[63] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[64] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[65] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[66] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[67] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[68] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[69] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[70] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[71] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[72] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[73] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[74] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[75] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[76] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[77] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[78] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[79] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[80] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[81] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[82] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[83] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[84] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[85] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[86] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[87] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[88] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[89] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[90] -to "top_4mb:inst|motor_control:motor2_control|ssi_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[91] -to "top_4mb:inst|motor_control:motor2_control|state_ssi.SSI_FALL_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[92] -to "top_4mb:inst|motor_control:motor2_control|state_ssi.SSI_IDLE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[93] -to "top_4mb:inst|motor_control:motor2_control|state_ssi.SSI_RISE_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[94] -to "top_4mb:inst|motor_control:motor2_control|state_ssi.SSI_START" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[95] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[96] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[97] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[98] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[99] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[100] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[101] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[102] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[103] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[104] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[105] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[106] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[107] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[108] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[109] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[110] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[111] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[112] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[113] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[114] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[115] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[116] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[117] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[118] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[119] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[120] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[121] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[122] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[123] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[124] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[125] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[126] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[127] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[128] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[129] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[130] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[131] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[132] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[133] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[134] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[135] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[136] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[137] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[138] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[139] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[140] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[141] -to "top_4mb:inst|motor_control:motor3_control|ssi_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[142] -to "top_4mb:inst|motor_control:motor3_control|state_ssi.SSI_FALL_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[143] -to "top_4mb:inst|motor_control:motor3_control|state_ssi.SSI_IDLE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[144] -to "top_4mb:inst|motor_control:motor3_control|state_ssi.SSI_RISE_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[145] -to "top_4mb:inst|motor_control:motor3_control|state_ssi.SSI_START" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[146] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[147] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[148] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[149] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[150] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[151] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[152] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[153] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[154] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[155] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[156] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[157] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[158] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[159] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[160] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[161] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[162] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[163] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[164] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[165] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[166] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[167] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[168] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[169] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[170] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[171] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[172] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[173] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[174] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[175] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[176] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[177] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[178] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[179] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[180] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[181] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[182] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[183] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[184] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[185] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[186] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[187] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[188] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[189] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[190] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[191] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[192] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[193] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[194] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[195] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[196] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[197] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[198] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[199] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[200] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[201] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[202] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[203] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[204] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[205] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[206] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[207] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[208] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[209] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[210] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[211] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[212] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[213] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[214] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[215] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[216] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[0]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[217] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[1]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[218] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[2]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[219] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[3]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[220] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[4]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[221] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[5]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[222] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[6]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[223] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[7]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[224] -to "top_4mb:inst|motor_control:motor1_control|state_ssi.SSI_FALL_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[225] -to "top_4mb:inst|motor_control:motor1_control|state_ssi.SSI_IDLE" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[226] -to "top_4mb:inst|motor_control:motor1_control|state_ssi.SSI_RISE_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[227] -to "top_4mb:inst|motor_control:motor1_control|state_ssi.SSI_START" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[0] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[1] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[2] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[3] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[4] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[5] -to "top_4mb:inst|motor4_control:motor4_control|crc_calc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[6] -to "top_4mb:inst|motor4_control:motor4_control|ssi_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[7] -to "top_4mb:inst|motor4_control:motor4_control|state_ssi.SSI_FALL_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[8] -to "top_4mb:inst|motor4_control:motor4_control|state_ssi.SSI_IDLE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[9] -to "top_4mb:inst|motor4_control:motor4_control|state_ssi.SSI_RISE_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[10] -to "top_4mb:inst|motor4_control:motor4_control|state_ssi.SSI_START" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[11] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[12] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[13] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[14] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[15] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[16] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[17] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[18] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[19] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[20] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[21] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[22] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[23] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[24] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[25] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[26] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[27] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[28] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[29] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[30] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[31] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[32] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[33] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[34] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[35] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[36] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[37] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[38] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[39] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[40] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[41] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[42] -to "top_4mb:inst|motor_control:motor1_control|abs_enc_position_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[43] -to "top_4mb:inst|motor_control:motor1_control|ssi_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[44] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[45] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[46] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[47] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[48] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[49] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[50] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[51] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[52] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[53] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[54] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[55] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[56] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[57] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[58] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[59] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[60] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[61] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[62] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[63] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[64] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[65] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[66] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[67] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[68] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[69] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[70] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[71] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[72] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[73] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[74] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[75] -to "top_4mb:inst|motor_control:motor2_control|abs_enc_position_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[76] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[77] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[78] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[79] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[80] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[81] -to "top_4mb:inst|motor_control:motor2_control|crc_calc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[82] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[83] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[84] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[85] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[86] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[87] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[88] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[89] -to "top_4mb:inst|motor_control:motor2_control|crc_err_cnt[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[90] -to "top_4mb:inst|motor_control:motor2_control|ssi_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[91] -to "top_4mb:inst|motor_control:motor2_control|state_ssi.SSI_FALL_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[92] -to "top_4mb:inst|motor_control:motor2_control|state_ssi.SSI_IDLE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[93] -to "top_4mb:inst|motor_control:motor2_control|state_ssi.SSI_RISE_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[94] -to "top_4mb:inst|motor_control:motor2_control|state_ssi.SSI_START" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[95] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[96] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[97] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[98] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[99] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[100] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[101] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[102] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[103] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[104] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[105] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[106] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[107] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[108] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[109] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[110] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[111] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[112] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[113] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[114] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[115] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[116] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[117] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[118] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[119] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[120] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[121] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[122] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[123] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[124] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[125] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[126] -to "top_4mb:inst|motor_control:motor3_control|abs_enc_position_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[127] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[128] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[129] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[130] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[131] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[132] -to "top_4mb:inst|motor_control:motor3_control|crc_calc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[133] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[134] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[135] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[136] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[137] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[138] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[139] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[140] -to "top_4mb:inst|motor_control:motor3_control|crc_err_cnt[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[141] -to "top_4mb:inst|motor_control:motor3_control|ssi_read" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[142] -to "top_4mb:inst|motor_control:motor3_control|state_ssi.SSI_FALL_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[143] -to "top_4mb:inst|motor_control:motor3_control|state_ssi.SSI_IDLE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[144] -to "top_4mb:inst|motor_control:motor3_control|state_ssi.SSI_RISE_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[145] -to "top_4mb:inst|motor_control:motor3_control|state_ssi.SSI_START" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[146] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[147] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[148] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[149] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[150] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[151] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[152] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[153] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[154] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[155] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[156] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[157] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[158] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[159] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[160] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[161] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[162] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[163] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[164] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[165] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[166] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[167] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[168] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[169] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[170] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[171] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[172] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[173] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[174] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[175] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[176] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[177] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[178] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[179] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[180] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[181] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[182] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[183] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[184] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[185] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[186] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[187] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[188] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[189] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[190] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[191] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[192] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[193] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[194] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[195] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[196] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[197] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[198] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[199] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[200] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[201] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[202] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[203] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[204] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[205] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[206] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[207] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[208] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[209] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[210] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[211] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[212] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[213] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[214] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[215] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[216] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[0]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[217] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[1]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[218] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[2]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[219] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[3]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[220] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[4]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[221] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[5]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[222] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[6]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[223] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[7]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[224] -to "top_4mb:inst|motor_control:motor1_control|state_ssi.SSI_FALL_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[225] -to "top_4mb:inst|motor_control:motor1_control|state_ssi.SSI_IDLE" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[226] -to "top_4mb:inst|motor_control:motor1_control|state_ssi.SSI_RISE_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_storage_qualifier_in[227] -to "top_4mb:inst|motor_control:motor1_control|state_ssi.SSI_START" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=228" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_BITS=228" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=229" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[20] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[21] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[22] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[18] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[146] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[147] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[148] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[149] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[150] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[151] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[152] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[153] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[154] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[155] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[156] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[157] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[158] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[159] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[160] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[161] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[162] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[163] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[164] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[165] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[166] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[167] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[168] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[169] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[170] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[171] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[172] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[173] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[174] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[175] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[176] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[177] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_error_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[178] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[0]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[179] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[10]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[180] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[11]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[181] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[12]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[182] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[13]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[183] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[14]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[184] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[15]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[185] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[16]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[186] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[17]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[187] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[18]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[188] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[19]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[189] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[1]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[190] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[20]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[191] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[21]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[192] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[22]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[193] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[23]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[194] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[24]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[195] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[25]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[196] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[26]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[197] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[27]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[198] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[28]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[199] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[29]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[200] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[2]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[201] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[30]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[202] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[31]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[203] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[3]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[204] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[4]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[205] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[5]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[206] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[6]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[207] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[7]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[208] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[8]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[209] -to "top_4mb:inst|motor4_control:motor4_control|abs_enc_position_reg[9]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[210] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[211] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[212] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[213] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[214] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[215] -to "top_4mb:inst|motor_control:motor1_control|crc_calc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[216] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[0]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[217] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[1]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[218] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[2]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[219] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[3]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[220] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[4]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[221] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[5]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[222] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[6]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[223] -to "top_4mb:inst|motor_control:motor1_control|crc_err_cnt[7]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[224] -to "top_4mb:inst|motor_control:motor1_control|state_ssi.SSI_FALL_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[225] -to "top_4mb:inst|motor_control:motor1_control|state_ssi.SSI_IDLE" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[226] -to "top_4mb:inst|motor_control:motor1_control|state_ssi.SSI_RISE_EDGE" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[227] -to "top_4mb:inst|motor_control:motor1_control|state_ssi.SSI_START" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=228" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=938" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[23] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp

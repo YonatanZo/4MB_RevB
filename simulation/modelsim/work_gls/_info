@@ -1,0 +1,142 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11f vlog 2021.2 2021.04, Apr 14 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/TracePCB/ForsightRobotics/4.M.B/FPGA_4MB/FPGA_4MB_9.3/simulation/modelsim
+Tcore_opt
+!s110 1685515832
+V1YiclGVhO5UZWGzU[lYPB1
+04 8 4 work fpga_4mb fast 0
+04 6 4 work tb_gls fast 0
+!s124 OEM10U6 
+o+acc -L max10 -L intel_mf -L intel
+Z1 tCvgOpt 0
+ncore_opt
+OL;O;2021.2;73
+vfpga_4mb
+Z2 !s110 1685515827
+!i10b 1
+!s100 eQ^5]gKagad;0k?j0XeVT3
+Ij:NOLjK7[]0Iz=H1`HS1@2
+R0
+w1685515017
+8fpga_4mb_9_3.vo
+Ffpga_4mb_9_3.vo
+!i122 0
+L0 32 250152
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 OL;L;2021.2;73
+r1
+!s85 0
+31
+!s108 1685515826.000000
+!s107 fpga_4mb_9_3.vo|
+!s90 -reportprogress|300|-L|max10|-L|intel_mf|-L|intel|fpga_4mb_9_3.vo|
+!i113 0
+o-L max10 -L intel_mf -L intel -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+vspi_interface
+R2
+!i10b 1
+!s100 L0UOO=b>:ZFGd]9J`=3H12
+IY1Zbh91VkbA1;z3:A8Q5g2
+R0
+w1685514815
+8.././testbench/spi_interface.v
+F.././testbench/spi_interface.v
+Z5 F../.././source//parameters_4mb.v
+Z6 F.././testbench/tb_parameters.v
+!i122 1
+L0 12 328
+R3
+R4
+r1
+!s85 0
+31
+Z7 !s108 1685515827.000000
+Z8 !s107 .././testbench/tb_tasks.v|.././testbench/tb_tests_list.v|.././testbench/tb_parameters.v|../.././source//parameters_4mb.v|.././testbench/tb_gls.v|.././testbench/tb_tester.v|.././testbench/tb_tests.v|.././testbench/spi_interface.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns / 100ps|+incdir+.././testbench+../.././source/|.././testbench/spi_interface.v|.././testbench/tb_tests.v|.././testbench/tb_tester.v|.././testbench/tb_gls.v|
+!i113 0
+Z10 o-timescale {1ns / 100ps} -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z11 !s92 -timescale {1ns / 100ps} +incdir+.././testbench+../.././source/ -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+vtb_gls
+R2
+!i10b 1
+!s100 :Yf4T@FaEVn;A0FooniWD3
+IO2VBgRb5abkP7ejE;k^8Y2
+R0
+w1667904319
+8.././testbench/tb_gls.v
+F.././testbench/tb_gls.v
+!i122 1
+L0 14 353
+R3
+R4
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R11
+R1
+vtb_tester
+R2
+!i10b 1
+!s100 HKY_I^Y9Y^K>?D40SOBol3
+Io[i0ZO?i_dVidloi[SB=Z2
+R0
+w1667223575
+8.././testbench/tb_tester.v
+F.././testbench/tb_tester.v
+!i122 1
+L0 12 559
+R3
+R4
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R11
+R1
+vtb_tests
+R2
+!i10b 1
+!s100 NiKW3Jb84c42o3KM`UI?X3
+Ibg6QeTjjN2;a4O8XCOI<d3
+R0
+w1685515613
+8.././testbench/tb_tests.v
+F.././testbench/tb_tests.v
+R5
+R6
+F.././testbench/tb_tests_list.v
+F.././testbench/tb_tasks.v
+!i122 1
+L0 12 2773
+R3
+R4
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R11
+R1

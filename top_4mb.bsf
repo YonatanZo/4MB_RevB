@@ -1,0 +1,1130 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2022  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 16 16 240 1088)
+	(text "top_4mb" (rect 5 0 41 12)(font "Arial" ))
+	(text "inst" (rect 8 1056 20 1068)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clk_100m" (rect 0 0 37 12)(font "Arial" ))
+		(text "clk_100m" (rect 21 27 58 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 1))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "clk_100m_1" (rect 0 0 47 12)(font "Arial" ))
+		(text "clk_100m_1" (rect 21 43 68 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "rst_n" (rect 0 0 21 12)(font "Arial" ))
+		(text "rst_n" (rect 21 59 42 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 1))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "mclk_0" (rect 0 0 29 12)(font "Arial" ))
+		(text "mclk_0" (rect 21 75 50 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "mosi_0" (rect 0 0 29 12)(font "Arial" ))
+		(text "mosi_0" (rect 21 91 50 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 1))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "cs_00" (rect 0 0 24 12)(font "Arial" ))
+		(text "cs_00" (rect 21 107 45 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112)(line_width 1))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "miso_1" (rect 0 0 28 12)(font "Arial" ))
+		(text "miso_1" (rect 21 123 49 135)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128)(line_width 1))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "qc1a" (rect 0 0 17 12)(font "Arial" ))
+		(text "qc1a" (rect 21 139 38 151)(font "Arial" ))
+		(line (pt 0 144)(pt 16 144)(line_width 1))
+	)
+	(port
+		(pt 0 160)
+		(input)
+		(text "qc1b" (rect 0 0 17 12)(font "Arial" ))
+		(text "qc1b" (rect 21 155 38 167)(font "Arial" ))
+		(line (pt 0 160)(pt 16 160)(line_width 1))
+	)
+	(port
+		(pt 0 176)
+		(input)
+		(text "qc1i" (rect 0 0 14 12)(font "Arial" ))
+		(text "qc1i" (rect 21 171 35 183)(font "Arial" ))
+		(line (pt 0 176)(pt 16 176)(line_width 1))
+	)
+	(port
+		(pt 0 192)
+		(input)
+		(text "qc2a" (rect 0 0 18 12)(font "Arial" ))
+		(text "qc2a" (rect 21 187 39 199)(font "Arial" ))
+		(line (pt 0 192)(pt 16 192)(line_width 1))
+	)
+	(port
+		(pt 0 208)
+		(input)
+		(text "qc2b" (rect 0 0 18 12)(font "Arial" ))
+		(text "qc2b" (rect 21 203 39 215)(font "Arial" ))
+		(line (pt 0 208)(pt 16 208)(line_width 1))
+	)
+	(port
+		(pt 0 224)
+		(input)
+		(text "qc2i" (rect 0 0 15 12)(font "Arial" ))
+		(text "qc2i" (rect 21 219 36 231)(font "Arial" ))
+		(line (pt 0 224)(pt 16 224)(line_width 1))
+	)
+	(port
+		(pt 0 240)
+		(input)
+		(text "qc3a" (rect 0 0 18 12)(font "Arial" ))
+		(text "qc3a" (rect 21 235 39 247)(font "Arial" ))
+		(line (pt 0 240)(pt 16 240)(line_width 1))
+	)
+	(port
+		(pt 0 256)
+		(input)
+		(text "qc3b" (rect 0 0 18 12)(font "Arial" ))
+		(text "qc3b" (rect 21 251 39 263)(font "Arial" ))
+		(line (pt 0 256)(pt 16 256)(line_width 1))
+	)
+	(port
+		(pt 0 272)
+		(input)
+		(text "qc3i" (rect 0 0 15 12)(font "Arial" ))
+		(text "qc3i" (rect 21 267 36 279)(font "Arial" ))
+		(line (pt 0 272)(pt 16 272)(line_width 1))
+	)
+	(port
+		(pt 0 288)
+		(input)
+		(text "qc4a" (rect 0 0 20 12)(font "Arial" ))
+		(text "qc4a" (rect 21 283 41 295)(font "Arial" ))
+		(line (pt 0 288)(pt 16 288)(line_width 1))
+	)
+	(port
+		(pt 0 304)
+		(input)
+		(text "qc4b" (rect 0 0 20 12)(font "Arial" ))
+		(text "qc4b" (rect 21 299 41 311)(font "Arial" ))
+		(line (pt 0 304)(pt 16 304)(line_width 1))
+	)
+	(port
+		(pt 0 320)
+		(input)
+		(text "qc4i" (rect 0 0 16 12)(font "Arial" ))
+		(text "qc4i" (rect 21 315 37 327)(font "Arial" ))
+		(line (pt 0 320)(pt 16 320)(line_width 1))
+	)
+	(port
+		(pt 0 336)
+		(input)
+		(text "ssi_d1" (rect 0 0 24 12)(font "Arial" ))
+		(text "ssi_d1" (rect 21 331 45 343)(font "Arial" ))
+		(line (pt 0 336)(pt 16 336)(line_width 1))
+	)
+	(port
+		(pt 0 352)
+		(input)
+		(text "ssi_d2" (rect 0 0 25 12)(font "Arial" ))
+		(text "ssi_d2" (rect 21 347 46 359)(font "Arial" ))
+		(line (pt 0 352)(pt 16 352)(line_width 1))
+	)
+	(port
+		(pt 0 368)
+		(input)
+		(text "ssi_d3" (rect 0 0 25 12)(font "Arial" ))
+		(text "ssi_d3" (rect 21 363 46 375)(font "Arial" ))
+		(line (pt 0 368)(pt 16 368)(line_width 1))
+	)
+	(port
+		(pt 0 384)
+		(input)
+		(text "ssi_d4" (rect 0 0 27 12)(font "Arial" ))
+		(text "ssi_d4" (rect 21 379 48 391)(font "Arial" ))
+		(line (pt 0 384)(pt 16 384)(line_width 1))
+	)
+	(port
+		(pt 0 400)
+		(input)
+		(text "ssi_d5" (rect 0 0 25 12)(font "Arial" ))
+		(text "ssi_d5" (rect 21 395 46 407)(font "Arial" ))
+		(line (pt 0 400)(pt 16 400)(line_width 1))
+	)
+	(port
+		(pt 0 416)
+		(input)
+		(text "btn1no" (rect 0 0 24 12)(font "Arial" ))
+		(text "btn1no" (rect 21 411 45 423)(font "Arial" ))
+		(line (pt 0 416)(pt 16 416)(line_width 1))
+	)
+	(port
+		(pt 0 432)
+		(input)
+		(text "btn1nc" (rect 0 0 24 12)(font "Arial" ))
+		(text "btn1nc" (rect 21 427 45 439)(font "Arial" ))
+		(line (pt 0 432)(pt 16 432)(line_width 1))
+	)
+	(port
+		(pt 0 448)
+		(input)
+		(text "btn2no" (rect 0 0 25 12)(font "Arial" ))
+		(text "btn2no" (rect 21 443 46 455)(font "Arial" ))
+		(line (pt 0 448)(pt 16 448)(line_width 1))
+	)
+	(port
+		(pt 0 464)
+		(input)
+		(text "btn2nc" (rect 0 0 25 12)(font "Arial" ))
+		(text "btn2nc" (rect 21 459 46 471)(font "Arial" ))
+		(line (pt 0 464)(pt 16 464)(line_width 1))
+	)
+	(port
+		(pt 0 480)
+		(input)
+		(text "btn3no" (rect 0 0 25 12)(font "Arial" ))
+		(text "btn3no" (rect 21 475 46 487)(font "Arial" ))
+		(line (pt 0 480)(pt 16 480)(line_width 1))
+	)
+	(port
+		(pt 0 496)
+		(input)
+		(text "btn3nc" (rect 0 0 25 12)(font "Arial" ))
+		(text "btn3nc" (rect 21 491 46 503)(font "Arial" ))
+		(line (pt 0 496)(pt 16 496)(line_width 1))
+	)
+	(port
+		(pt 0 512)
+		(input)
+		(text "lsw_2" (rect 0 0 22 12)(font "Arial" ))
+		(text "lsw_2" (rect 21 507 43 519)(font "Arial" ))
+		(line (pt 0 512)(pt 16 512)(line_width 1))
+	)
+	(port
+		(pt 0 528)
+		(input)
+		(text "lsw_1" (rect 0 0 21 12)(font "Arial" ))
+		(text "lsw_1" (rect 21 523 42 535)(font "Arial" ))
+		(line (pt 0 528)(pt 16 528)(line_width 1))
+	)
+	(port
+		(pt 0 544)
+		(input)
+		(text "nfault1" (rect 0 0 24 12)(font "Arial" ))
+		(text "nfault1" (rect 21 539 45 551)(font "Arial" ))
+		(line (pt 0 544)(pt 16 544)(line_width 1))
+	)
+	(port
+		(pt 0 560)
+		(input)
+		(text "nfault2" (rect 0 0 25 12)(font "Arial" ))
+		(text "nfault2" (rect 21 555 46 567)(font "Arial" ))
+		(line (pt 0 560)(pt 16 560)(line_width 1))
+	)
+	(port
+		(pt 0 576)
+		(input)
+		(text "nfault3" (rect 0 0 25 12)(font "Arial" ))
+		(text "nfault3" (rect 21 571 46 583)(font "Arial" ))
+		(line (pt 0 576)(pt 16 576)(line_width 1))
+	)
+	(port
+		(pt 0 592)
+		(input)
+		(text "nfault4" (rect 0 0 27 12)(font "Arial" ))
+		(text "nfault4" (rect 21 587 48 599)(font "Arial" ))
+		(line (pt 0 592)(pt 16 592)(line_width 1))
+	)
+	(port
+		(pt 0 608)
+		(input)
+		(text "fgout1" (rect 0 0 23 12)(font "Arial" ))
+		(text "fgout1" (rect 21 603 44 615)(font "Arial" ))
+		(line (pt 0 608)(pt 16 608)(line_width 1))
+	)
+	(port
+		(pt 0 624)
+		(input)
+		(text "fgout2" (rect 0 0 24 12)(font "Arial" ))
+		(text "fgout2" (rect 21 619 45 631)(font "Arial" ))
+		(line (pt 0 624)(pt 16 624)(line_width 1))
+	)
+	(port
+		(pt 0 640)
+		(input)
+		(text "fgout3" (rect 0 0 24 12)(font "Arial" ))
+		(text "fgout3" (rect 21 635 45 647)(font "Arial" ))
+		(line (pt 0 640)(pt 16 640)(line_width 1))
+	)
+	(port
+		(pt 0 656)
+		(input)
+		(text "fgout4" (rect 0 0 25 12)(font "Arial" ))
+		(text "fgout4" (rect 21 651 46 663)(font "Arial" ))
+		(line (pt 0 656)(pt 16 656)(line_width 1))
+	)
+	(port
+		(pt 0 672)
+		(input)
+		(text "dipsw3" (rect 0 0 25 12)(font "Arial" ))
+		(text "dipsw3" (rect 21 667 46 679)(font "Arial" ))
+		(line (pt 0 672)(pt 16 672)(line_width 1))
+	)
+	(port
+		(pt 0 688)
+		(input)
+		(text "dipsw2" (rect 0 0 25 12)(font "Arial" ))
+		(text "dipsw2" (rect 21 683 46 695)(font "Arial" ))
+		(line (pt 0 688)(pt 16 688)(line_width 1))
+	)
+	(port
+		(pt 0 704)
+		(input)
+		(text "dipsw1" (rect 0 0 24 12)(font "Arial" ))
+		(text "dipsw1" (rect 21 699 45 711)(font "Arial" ))
+		(line (pt 0 704)(pt 16 704)(line_width 1))
+	)
+	(port
+		(pt 0 720)
+		(input)
+		(text "dipsw0" (rect 0 0 25 12)(font "Arial" ))
+		(text "dipsw0" (rect 21 715 46 727)(font "Arial" ))
+		(line (pt 0 720)(pt 16 720)(line_width 1))
+	)
+	(port
+		(pt 0 736)
+		(input)
+		(text "tclk" (rect 0 0 12 12)(font "Arial" ))
+		(text "tclk" (rect 21 731 33 743)(font "Arial" ))
+		(line (pt 0 736)(pt 16 736)(line_width 1))
+	)
+	(port
+		(pt 0 752)
+		(input)
+		(text "trw" (rect 0 0 11 12)(font "Arial" ))
+		(text "trw" (rect 21 747 32 759)(font "Arial" ))
+		(line (pt 0 752)(pt 16 752)(line_width 1))
+	)
+	(port
+		(pt 0 768)
+		(input)
+		(text "tsp0" (rect 0 0 16 12)(font "Arial" ))
+		(text "tsp0" (rect 21 763 37 775)(font "Arial" ))
+		(line (pt 0 768)(pt 16 768)(line_width 1))
+	)
+	(port
+		(pt 0 784)
+		(input)
+		(text "tsp1" (rect 0 0 15 12)(font "Arial" ))
+		(text "tsp1" (rect 21 779 36 791)(font "Arial" ))
+		(line (pt 0 784)(pt 16 784)(line_width 1))
+	)
+	(port
+		(pt 0 800)
+		(input)
+		(text "tsp2" (rect 0 0 16 12)(font "Arial" ))
+		(text "tsp2" (rect 21 795 37 807)(font "Arial" ))
+		(line (pt 0 800)(pt 16 800)(line_width 1))
+	)
+	(port
+		(pt 0 816)
+		(input)
+		(text "tsp3" (rect 0 0 16 12)(font "Arial" ))
+		(text "tsp3" (rect 21 811 37 823)(font "Arial" ))
+		(line (pt 0 816)(pt 16 816)(line_width 1))
+	)
+	(port
+		(pt 0 832)
+		(input)
+		(text "tsp4" (rect 0 0 17 12)(font "Arial" ))
+		(text "tsp4" (rect 21 827 38 839)(font "Arial" ))
+		(line (pt 0 832)(pt 16 832)(line_width 1))
+	)
+	(port
+		(pt 0 848)
+		(input)
+		(text "tsp5" (rect 0 0 16 12)(font "Arial" ))
+		(text "tsp5" (rect 21 843 37 855)(font "Arial" ))
+		(line (pt 0 848)(pt 16 848)(line_width 1))
+	)
+	(port
+		(pt 0 864)
+		(input)
+		(text "tsp6" (rect 0 0 16 12)(font "Arial" ))
+		(text "tsp6" (rect 21 859 37 871)(font "Arial" ))
+		(line (pt 0 864)(pt 16 864)(line_width 1))
+	)
+	(port
+		(pt 0 880)
+		(input)
+		(text "ain_1" (rect 0 0 20 12)(font "Arial" ))
+		(text "ain_1" (rect 21 875 41 887)(font "Arial" ))
+		(line (pt 0 880)(pt 16 880)(line_width 1))
+	)
+	(port
+		(pt 0 896)
+		(input)
+		(text "ain_2" (rect 0 0 21 12)(font "Arial" ))
+		(text "ain_2" (rect 21 891 42 903)(font "Arial" ))
+		(line (pt 0 896)(pt 16 896)(line_width 1))
+	)
+	(port
+		(pt 0 912)
+		(input)
+		(text "ain_3" (rect 0 0 21 12)(font "Arial" ))
+		(text "ain_3" (rect 21 907 42 919)(font "Arial" ))
+		(line (pt 0 912)(pt 16 912)(line_width 1))
+	)
+	(port
+		(pt 0 928)
+		(input)
+		(text "ain_4" (rect 0 0 22 12)(font "Arial" ))
+		(text "ain_4" (rect 21 923 43 935)(font "Arial" ))
+		(line (pt 0 928)(pt 16 928)(line_width 1))
+	)
+	(port
+		(pt 0 944)
+		(input)
+		(text "fcan_rx0" (rect 0 0 36 12)(font "Arial" ))
+		(text "fcan_rx0" (rect 21 939 57 951)(font "Arial" ))
+		(line (pt 0 944)(pt 16 944)(line_width 1))
+	)
+	(port
+		(pt 0 960)
+		(input)
+		(text "frx_0" (rect 0 0 22 12)(font "Arial" ))
+		(text "frx_0" (rect 21 955 43 967)(font "Arial" ))
+		(line (pt 0 960)(pt 16 960)(line_width 1))
+	)
+	(port
+		(pt 0 976)
+		(input)
+		(text "frx_01" (rect 0 0 25 12)(font "Arial" ))
+		(text "frx_01" (rect 21 971 46 983)(font "Arial" ))
+		(line (pt 0 976)(pt 16 976)(line_width 1))
+	)
+	(port
+		(pt 0 992)
+		(input)
+		(text "frx_1" (rect 0 0 21 12)(font "Arial" ))
+		(text "frx_1" (rect 21 987 42 999)(font "Arial" ))
+		(line (pt 0 992)(pt 16 992)(line_width 1))
+	)
+	(port
+		(pt 0 1008)
+		(input)
+		(text "m4brk" (rect 0 0 27 12)(font "Arial" ))
+		(text "m4brk" (rect 21 1003 48 1015)(font "Arial" ))
+		(line (pt 0 1008)(pt 16 1008)(line_width 1))
+	)
+	(port
+		(pt 0 1024)
+		(input)
+		(text "m5brk" (rect 0 0 25 12)(font "Arial" ))
+		(text "m5brk" (rect 21 1019 46 1031)(font "Arial" ))
+		(line (pt 0 1024)(pt 16 1024)(line_width 1))
+	)
+	(port
+		(pt 0 1040)
+		(input)
+		(text "spare1_io[16..0]" (rect 0 0 61 12)(font "Arial" ))
+		(text "spare1_io[16..0]" (rect 21 1035 82 1047)(font "Arial" ))
+		(line (pt 0 1040)(pt 16 1040)(line_width 3))
+	)
+	(port
+		(pt 224 32)
+		(output)
+		(text "miso_0" (rect 0 0 29 12)(font "Arial" ))
+		(text "miso_0" (rect 174 27 203 39)(font "Arial" ))
+		(line (pt 224 32)(pt 208 32)(line_width 1))
+	)
+	(port
+		(pt 224 48)
+		(output)
+		(text "mclk_1" (rect 0 0 28 12)(font "Arial" ))
+		(text "mclk_1" (rect 175 43 203 55)(font "Arial" ))
+		(line (pt 224 48)(pt 208 48)(line_width 1))
+	)
+	(port
+		(pt 224 64)
+		(output)
+		(text "mosi_1" (rect 0 0 28 12)(font "Arial" ))
+		(text "mosi_1" (rect 175 59 203 71)(font "Arial" ))
+		(line (pt 224 64)(pt 208 64)(line_width 1))
+	)
+	(port
+		(pt 224 80)
+		(output)
+		(text "cs_1" (rect 0 0 18 12)(font "Arial" ))
+		(text "cs_1" (rect 185 75 203 87)(font "Arial" ))
+		(line (pt 224 80)(pt 208 80)(line_width 1))
+	)
+	(port
+		(pt 224 96)
+		(output)
+		(text "cs_2" (rect 0 0 20 12)(font "Arial" ))
+		(text "cs_2" (rect 183 91 203 103)(font "Arial" ))
+		(line (pt 224 96)(pt 208 96)(line_width 1))
+	)
+	(port
+		(pt 224 112)
+		(output)
+		(text "cs_3" (rect 0 0 20 12)(font "Arial" ))
+		(text "cs_3" (rect 183 107 203 119)(font "Arial" ))
+		(line (pt 224 112)(pt 208 112)(line_width 1))
+	)
+	(port
+		(pt 224 128)
+		(output)
+		(text "cs_4" (rect 0 0 21 12)(font "Arial" ))
+		(text "cs_4" (rect 182 123 203 135)(font "Arial" ))
+		(line (pt 224 128)(pt 208 128)(line_width 1))
+	)
+	(port
+		(pt 224 144)
+		(output)
+		(text "ssi_c1" (rect 0 0 24 12)(font "Arial" ))
+		(text "ssi_c1" (rect 179 139 203 151)(font "Arial" ))
+		(line (pt 224 144)(pt 208 144)(line_width 1))
+	)
+	(port
+		(pt 224 160)
+		(output)
+		(text "ssi_c2" (rect 0 0 25 12)(font "Arial" ))
+		(text "ssi_c2" (rect 178 155 203 167)(font "Arial" ))
+		(line (pt 224 160)(pt 208 160)(line_width 1))
+	)
+	(port
+		(pt 224 176)
+		(output)
+		(text "ssi_c3" (rect 0 0 25 12)(font "Arial" ))
+		(text "ssi_c3" (rect 178 171 203 183)(font "Arial" ))
+		(line (pt 224 176)(pt 208 176)(line_width 1))
+	)
+	(port
+		(pt 224 192)
+		(output)
+		(text "ssi_c4" (rect 0 0 27 12)(font "Arial" ))
+		(text "ssi_c4" (rect 176 187 203 199)(font "Arial" ))
+		(line (pt 224 192)(pt 208 192)(line_width 1))
+	)
+	(port
+		(pt 224 208)
+		(output)
+		(text "ssi_c5" (rect 0 0 25 12)(font "Arial" ))
+		(text "ssi_c5" (rect 178 203 203 215)(font "Arial" ))
+		(line (pt 224 208)(pt 208 208)(line_width 1))
+	)
+	(port
+		(pt 224 224)
+		(output)
+		(text "led1_1" (rect 0 0 23 12)(font "Arial" ))
+		(text "led1_1" (rect 180 219 203 231)(font "Arial" ))
+		(line (pt 224 224)(pt 208 224)(line_width 1))
+	)
+	(port
+		(pt 224 240)
+		(output)
+		(text "led1_2" (rect 0 0 24 12)(font "Arial" ))
+		(text "led1_2" (rect 179 235 203 247)(font "Arial" ))
+		(line (pt 224 240)(pt 208 240)(line_width 1))
+	)
+	(port
+		(pt 224 256)
+		(output)
+		(text "led3_3" (rect 0 0 25 12)(font "Arial" ))
+		(text "led3_3" (rect 178 251 203 263)(font "Arial" ))
+		(line (pt 224 256)(pt 208 256)(line_width 1))
+	)
+	(port
+		(pt 224 272)
+		(output)
+		(text "led3_2" (rect 0 0 25 12)(font "Arial" ))
+		(text "led3_2" (rect 178 267 203 279)(font "Arial" ))
+		(line (pt 224 272)(pt 208 272)(line_width 1))
+	)
+	(port
+		(pt 224 288)
+		(output)
+		(text "led3_1" (rect 0 0 24 12)(font "Arial" ))
+		(text "led3_1" (rect 179 283 203 295)(font "Arial" ))
+		(line (pt 224 288)(pt 208 288)(line_width 1))
+	)
+	(port
+		(pt 224 304)
+		(output)
+		(text "led2_3" (rect 0 0 25 12)(font "Arial" ))
+		(text "led2_3" (rect 178 299 203 311)(font "Arial" ))
+		(line (pt 224 304)(pt 208 304)(line_width 1))
+	)
+	(port
+		(pt 224 320)
+		(output)
+		(text "led2_2" (rect 0 0 25 12)(font "Arial" ))
+		(text "led2_2" (rect 178 315 203 327)(font "Arial" ))
+		(line (pt 224 320)(pt 208 320)(line_width 1))
+	)
+	(port
+		(pt 224 336)
+		(output)
+		(text "led2_1" (rect 0 0 24 12)(font "Arial" ))
+		(text "led2_1" (rect 179 331 203 343)(font "Arial" ))
+		(line (pt 224 336)(pt 208 336)(line_width 1))
+	)
+	(port
+		(pt 224 352)
+		(output)
+		(text "led1m4" (rect 0 0 28 12)(font "Arial" ))
+		(text "led1m4" (rect 175 347 203 359)(font "Arial" ))
+		(line (pt 224 352)(pt 208 352)(line_width 1))
+	)
+	(port
+		(pt 224 368)
+		(output)
+		(text "led2m4" (rect 0 0 29 12)(font "Arial" ))
+		(text "led2m4" (rect 174 363 203 375)(font "Arial" ))
+		(line (pt 224 368)(pt 208 368)(line_width 1))
+	)
+	(port
+		(pt 224 384)
+		(output)
+		(text "led3m4" (rect 0 0 29 12)(font "Arial" ))
+		(text "led3m4" (rect 174 379 203 391)(font "Arial" ))
+		(line (pt 224 384)(pt 208 384)(line_width 1))
+	)
+	(port
+		(pt 224 400)
+		(output)
+		(text "droff1" (rect 0 0 23 12)(font "Arial" ))
+		(text "droff1" (rect 180 395 203 407)(font "Arial" ))
+		(line (pt 224 400)(pt 208 400)(line_width 1))
+	)
+	(port
+		(pt 224 416)
+		(output)
+		(text "droff2" (rect 0 0 24 12)(font "Arial" ))
+		(text "droff2" (rect 179 411 203 423)(font "Arial" ))
+		(line (pt 224 416)(pt 208 416)(line_width 1))
+	)
+	(port
+		(pt 224 432)
+		(output)
+		(text "droff3" (rect 0 0 24 12)(font "Arial" ))
+		(text "droff3" (rect 179 427 203 439)(font "Arial" ))
+		(line (pt 224 432)(pt 208 432)(line_width 1))
+	)
+	(port
+		(pt 224 448)
+		(output)
+		(text "droff4" (rect 0 0 25 12)(font "Arial" ))
+		(text "droff4" (rect 178 443 203 455)(font "Arial" ))
+		(line (pt 224 448)(pt 208 448)(line_width 1))
+	)
+	(port
+		(pt 224 464)
+		(output)
+		(text "pwm1" (rect 0 0 22 12)(font "Arial" ))
+		(text "pwm1" (rect 181 459 203 471)(font "Arial" ))
+		(line (pt 224 464)(pt 208 464)(line_width 1))
+	)
+	(port
+		(pt 224 480)
+		(output)
+		(text "pwm2" (rect 0 0 23 12)(font "Arial" ))
+		(text "pwm2" (rect 180 475 203 487)(font "Arial" ))
+		(line (pt 224 480)(pt 208 480)(line_width 1))
+	)
+	(port
+		(pt 224 496)
+		(output)
+		(text "pwm3" (rect 0 0 23 12)(font "Arial" ))
+		(text "pwm3" (rect 180 491 203 503)(font "Arial" ))
+		(line (pt 224 496)(pt 208 496)(line_width 1))
+	)
+	(port
+		(pt 224 512)
+		(output)
+		(text "pwm4" (rect 0 0 24 12)(font "Arial" ))
+		(text "pwm4" (rect 179 507 203 519)(font "Arial" ))
+		(line (pt 224 512)(pt 208 512)(line_width 1))
+	)
+	(port
+		(pt 224 528)
+		(output)
+		(text "brake1" (rect 0 0 25 12)(font "Arial" ))
+		(text "brake1" (rect 178 523 203 535)(font "Arial" ))
+		(line (pt 224 528)(pt 208 528)(line_width 1))
+	)
+	(port
+		(pt 224 544)
+		(output)
+		(text "brake2" (rect 0 0 27 12)(font "Arial" ))
+		(text "brake2" (rect 176 539 203 551)(font "Arial" ))
+		(line (pt 224 544)(pt 208 544)(line_width 1))
+	)
+	(port
+		(pt 224 560)
+		(output)
+		(text "brake3" (rect 0 0 27 12)(font "Arial" ))
+		(text "brake3" (rect 176 555 203 567)(font "Arial" ))
+		(line (pt 224 560)(pt 208 560)(line_width 1))
+	)
+	(port
+		(pt 224 576)
+		(output)
+		(text "brake4" (rect 0 0 28 12)(font "Arial" ))
+		(text "brake4" (rect 175 571 203 583)(font "Arial" ))
+		(line (pt 224 576)(pt 208 576)(line_width 1))
+	)
+	(port
+		(pt 224 592)
+		(output)
+		(text "fcan_tx0" (rect 0 0 35 12)(font "Arial" ))
+		(text "fcan_tx0" (rect 168 587 203 599)(font "Arial" ))
+		(line (pt 224 592)(pt 208 592)(line_width 1))
+	)
+	(port
+		(pt 224 608)
+		(output)
+		(text "fcan_shdn" (rect 0 0 42 12)(font "Arial" ))
+		(text "fcan_shdn" (rect 161 603 203 615)(font "Arial" ))
+		(line (pt 224 608)(pt 208 608)(line_width 1))
+	)
+	(port
+		(pt 224 624)
+		(output)
+		(text "fcan_stb" (rect 0 0 35 12)(font "Arial" ))
+		(text "fcan_stb" (rect 168 619 203 631)(font "Arial" ))
+		(line (pt 224 624)(pt 208 624)(line_width 1))
+	)
+	(port
+		(pt 224 640)
+		(output)
+		(text "ftx_0" (rect 0 0 21 12)(font "Arial" ))
+		(text "ftx_0" (rect 182 635 203 647)(font "Arial" ))
+		(line (pt 224 640)(pt 208 640)(line_width 1))
+	)
+	(port
+		(pt 224 656)
+		(output)
+		(text "ftx_01" (rect 0 0 24 12)(font "Arial" ))
+		(text "ftx_01" (rect 179 651 203 663)(font "Arial" ))
+		(line (pt 224 656)(pt 208 656)(line_width 1))
+	)
+	(port
+		(pt 224 672)
+		(output)
+		(text "ftx_1" (rect 0 0 20 12)(font "Arial" ))
+		(text "ftx_1" (rect 183 667 203 679)(font "Arial" ))
+		(line (pt 224 672)(pt 208 672)(line_width 1))
+	)
+	(port
+		(pt 224 688)
+		(output)
+		(text "spare0_io[23..0]" (rect 0 0 63 12)(font "Arial" ))
+		(text "spare0_io[23..0]" (rect 140 683 203 695)(font "Arial" ))
+		(line (pt 224 688)(pt 208 688)(line_width 3))
+	)
+	(port
+		(pt 224 704)
+		(output)
+		(text "io_led[6..0]" (rect 0 0 42 12)(font "Arial" ))
+		(text "io_led[6..0]" (rect 161 699 203 711)(font "Arial" ))
+		(line (pt 224 704)(pt 208 704)(line_width 3))
+	)
+	(parameter
+		"FPGA_MAJOR_VER"
+		"00001001"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"FPGA_REV"
+		"00000011"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"FPGA_REV_YEAR"
+		"00010111"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"FPGA_REV_MONTH"
+		"00000101"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"FPGA_REV_DAY"
+		"00011111"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"FPGA_REV_HOUR"
+		"00001000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SPI_COM_LEN"
+		"8"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"SPI_ADDR_LEN"
+		""
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"SPI_DATA_LEN"
+		""
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"WRITE_COM"
+		"00001010"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"READ_COM"
+		"00001111"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"WRITE_MODE"
+		"00"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"READ_MODE"
+		"01"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"UNDEF_MODE"
+		"11"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"IEF3_DEF_TICKS"
+		"4096"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"M1_3_ABS_DATA_BITS"
+		"44"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"M1_3_CLOCK_PERIOD"
+		"25"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"M1_3_READ_PERIOD"
+		"15000"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"FLUX_DEF_TICKS"
+		"16384"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"FLUX_DATA_BITS"
+		"28"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"FLUX_CLOCK_PERIOD"
+		"50"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"FLUX_READ_PERIOD"
+		"10000"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"MOTOR_PWM_MAX_FREQ"
+		"500"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ENCODER_DEB_TIME"
+		"3"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ADDR_FPGA_VER"
+		"0000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_REV_DATA"
+		"0000000000000001"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_DIP_SWITCH"
+		"0000000000000010"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M1_INC"
+		"0000000000000011"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M1_INC_ERROR"
+		"0000000000000100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M1_DEF_TICKS"
+		"0000000000000101"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M1_ABSOLUTE"
+		"0000000000000110"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M1_MOTION_CONTROL"
+		"0000000000000111"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M1_PWM_CYCLE"
+		"0000000000001000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M1_FEEDBACK"
+		"0000000000001001"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M1_DRIVER_CONTROL"
+		"0000000000001010"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M2_INC"
+		"0000000000001011"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M2_INC_ERROR"
+		"0000000000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M2_DEF_TICKS"
+		"0000000000001101"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M2_ABSOLUTE"
+		"0000000000001110"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M2_MOTION_CONTROL"
+		"0000000000001111"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M2_PWM_CYCLE"
+		"0000000000010000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M2_FEEDBACK"
+		"0000000000010001"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M2_DRIVER_CONTROL"
+		"0000000000010010"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M3_INC"
+		"0000000000010011"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M3_INC_ERROR"
+		"0000000000010100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M3_DEF_TICKS"
+		"0000000000010101"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M3_ABSOLUTE"
+		"0000000000010110"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M3_MOTION_CONTROL"
+		"0000000000010111"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M3_PWM_CYCLE"
+		"0000000000011000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M3_FEEDBACK"
+		"0000000000011001"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M3_DRIVER_CONTROL"
+		"0000000000011010"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M4_INC"
+		"0000000000011011"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M4_INC_ERROR"
+		"0000000000011100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M4_DEF_TICKS"
+		"0000000000011101"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M4_ABSOLUTE"
+		"0000000000011110"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M4_ABSOLUTE_ERROR"
+		"0000000000011111"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M4_MOTION_CONTROL"
+		"0000000000100000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M4_PWM_CYCLE"
+		"0000000000100001"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M4_FEEDBACK"
+		"0000000000100010"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M4_DRIVER_CONTROL"
+		"0000000000100011"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_SPARE0_IO"
+		"0000000000100100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_SPARE1_IO"
+		"0000000000100101"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_TEENSY_SPARE"
+		"0000000000100110"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_BUTTONS"
+		"0000000000100111"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_BUTTONS_LED"
+		"0000000000101000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_DRAPE_SWITCH"
+		"0000000000101001"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_DIAG_LEDS"
+		"0000000000101010"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M1_3_ABS_ENC_COUNT"
+		"0000000000101011"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDR_FPGA_M1_3_ABS_ENC_STATUS"
+		"0000000000101100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"NUM_REG"
+		"44"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 208 1056)(line_width 1))
+	)
+	(annotation_block (parameter)(rect 240 -64 340 16))
+)

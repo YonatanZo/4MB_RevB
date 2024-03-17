@@ -1,0 +1,252 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2022  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 16 16 304 288)
+	(text "motor4_control" (rect 5 0 66 12)(font "Arial" ))
+	(text "inst" (rect 8 256 20 268)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clk_100m" (rect 0 0 37 12)(font "Arial" ))
+		(text "clk_100m" (rect 21 27 58 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 1))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "rst_n_syn" (rect 0 0 42 12)(font "Arial" ))
+		(text "rst_n_syn" (rect 21 43 63 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "data_mosi[31..0]" (rect 0 0 64 12)(font "Arial" ))
+		(text "data_mosi[31..0]" (rect 21 59 85 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "data_mosi_rdy" (rect 0 0 61 12)(font "Arial" ))
+		(text "data_mosi_rdy" (rect 21 75 82 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "addr[15..0]" (rect 0 0 41 12)(font "Arial" ))
+		(text "addr[15..0]" (rect 21 91 62 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 3))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "qca" (rect 0 0 14 12)(font "Arial" ))
+		(text "qca" (rect 21 107 35 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112)(line_width 1))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "qcb" (rect 0 0 14 12)(font "Arial" ))
+		(text "qcb" (rect 21 123 35 135)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128)(line_width 1))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "qci" (rect 0 0 10 12)(font "Arial" ))
+		(text "qci" (rect 21 139 31 151)(font "Arial" ))
+		(line (pt 0 144)(pt 16 144)(line_width 1))
+	)
+	(port
+		(pt 0 160)
+		(input)
+		(text "ssi_d" (rect 0 0 21 12)(font "Arial" ))
+		(text "ssi_d" (rect 21 155 42 167)(font "Arial" ))
+		(line (pt 0 160)(pt 16 160)(line_width 1))
+	)
+	(port
+		(pt 0 176)
+		(input)
+		(text "nfault" (rect 0 0 21 12)(font "Arial" ))
+		(text "nfault" (rect 21 171 42 183)(font "Arial" ))
+		(line (pt 0 176)(pt 16 176)(line_width 1))
+	)
+	(port
+		(pt 288 32)
+		(output)
+		(text "ssi_c" (rect 0 0 21 12)(font "Arial" ))
+		(text "ssi_c" (rect 246 27 267 39)(font "Arial" ))
+		(line (pt 288 32)(pt 272 32)(line_width 1))
+	)
+	(port
+		(pt 288 48)
+		(output)
+		(text "droff" (rect 0 0 20 12)(font "Arial" ))
+		(text "droff" (rect 247 43 267 55)(font "Arial" ))
+		(line (pt 288 48)(pt 272 48)(line_width 1))
+	)
+	(port
+		(pt 288 64)
+		(output)
+		(text "pwm" (rect 0 0 18 12)(font "Arial" ))
+		(text "pwm" (rect 249 59 267 71)(font "Arial" ))
+		(line (pt 288 64)(pt 272 64)(line_width 1))
+	)
+	(port
+		(pt 288 80)
+		(output)
+		(text "brake" (rect 0 0 22 12)(font "Arial" ))
+		(text "brake" (rect 245 75 267 87)(font "Arial" ))
+		(line (pt 288 80)(pt 272 80)(line_width 1))
+	)
+	(port
+		(pt 288 96)
+		(output)
+		(text "fgout" (rect 0 0 20 12)(font "Arial" ))
+		(text "fgout" (rect 247 91 267 103)(font "Arial" ))
+		(line (pt 288 96)(pt 272 96)(line_width 1))
+	)
+	(port
+		(pt 288 112)
+		(output)
+		(text "incr_enc_cnt_reg[31..0]" (rect 0 0 94 12)(font "Arial" ))
+		(text "incr_enc_cnt_reg[31..0]" (rect 173 107 267 119)(font "Arial" ))
+		(line (pt 288 112)(pt 272 112)(line_width 3))
+	)
+	(port
+		(pt 288 128)
+		(output)
+		(text "incr_enc_error_reg[31..0]" (rect 0 0 102 12)(font "Arial" ))
+		(text "incr_enc_error_reg[31..0]" (rect 165 123 267 135)(font "Arial" ))
+		(line (pt 288 128)(pt 272 128)(line_width 3))
+	)
+	(port
+		(pt 288 144)
+		(output)
+		(text "incr_enc_def_ticks_reg[31..0]" (rect 0 0 119 12)(font "Arial" ))
+		(text "incr_enc_def_ticks_reg[31..0]" (rect 148 139 267 151)(font "Arial" ))
+		(line (pt 288 144)(pt 272 144)(line_width 3))
+	)
+	(port
+		(pt 288 160)
+		(output)
+		(text "abs_enc_position_reg[31..0]" (rect 0 0 110 12)(font "Arial" ))
+		(text "abs_enc_position_reg[31..0]" (rect 157 155 267 167)(font "Arial" ))
+		(line (pt 288 160)(pt 272 160)(line_width 3))
+	)
+	(port
+		(pt 288 176)
+		(output)
+		(text "motion_control_reg[31..0]" (rect 0 0 100 12)(font "Arial" ))
+		(text "motion_control_reg[31..0]" (rect 167 171 267 183)(font "Arial" ))
+		(line (pt 288 176)(pt 272 176)(line_width 3))
+	)
+	(port
+		(pt 288 192)
+		(output)
+		(text "pwm_cycle_reg[31..0]" (rect 0 0 88 12)(font "Arial" ))
+		(text "pwm_cycle_reg[31..0]" (rect 179 187 267 199)(font "Arial" ))
+		(line (pt 288 192)(pt 272 192)(line_width 3))
+	)
+	(port
+		(pt 288 208)
+		(output)
+		(text "driver_feedback_reg[31..0]" (rect 0 0 108 12)(font "Arial" ))
+		(text "driver_feedback_reg[31..0]" (rect 159 203 267 215)(font "Arial" ))
+		(line (pt 288 208)(pt 272 208)(line_width 3))
+	)
+	(port
+		(pt 288 224)
+		(output)
+		(text "driver_control_reg[31..0]" (rect 0 0 97 12)(font "Arial" ))
+		(text "driver_control_reg[31..0]" (rect 170 219 267 231)(font "Arial" ))
+		(line (pt 288 224)(pt 272 224)(line_width 3))
+	)
+	(parameter
+		"ADDR_FPGA_INC"
+		"0"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ADDR_FPGA_INC_ERROR"
+		"1"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ADDR_FPGA_DEF_TICKS"
+		"2"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ADDR_FPGA_ABSOLUTE"
+		"3"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ADDR_FPGA_MOTION_CONTROL"
+		"4"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ADDR_FPGA_PWM_CYCLE"
+		"5"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ADDR_FPGA_FEEDBACK"
+		"6"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ADDR_FPGA_DRIVER_CONTROL"
+		"7"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"DEF_ENCODER_TICKS"
+		"16384"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ENCODER_DATA_BITS"
+		"28"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ENCODER_CLOCK_PERIOD"
+		"26"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"ENCODER_READ_PERIOD"
+		"1000"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 272 256)(line_width 1))
+	)
+	(annotation_block (parameter)(rect 304 -64 404 16))
+)

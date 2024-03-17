@@ -1,0 +1,300 @@
+do run_rtl.tcl
+# ../../source
+# .././testbench
+# .././result
+# .././result
+# noopt
+# opt
+# -----------------------------------------------
+# ------------ RTL Compilation Started ----------
+# -----------------------------------------------
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2021.2 Lib Mapping Utility 2021.04 Apr 14 2021
+# vmap work work 
+# Modifying C:/TracePCB/4.M.B/FPGA_4MB/simulation/modelsim/FPGA_4MB.mpf
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 14:46:25 on Dec 22,2022
+# vlog -reportprogress 300 -timescale 1ns / 100ps "+define+RTL_SIM" "+incdir+../../source/" ../../source/spi_4mb.v ../../source/registers_4mb.v ../../source/motor_control.v ../../source/motor4_control.v ../../source/top_4mb.v 
+# -- Compiling module spi_4mb
+# -- Compiling module registers_4mb
+# -- Compiling module motor_control
+# -- Compiling module motor4_control
+# -- Compiling module top_4mb
+# 
+# Top level modules:
+# 	top_4mb
+# End time: 14:46:25 on Dec 22,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 14:46:25 on Dec 22,2022
+# vlog -reportprogress 300 -timescale 1ns / 100ps "+incdir+.././testbench+../../source/" .././testbench/spi_interface.v .././testbench/tb_tests.v .././testbench/tb_tester.v .././testbench/tb.v 
+# -- Compiling module spi_interface
+# -- Compiling module tb_tests
+# -- Compiling module tb_tester
+# -- Compiling module tb
+# 
+# Top level modules:
+# 	tb
+# End time: 14:46:25 on Dec 22,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# -----------------------------------------------
+# ------------ RTL Compilation Completed --------
+# -----------------------------------------------
+# -----------------------------------------------
+# -------- RTL Optimization  Started ------------
+# -----------------------------------------------
+# Questa Intel Starter FPGA Edition-64 vopt 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 14:46:26 on Dec 22,2022
+# vopt -reportprogress 300 "+acc" top_4mb tb -o 4mb_opt 
+# 
+# Top level modules:
+# 	top_4mb
+# 	tb
+# 
+# Analyzing design...
+# -- Loading module top_4mb
+# -- Loading module tb
+# -- Loading module spi_4mb
+# -- Loading module registers_4mb
+# -- Loading module motor_control
+# -- Loading module motor4_control
+# -- Loading module tb_tester
+# -- Loading module spi_interface
+# -- Loading module tb_tests
+# Optimizing 18 design-units (inlining 0/18 module instances):
+# -- Optimizing module tb_tests(fast)
+# -- Optimizing module motor4_control(fast__1)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor4_control(fast__1)".
+# -- Optimizing module motor4_control(fast)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor4_control(fast)".
+# -- Optimizing module top_4mb(fast__1)
+# -- Optimizing module top_4mb(fast)
+# -- Optimizing module motor_control(fast__1)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor_control(fast__1)".
+# -- Optimizing module motor_control(fast__5)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor_control(fast__5)".
+# -- Optimizing module motor_control(fast)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor_control(fast)".
+# -- Optimizing module motor_control(fast__3)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor_control(fast__3)".
+# -- Optimizing module motor_control(fast__4)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor_control(fast__4)".
+# -- Optimizing module motor_control(fast__2)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor_control(fast__2)".
+# -- Optimizing module spi_4mb(fast__1)
+# ** Note: (vopt-143) Recognized 1 FSM in module "spi_4mb(fast__1)".
+# -- Optimizing module spi_4mb(fast)
+# ** Note: (vopt-143) Recognized 1 FSM in module "spi_4mb(fast)".
+# -- Optimizing module tb_tester(fast)
+# -- Optimizing module spi_interface(fast)
+# ** Note: (vopt-143) Recognized 1 FSM in module "spi_interface(fast)".
+# -- Optimizing module tb(fast)
+# -- Optimizing module registers_4mb(fast)
+# -- Optimizing module registers_4mb(fast__1)
+# Optimized design name is 4mb_opt
+# End time: 14:46:26 on Dec 22,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# -----------------------------------------------
+# ------ RTL Optimization  Completed ------------
+# -----------------------------------------------
+# -------- RTL Simulation Started ---------------
+# -----------------------------------------------
+# vsim work.4mb_opt 
+# Start time: 14:46:26 on Dec 22,2022
+# Loading work.top_4mb(fast)
+# Loading work.spi_4mb(fast__1)
+# Loading work.registers_4mb(fast__1)
+# Loading work.motor_control(fast__3)
+# Loading work.motor_control(fast__4)
+# Loading work.motor_control(fast__5)
+# Loading work.motor4_control(fast__1)
+# Loading work.tb(fast)
+# Loading work.top_4mb(fast__1)
+# Loading work.spi_4mb(fast)
+# Loading work.registers_4mb(fast)
+# Loading work.motor_control(fast)
+# Loading work.motor_control(fast__1)
+# Loading work.motor_control(fast__2)
+# Loading work.motor4_control(fast)
+# Loading work.tb_tester(fast)
+# Loading work.spi_interface(fast)
+# Loading work.tb_tests(fast)
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: IGOR  Hostname: LAPTOP-8OQVSC68  ProcessID: 21992
+#           Attempting to use alternate WLF file "./wlftzdkx7j".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftzdkx7j
+# 
+# ************************************
+# ****** 4.M.B. TEST BEGIN AT 0 ns ******
+# ************************************
+# 
+########## M1 Incremental Encoder Test BEGIN at 110 ns ##########
+########## M1 Incremental Encoder  Test is passed O.K. at 1600410 ns 
+# 
+# ****************************************************
+# ****** FULL TEST WAS PASSED O.K. AT 1600410 ns ******
+# ****************************************************
+# ** Note: $stop    : .././testbench/tb_tester.v(439)
+#    Time: 1601410 ns  Iteration: 0  Instance: /tb/tb_tester
+# Break in Module tb_tester at .././testbench/tb_tester.v line 439
+# -----------------------------------------------
+# ------------ RTL Simulation Completed ---------
+# -----------------------------------------------
+do run_rtl.tcl
+# ../../source
+# .././testbench
+# .././result
+# .././result
+# noopt
+# opt
+# -----------------------------------------------
+# ------------ RTL Compilation Started ----------
+# -----------------------------------------------
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# Error 31: Unable to unlink file "C:/TracePCB/4.M.B/FPGA_4MB/simulation/modelsim/work/4mb_opt/_lib.qdb".
+# Error 133: Unable to remove directory "C:/TracePCB/4.M.B/FPGA_4MB/simulation/modelsim/work/4mb_opt".
+# Error 133: Unable to remove directory "C:/TracePCB/4.M.B/FPGA_4MB/simulation/modelsim/work".
+# Questa Intel Starter FPGA Edition-64 vmap 2021.2 Lib Mapping Utility 2021.04 Apr 14 2021
+# vmap work work 
+# Modifying C:/TracePCB/4.M.B/FPGA_4MB/simulation/modelsim/FPGA_4MB.mpf
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 14:50:53 on Dec 22,2022
+# vlog -reportprogress 300 -timescale 1ns / 100ps "+define+RTL_SIM" "+incdir+../../source/" ../../source/spi_4mb.v ../../source/registers_4mb.v ../../source/motor_control.v ../../source/motor4_control.v ../../source/top_4mb.v 
+# -- Compiling module spi_4mb
+# -- Compiling module registers_4mb
+# -- Compiling module motor_control
+# -- Compiling module motor4_control
+# -- Compiling module top_4mb
+# 
+# Top level modules:
+# 	top_4mb
+# End time: 14:50:53 on Dec 22,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 14:50:53 on Dec 22,2022
+# vlog -reportprogress 300 -timescale 1ns / 100ps "+incdir+.././testbench+../../source/" .././testbench/spi_interface.v .././testbench/tb_tests.v .././testbench/tb_tester.v .././testbench/tb.v 
+# -- Compiling module spi_interface
+# -- Compiling module tb_tests
+# -- Compiling module tb_tester
+# -- Compiling module tb
+# 
+# Top level modules:
+# 	tb
+# End time: 14:50:53 on Dec 22,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# -----------------------------------------------
+# ------------ RTL Compilation Completed --------
+# -----------------------------------------------
+# -----------------------------------------------
+# -------- RTL Optimization  Started ------------
+# -----------------------------------------------
+# Questa Intel Starter FPGA Edition-64 vopt 2021.2 Compiler 2021.04 Apr 14 2021
+# Start time: 14:50:53 on Dec 22,2022
+# vopt -reportprogress 300 "+acc" top_4mb tb -o 4mb_opt 
+# ** Warning: (vopt-31) Unable to unlink file "C:/TracePCB/4.M.B/FPGA_4MB/simulation/modelsim/work/4mb_opt/_lib.qdb".
+# ** Warning: (vopt-133) Unable to remove directory "C:/TracePCB/4.M.B/FPGA_4MB/simulation/modelsim/work/4mb_opt".
+# 
+# Top level modules:
+# 	top_4mb
+# 	tb
+# 
+# Analyzing design...
+# -- Loading module top_4mb
+# -- Loading module tb
+# -- Loading module spi_4mb
+# -- Loading module registers_4mb
+# -- Loading module motor_control
+# -- Loading module motor4_control
+# -- Loading module tb_tester
+# -- Loading module spi_interface
+# -- Loading module tb_tests
+# init_auxdbinfo(): INTERNAL ERROR: Cannot open page file "C:/TracePCB/4.M.B/FPGA_4MB/simulation/modelsim/work/4mb_opt/_lib1_0.qpg" in read mode
+# Optimizing 18 design-units (inlining 0/18 module instances):
+# -- Optimizing module tb_tests(fast)
+# -- Optimizing module motor4_control(fast__1)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor4_control(fast__1)".
+# -- Optimizing module motor4_control(fast)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor4_control(fast)".
+# -- Optimizing module top_4mb(fast__1)
+# -- Optimizing module top_4mb(fast)
+# -- Optimizing module motor_control(fast__1)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor_control(fast__1)".
+# -- Optimizing module motor_control(fast__5)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor_control(fast__5)".
+# -- Optimizing module motor_control(fast)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor_control(fast)".
+# -- Optimizing module motor_control(fast__3)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor_control(fast__3)".
+# -- Optimizing module motor_control(fast__4)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor_control(fast__4)".
+# -- Optimizing module motor_control(fast__2)
+# ** Note: (vopt-143) Recognized 1 FSM in module "motor_control(fast__2)".
+# -- Optimizing module spi_4mb(fast__1)
+# ** Note: (vopt-143) Recognized 1 FSM in module "spi_4mb(fast__1)".
+# -- Optimizing module spi_4mb(fast)
+# ** Note: (vopt-143) Recognized 1 FSM in module "spi_4mb(fast)".
+# -- Optimizing module tb_tester(fast)
+# -- Optimizing module spi_interface(fast)
+# ** Note: (vopt-143) Recognized 1 FSM in module "spi_interface(fast)".
+# -- Optimizing module tb(fast)
+# -- Optimizing module registers_4mb(fast)
+# -- Optimizing module registers_4mb(fast__1)
+# Optimized design name is 4mb_opt
+# End time: 14:50:53 on Dec 22,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 2
+# -----------------------------------------------
+# ------ RTL Optimization  Completed ------------
+# -----------------------------------------------
+# -------- RTL Simulation Started ---------------
+# -----------------------------------------------
+# End time: 14:50:54 on Dec 22,2022, Elapsed time: 0:04:28
+# Errors: 0, Warnings: 3
+# vsim work.4mb_opt 
+# Start time: 14:50:54 on Dec 22,2022
+# Loading work.top_4mb(fast)
+# Loading work.spi_4mb(fast__1)
+# Loading work.registers_4mb(fast__1)
+# Loading work.motor_control(fast__3)
+# Loading work.motor_control(fast__4)
+# Loading work.motor_control(fast__5)
+# Loading work.motor4_control(fast__1)
+# Loading work.tb(fast)
+# Loading work.top_4mb(fast__1)
+# Loading work.spi_4mb(fast)
+# Loading work.registers_4mb(fast)
+# Loading work.motor_control(fast)
+# Loading work.motor_control(fast__1)
+# Loading work.motor_control(fast__2)
+# Loading work.motor4_control(fast)
+# Loading work.tb_tester(fast)
+# Loading work.spi_interface(fast)
+# Loading work.tb_tests(fast)
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: IGOR  Hostname: LAPTOP-8OQVSC68  ProcessID: 21992
+#           Attempting to use alternate WLF file "./wlftgrj5hn".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftgrj5hn
+# 
+# ************************************
+# ****** 4.M.B. TEST BEGIN AT 0 ns ******
+# ************************************
+# 
+########## M1 Incremental Encoder Test BEGIN at 110 ns ##########
+########## M1 Incremental Encoder  Test is passed O.K. at 1600410 ns 
+# 
+# ****************************************************
+# ****** FULL TEST WAS PASSED O.K. AT 1600410 ns ******
+# ****************************************************
+# ** Note: $stop    : .././testbench/tb_tester.v(439)
+#    Time: 1601410 ns  Iteration: 0  Instance: /tb/tb_tester
+# Break in Module tb_tester at .././testbench/tb_tester.v line 439
+# -----------------------------------------------
+# ------------ RTL Simulation Completed ---------
+# -----------------------------------------------
+quit -sim
+# End time: 14:51:42 on Dec 22,2022, Elapsed time: 0:00:48
+# Errors: 0, Warnings: 3
+cd C:/TracePCB/4.M.B/FPGA_4MB_Eval/simulation/modelsim

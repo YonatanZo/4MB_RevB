@@ -1,0 +1,22 @@
+C:/TracePCB/4.M.B/FPGA_4MB/source/registers_4mb.v {1 {vlog -work work -vopt -stats=none C:/TracePCB/4.M.B/FPGA_4MB/source/registers_4mb.v
+Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+-- Compiling module registers_4mb
+
+Top level modules:
+	registers_4mb
+
+} {} {}} C:/TracePCB/4.M.B/FPGA_4MB/simulation/testbench/tb_tester.v {1 {vlog -work work -vopt -stats=none C:/TracePCB/4.M.B/FPGA_4MB/simulation/testbench/tb_tester.v
+Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+-- Compiling module tb_tester
+
+Top level modules:
+	tb_tester
+
+} {} {}} C:/TracePCB/4.M.B/FPGA_4MB/simulation/testbench/spi_interface.v {1 {vlog -work work -vopt +incdir+C:/TracePCB/4.M.B/FPGA_4MB/simulation/testbench +incdir+C:/TracePCB/4.M.B/FPGA_4MB/source -stats=none C:/TracePCB/4.M.B/FPGA_4MB/simulation/testbench/spi_interface.v
+Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+-- Compiling module spi_interface
+
+Top level modules:
+	spi_interface
+
+} {} {}}
