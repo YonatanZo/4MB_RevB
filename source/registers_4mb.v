@@ -13,6 +13,26 @@ module registers_4mb(
     clk_100m,       	// system clock
     rst_n_syn,      	// low active synchronous reset
 	//clk_1m, 
+	ADC_Alerts_reg,
+	Fault_Flages_reg,
+	V_ALRT,
+	BRK_ALRT,
+	QC1Bf,
+	QC1if,
+	QC3if,
+	QC3Bf,
+	QC2Bf,
+	QC2if, 
+	QC3Af, 
+	QC2Af,
+	QC1Af,
+	QC4Af,
+	QC4Bf,
+	QC4if,
+	flt_S_D2,
+	flt_S_D3,
+	flt_S_D4,
+	flt_S_D1,
 	//Internal signls
     data_mosi,		// received data from SPI master
     data_mosi_rdy,	// when 1, received data is valid
@@ -96,6 +116,8 @@ input	dipsw0;
 
 input[16:0]		spare1_io;
 
+
+
 output[31:0] 	ver_reg;
 output[31:0] 	rev_data_reg;
 output[31:0] 	dip_sw_reg;
@@ -106,9 +128,33 @@ output[31:0]	spare0_io_reg;
 output[31:0]	spare1_io_reg;
 output[6:0]		io_led;
 
+////////////////////////
+output[31:0] 	ADC_Alerts_reg;
+output[31:0] 	Fault_Flages_reg;
+input	V_ALRT;
+input	BRK_ALRT;
+
+input	QC1Bf;
+input	QC1if;
+input	QC3if;
+input	QC3Bf;
+input	QC2Bf;
+input	QC2if; 
+input	QC3Af; 
+input	QC2Af;
+input	QC1Af;
+input	QC4Af;
+input	QC4Bf;
+input	QC4if;
+input	flt_S_D2;
+input	flt_S_D3;
+input	flt_S_D4;
+input	flt_S_D1;  
+////////////////////////
 `include  "parameters_4mb.v"
 
-
+reg[31:0] 	ADC_Alerts_reg;
+reg[31:0] 	Fault_Flages_reg;
 reg[31:0] 	ver_reg;
 reg[31:0] 	rev_data_reg;
 reg[31:0] 	dip_sw_reg;
@@ -143,6 +189,8 @@ always @(posedge clk_100m, negedge rst_n_syn)
 		buttons_led_reg <= 32'b0;
 		spare0_io_reg <= 32'b0;
 		diagnostic_led_reg <= 32'b0;
+		ADC_Alerts_reg <= 32'b0;
+		Fault_Flages_reg <= 32'b0;
 	end
 	else
 	begin
@@ -155,7 +203,9 @@ always @(posedge clk_100m, negedge rst_n_syn)
 		drape_sensor_meta <= {lsw_2,lsw_1};
 		spare1_io_reg[16:0] <= spare1_io_meta;
 		spare1_io_meta <= spare1_io;
-		
+		ADC_Alerts_reg[1:0] <= {BRK_ALRT,V_ALRT};
+		Fault_Flages_reg[15:0] <= {QC1Bf,QC1if,QC3if,QC3Bf,QC2Bf,QC2if, QC3Af,
+		QC2Af,QC1Af,QC4Af,QC4Bf,QC4if,flt_S_D2,flt_S_D3,flt_S_D4,flt_S_D1};
 		if(data_mosi_rdy)
 			case(addr)
 				ADDR_FPGA_BUTTONS_LED:
@@ -174,25 +224,6 @@ always @(posedge clk_100m, negedge rst_n_syn)
 					;
 			endcase
 	end
-/*
-always @(posedge clk_100m, negedge rst_n_syn)
-    if(!rst_n_syn)
-	begin
-		buttons_led_reg <= 32'b0;
-		spare0_io_reg <= 32'b0;
-	end
-    else if(data_mosi_rdy)
-	begin
-		case(addr)
-			ADDR_FPGA_BUTTONS_LED:
-				buttons_led_reg <= {25'b0,data_mosi[6:4],1'b0,data_mosi[2:0]};
-			ADDR_FPGA_SPARE0_IO:
-				spare0_io_reg <= data_mosi[31:0];
-			default:
-				;
-		endcase
-	end
-*/
 
 endmodule	
 

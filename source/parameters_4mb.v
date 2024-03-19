@@ -94,7 +94,8 @@ parameter ADDR_FPGA_DRAPE_SWITCH		= 16'h0029;
 parameter ADDR_FPGA_DIAG_LEDS			= 16'h002A;
 parameter ADDR_FPGA_M1_3_ABS_ENC_COUNT	= 16'h002B;
 parameter ADDR_FPGA_M1_3_ABS_ENC_STATUS	= 16'h002C;
-
+parameter ADDR_ADC_Alerts 				= 16'h002d;
+parameter ADDR_Fault_Flages_reg 		= 16'h002e;
 /*
 parameter ADDR_FPGA_VOLTAGE_MES1		= 16'h002A;
 parameter ADDR_FPGA_VOLTAGE_MES2		= 16'h002B;

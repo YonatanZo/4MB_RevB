@@ -27,6 +27,12 @@ module top_4mb(
 	cs_2,     		// SPI chip select, active in low
 	cs_3,     		// SPI chip select, active in low
 	cs_4,     		// SPI chip select, active in low
+	CS_5,	//was tSP0 J14
+	CS_6,	//was tSP1 K15
+	CS_7,	//was tSP2 J16
+	CS_8,	//was tSP3 J15
+	Vf_CS,	//was M4brk T12
+	BRf_CS,	//was M5brk T13
 	//Incremental Encoders
 	qc1a,
 	qc1b,
@@ -52,8 +58,8 @@ module top_4mb(
 	ssi_d5,
 	ssi_c5,
 	//Draping Switch
-	btn1no,
-	btn1nc,
+	// btn1no,
+	// btn1nc,
 	//Tool Exch Switch
 	btn2no,
 	btn2nc,
@@ -103,6 +109,11 @@ module top_4mb(
 	fgout2,
 	fgout3,
 	fgout4,
+	//ADC I2C
+	f_sda, //was tSP4 H15
+	f_sck, //was tSP5 H16
+	
+
 	//DIP Switches
 	dipsw3,
 	dipsw2,
@@ -111,12 +122,12 @@ module top_4mb(
 	//
 	tclk,
 	trw,
-	tsp0,
-	tsp1,
-	tsp2,
-	tsp3,
-	tsp4,
-	tsp5,
+	//tsp0,
+	//tsp1,
+	//tsp2,
+	//tsp3,
+	//tsp4,
+	//tsp5,
 	tsp6,
 	// 
 	ain_1,
@@ -124,9 +135,9 @@ module top_4mb(
 	ain_3,
 	ain_4,
 	//CAN BUS
-	fcan_tx0,
-	fcan_rx0,
-	fcan_shdn,
+	// fcan_tx0,
+	// fcan_rx0,
+	// fcan_shdn,
 	fcan_stb,
 	//UART CH-0
 	frx_0,
@@ -137,20 +148,32 @@ module top_4mb(
 	frx_1,
 	ftx_1,
 	//
-	m4brk,
-	m5brk,
+	//m4brk,
+	//m5brk,
 	//Spare IO Register
 	spare0_io,
 	spare1_io,
-	io_led
-	//for eval board
-	
-/*DE10
-	,
-	hex1,		//incr_enc_cnt_reg1
-	hex2			//incr_enc_cnt_reg1
-*/
-
+	io_led,
+	//Fault Flages
+	QC1Bf,  //connect to B15
+	QC1if,  //connect to B16
+	QC3if,  //connect to C14
+	QC3Bf,  //connect to D14
+	QC2Bf,  //connect to E14
+	QC2if,  //connect to E15
+	QC3Af,  //connect to E16
+	QC2Af,  //connect to F14
+	QC1Af,  //connect to G12
+	QC4Af,	//was FCAN-Tx0 connect to P10
+	QC4Bf,	//was FCAN-Rx0 connect to P11
+	QC4if,	//was FCAN-shdn connect to R11
+	flt_S_D2, //G14
+	flt_S_D3, //G15
+	flt_S_D4, //G16
+	flt_S_D1,  //H12
+	//Alerts 
+	V_ALRT,	 //was BTN1nc N16
+	BRK_ALRT //was BTN1no P16
 );
 
 
@@ -172,7 +195,13 @@ input	miso_1;
 output	cs_1;     		
 output	cs_2;     		
 output	cs_3;     		
-output	cs_4;     		
+output	cs_4;  
+output	CS_5;	
+output	CS_6;
+output	CS_7;
+output	CS_8;	
+output	Vf_CS;	
+output	BRf_CS;
 //Incremental Encoders
 input	qc1a;
 input	qc1b;
@@ -197,9 +226,29 @@ input	ssi_d4;
 output	ssi_c4;
 input	ssi_d5;
 output	ssi_c5;
-//Draping Switch
-input	btn1no;
-input	btn1nc;
+//ADC I2C -TBD:Implemant SPI-I2C I/F
+inout f_sda;
+inout f_sck;
+//ADC Alerts -TBD:connect to register
+input	V_ALRT;
+input	BRK_ALRT;
+//Fault Flages -TBD:connect to register
+input	QC1Bf;
+input	QC1if;
+input	QC3if;
+input	QC3Bf;
+input	QC2Bf;
+input	QC2if; 
+input	QC3Af; 
+input	QC2Af;
+input	QC1Af;
+input	QC4Af;
+input	QC4Bf;
+input	QC4if;
+input	flt_S_D2;
+input	flt_S_D3;
+input	flt_S_D4;
+input	flt_S_D1;  
 //Tool Exch Switch
 input	btn2no;
 input	btn2nc;
@@ -257,22 +306,22 @@ input	dipsw3;
 //
 input	tclk;
 input	trw;
-input	tsp0;
-input	tsp1;
-input	tsp2;
-input	tsp3;
-input	tsp4;
-input	tsp5;
+// input	tsp0;
+// input	tsp1;
+// input	tsp2;
+// input	tsp3;
+// input	tsp4;
+// input	tsp5;
 input	tsp6;
 // 
 input	ain_1;
 input	ain_2;
 input	ain_3;
 input	ain_4;
-//CAN BUS
-output	fcan_tx0;
-input	fcan_rx0;
-output	fcan_shdn;
+// //CAN BUS
+// output	fcan_tx0;
+// input	fcan_rx0;
+// output	fcan_shdn;
 output	fcan_stb;
 //UART CH-0
 input	frx_0;
@@ -283,8 +332,8 @@ output	ftx_01;
 input	frx_1;
 output	ftx_1;
 //
-input	m4brk;
-input	m5brk;
+// input	m4brk;
+// input	m5brk;
 //Spare IO
 output[23:0]	spare0_io;
 input[16:0]		spare1_io;
@@ -311,6 +360,11 @@ wire[31:0]	data_miso;
 wire[31:0]	data_mosi;
 wire[15:0] 	addr;
 reg[31:0]	data_miso_reg;
+
+//Rev B regs start
+wire[31:0]	ADC_Alerts_reg;
+wire[31:0]	Fault_Flages_reg;
+//Rev B regs end
 
 wire[31:0]	incr_enc_cnt_reg1;
 wire[31:0]	incr_enc_error_reg1;
@@ -417,6 +471,8 @@ begin
 end
 
 
+
+
 assign data_miso = data_miso_reg;
 
 //Unused outputs
@@ -426,6 +482,12 @@ assign cs_1 = 1'b1;
 assign cs_2 = 1'b1;     		
 assign cs_3 = 1'b1;     		
 assign cs_4 = 1'b1; 
+assign CS_5 = 1'b1;	
+assign CS_6 = 1'b1; 
+assign CS_7 = 1'b1; 
+assign CS_8 = 1'b1; 	
+assign Vf_CS = 1'b1; 	
+assign BRf_CS = 1'b1; 
 assign ssi_c5 = 1'b1;
 assign led1m4 = 1'b0;
 assign led2m4 = 1'b0;
@@ -445,7 +507,13 @@ assign spare0_io = spare0_io_reg[23:0];
 //Read Registers MUX
 always @*
     case(addr)
-		ADDR_FPGA_VER:
+	//////////////Rev B///////////////////////////
+	ADDR_ADC_Alerts:
+		data_miso_reg = ADC_Alerts_reg;
+	ADDR_Fault_Flages_reg:
+		data_miso_reg = Fault_Flages_reg;
+	/////////////////////////////////////////////
+	ADDR_FPGA_VER:
 			data_miso_reg = ver_reg;
 		ADDR_FPGA_REV_DATA:
 			data_miso_reg = rev_data_reg;
@@ -565,6 +633,28 @@ registers_4mb registers_4mb(
     .clk_100m(clk_100m),       	
     .rst_n_syn(rst_n_syn), 
 	//.clk_1m(clk_1m),
+	//Rev B regs start
+	.ADC_Alerts_reg(ADC_Alerts_reg),
+	.V_ALRT(V_ALRT),
+	.BRK_ALRT(BRK_ALRT),
+	.Fault_Flages_reg(Fault_Flages_reg),
+	.QC1Bf(QC1Bf),
+	.QC1if(QC1if),
+	.QC3if(QC3if),
+	.QC3Bf(QC3Bf),
+	.QC2Bf(QC2Bf),
+	.QC2if(QC2if),
+	.QC3Af(QC3Af),
+	.QC2Af(QC2Af),
+	.QC1Af(QC1Af),
+	.QC4Af(QC4Af),
+	.QC4Bf(QC4Bf),
+	.QC4if(QC4if),
+	.flt_S_D2(flt_S_D2),
+	.flt_S_D3(flt_S_D3),
+	.flt_S_D4(flt_S_D4),
+	.flt_S_D1(flt_S_D1),
+	//Rev B regs end
     .data_mosi(data_mosi),     
     .data_mosi_rdy(data_mosi_rdy), 
 	.addr(addr),
