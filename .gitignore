@@ -17,8 +17,8 @@
 # -> "Save project output files in specified directory"
 # Now you can either place a .gitignore in the directory and allow the following
 # list of types:
-# !*.sof
-# !*.pof
+
+
 # or you create an own submodule in the folder to keep binary files out of your
 # design.
 
@@ -39,14 +39,12 @@
 *.jpg
 # *.mif
 *.pin
-*.pof
 *.ptf.*
 *.qar
 *.qarlog
 *.qws
 *.rpt
 *.smsg
-*.sof
 *.sopc_builder
 *.summary
 *.tcl
