@@ -364,6 +364,10 @@ reg[31:0]	data_miso_reg;
 //Rev B regs start
 wire[31:0]	ADC_Alerts_reg;
 wire[31:0]	Fault_Flages_reg;
+reg[31:0]	ADC_Voltage_A;
+reg[31:0]	ADC_Voltage_B;
+reg[31:0]	ADC_Voltage_C;
+reg[31:0]	ADC_Voltage_D;
 //Rev B regs end
 
 wire[31:0]	incr_enc_cnt_reg1;
@@ -501,9 +505,25 @@ assign ftx_1 = 1'b1;
 
 assign spare0_io = spare0_io_reg[23:0];
 
+//ADC Master
+ADC_Master ADC_Master_inst
+(
+	.clk(clk_100m) ,	// input  clk_sig
+	.reset_n(rst_n_syn) ,	// input  reset_n_sig
+	.AIN0(ADC_Voltage_A[15:0]) ,	// output [15:0] AIN0_sig
+	.AIN1(ADC_Voltage_A[31:16]) ,	// output [15:0] AIN1_sig
+	.AIN2(ADC_Voltage_B[15:0]) ,	// output [15:0] AIN2_sig
+	.AIN3(ADC_Voltage_B[31:16]) ,	// output [15:0] AIN3_sig
+	.AIN4(ADC_Voltage_C[15:0]) ,	// output [15:0] AIN4_sig
+	.AIN5(ADC_Voltage_C[31:16]) ,	// output [15:0] AIN5_sig
+	.AIN6(ADC_Voltage_D[15:0]) ,	// output [15:0] AIN6_sig
+	.AIN7(ADC_Voltage_D[31:16]) ,	// output [15:0] AIN7_sig
+	.sda(f_sda) ,	// inout  sda_sig
+	.scl(f_scl) 	// inout  scl_sig
+);
 
-
-
+defparam ADC_Master_inst.input_clk = 100000000;
+defparam ADC_Master_inst.bus_clk = 400000;
 //Read Registers MUX
 always @*
     case(addr)
@@ -512,6 +532,14 @@ always @*
 		data_miso_reg = ADC_Alerts_reg;
 	ADDR_Fault_Flages_reg:
 		data_miso_reg = Fault_Flages_reg;
+	ADDR_ADC_Voltage_A:
+		data_miso_reg = ADC_Voltage_A;
+	ADDR_ADC_Voltage_B:
+		data_miso_reg = ADC_Voltage_B;
+	ADDR_ADC_Voltage_C:
+		data_miso_reg = ADC_Voltage_C;
+	ADDR_ADC_Voltage_D:
+		data_miso_reg = ADC_Voltage_D;
 	/////////////////////////////////////////////
 	ADDR_FPGA_VER:
 			data_miso_reg = ver_reg;

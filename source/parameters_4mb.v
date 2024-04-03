@@ -96,10 +96,10 @@ parameter ADDR_FPGA_M1_3_ABS_ENC_COUNT	= 16'h002B;
 parameter ADDR_FPGA_M1_3_ABS_ENC_STATUS	= 16'h002C;
 parameter ADDR_ADC_Alerts 				= 16'h002d;
 parameter ADDR_Fault_Flages_reg 		= 16'h002e;
-/*
-parameter ADDR_FPGA_VOLTAGE_MES1		= 16'h002A;
-parameter ADDR_FPGA_VOLTAGE_MES2		= 16'h002B;
-*/
+parameter ADDR_ADC_Voltage_A				= 16'h002f;
+parameter ADDR_ADC_Voltage_B				= 16'h0030;
+parameter ADDR_ADC_Voltage_C				= 16'h0031;
+parameter ADDR_ADC_Voltage_D				= 16'h0032;
 
 parameter NUM_REG	= 44;	//Number of RCB Registers see above
 
