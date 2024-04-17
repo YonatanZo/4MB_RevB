@@ -5,7 +5,8 @@ use ieee.numeric_std.all;
 ENTITY ADC_Master IS
   GENERIC(
     input_clk : INTEGER := 50_000_000; --input clock speed from user logic in Hz
-	bus_clk   : INTEGER := 400_000); 
+	bus_clk   : INTEGER := 400_000;
+	dev_id    : STD_LOGIC_VECTOR(6 DOWNTO 0) := "0001010"); --0001010
   PORT(
     clk       : IN     STD_LOGIC;                    --system clock
     reset_n   : IN     STD_LOGIC;                    --active low reset
@@ -28,7 +29,7 @@ ARCHITECTURE logic OF ADC_Master IS
 
 
   COMPONENT ads_master
-	GENERIC ( input_clk : INTEGER := 50000000; addr : STD_LOGIC_VECTOR(6 DOWNTO 0) := b"0010000"; bus_clk : INTEGER := 400000 );
+	GENERIC ( input_clk : INTEGER := 50000000; addr : STD_LOGIC_VECTOR(6 DOWNTO 0) := "1100101"; bus_clk : INTEGER := 400000 );
 	PORT
 	(
 		clk		:	 IN STD_LOGIC;
@@ -56,7 +57,6 @@ END COMPONENT;
   CONSTANT OP_SIN_REG_WR : STD_LOGIC_VECTOR(7 DOWNTO 0) := x"08"; --Single register write
   CONSTANT OP_CON_REG_RD : STD_LOGIC_VECTOR(7 DOWNTO 0) := x"30";  --Reading a continuous block of registers
   CONSTANT OP_CON_REG_WR : STD_LOGIC_VECTOR(7 DOWNTO 0) := x"28";  --Writing a continuous block of registers
-  CONSTANT DEV_ID : STD_LOGIC_VECTOR(6 DOWNTO 0) := "0010000";  --Writing a continuous block of registers
   TYPE machine IS (
   S_IDLE,
   S_CONFIG_ADC,
@@ -106,9 +106,9 @@ BEGIN
 
 ads_master_inst: ads_master
 generic map (
-  input_clk => 50000000,
-  addr      => DEV_ID,
-  bus_clk   => 400000
+  input_clk => input_clk,
+  addr      => dev_id,
+  bus_clk   => bus_clk
 )
 port map (
   clk       => clk,                 -- system clock
@@ -147,7 +147,7 @@ AIN7 <= DATA_BUFFER(127 downto 112);
 	reg_cnt <= 0;
 	i2c_rw <= '0';
 	i2c_ena  <= '0';
-	reg_addr <= (others => '0');
+	reg_adrr <= (others => '0');
 	i2c_data_wr <= (others => '0');
 	data_pointer <= 0;
 	busy_cnt <= 0;
@@ -163,7 +163,7 @@ AIN7 <= DATA_BUFFER(127 downto 112);
 				reg_cnt <= 0;
 				i2c_rw <= '0';
 				i2c_ena  <= '0';
-				reg_addr <= (others => '0');
+				reg_adrr <= (others => '0');
 				i2c_data_wr <= (others => '0');
 				data_pointer <= 0;
 				busy_fall <= '0';
@@ -173,32 +173,32 @@ AIN7 <= DATA_BUFFER(127 downto 112);
 				CASE reg_cnt IS                            
 				WHEN 0 =>  
 					i2c_ena  <= '1';
-					reg_addr <= SEQUENCE_CFG_ADDR;
+					reg_adrr <= SEQUENCE_CFG_ADDR;
 					i2c_data_wr <= (others => '0');
 					state <= S_WAIT_BUSY;
 				WHEN 1 =>  
 					i2c_ena  <= '1';                                
-					reg_addr <= OPMODE_CFG_ADDR;
+					reg_adrr <= OPMODE_CFG_ADDR;
 					i2c_data_wr <= (others => '0');
 					state <= S_WAIT_BUSY;
 				WHEN 2 =>                                
 					i2c_ena  <= '1';
-					reg_addr <=PIN_CFG_ADDR;
+					reg_adrr <=PIN_CFG_ADDR;
 					i2c_data_wr <= (others => '0');
 					state <= S_WAIT_BUSY;
 				WHEN 3 =>
-					i2c_ena  <= '1';                                
-					reg_addr <=AUTO_SEQ_CH_SEL_ADDR;
+					i2c_ena  <= '1' ;                               
+					reg_adrr <=AUTO_SEQ_CH_SEL_ADDR;
 					i2c_data_wr <= x"ff";
 					state <= S_WAIT_BUSY;
 				WHEN 4 => 
 					i2c_ena  <= '1';                               
-					reg_addr <=SEQUENCE_CFG_ADDR;
+					reg_adrr <=SEQUENCE_CFG_ADDR;
 					i2c_data_wr <= x"01";
 					state <= S_WAIT_BUSY;
 				WHEN 5 =>                                
 					i2c_ena  <= '1';
-					reg_addr <=SEQUENCE_CFG_ADDR;
+					reg_adrr <=SEQUENCE_CFG_ADDR;
 					i2c_data_wr <= x"11";
 					state <= S_WAIT_BUSY;
 				WHEN 6 =>     

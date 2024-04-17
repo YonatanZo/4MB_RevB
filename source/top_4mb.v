@@ -14,6 +14,7 @@ module top_4mb(
 	clk_100m_1,
 	//clk_1m,
     rst_n,      	// low active synchronous reset
+	FPGA_rstn,
 	//SPI INTERFACE 0
 	mclk_0,      	// SPI clock
 	mosi_0,     	// SPI serial data from master to slave
@@ -121,7 +122,6 @@ module top_4mb(
 	dipsw0,
 	//
 	tclk,
-	trw,
 	//tsp0,
 	//tsp1,
 	//tsp2,
@@ -182,7 +182,8 @@ module top_4mb(
 input	clk_100m;       
 input	clk_100m_1;
 //input	clk_1m;
-input	rst_n;      	
+input	rst_n; 
+input	FPGA_rstn;  	
 //SPI INTERFACE 0(slave)
 input	mclk_0;      	
 input	mosi_0;     	
@@ -305,7 +306,6 @@ input	dipsw2;
 input	dipsw3;
 //
 input	tclk;
-input	trw;
 // input	tsp0;
 // input	tsp1;
 // input	tsp2;
@@ -439,6 +439,7 @@ wire	fcan_stb;
 wire	ftx_0;
 wire	ftx_01;
 wire	ftx_1; 
+wire Master_rstn;
 wire[6:0]	io_led;
 wire[7:0]	crc_err_cnt_1;
 wire[1:0]	status_bits_1;
@@ -504,26 +505,29 @@ assign ftx_01 = 1'b1;
 assign ftx_1 = 1'b1;
 
 assign spare0_io = spare0_io_reg[23:0];
-
+assign Master_rstn = FPGA_rstn & rst_n_syn;
 //ADC Master
 ADC_Master ADC_Master_inst
 (
 	.clk(clk_100m) ,	// input  clk_sig
-	.reset_n(rst_n_syn) ,	// input  reset_n_sig
-	.AIN0(ADC_Voltage_A[15:0]) ,	// output [15:0] AIN0_sig
-	.AIN1(ADC_Voltage_A[31:16]) ,	// output [15:0] AIN1_sig
-	.AIN2(ADC_Voltage_B[15:0]) ,	// output [15:0] AIN2_sig
-	.AIN3(ADC_Voltage_B[31:16]) ,	// output [15:0] AIN3_sig
-	.AIN4(ADC_Voltage_C[15:0]) ,	// output [15:0] AIN4_sig
-	.AIN5(ADC_Voltage_C[31:16]) ,	// output [15:0] AIN5_sig
-	.AIN6(ADC_Voltage_D[15:0]) ,	// output [15:0] AIN6_sig
-	.AIN7(ADC_Voltage_D[31:16]) ,	// output [15:0] AIN7_sig
-	.sda(f_sda) ,	// inout  sda_sig
-	.scl(f_scl) 	// inout  scl_sig
+	.reset_n(Master_rstn) ,	// input  reset_n_sig
+	.AIN0(ADC_Voltage_A[15:0]) ,	// BRKs_1
+	.AIN1(ADC_Voltage_A[31:16]) ,	// BRKs_2
+	.AIN2(ADC_Voltage_B[15:0]) ,	// BRKs_3
+	.AIN3(ADC_Voltage_B[31:16]) ,	// BRKs_4
+	.AIN4(ADC_Voltage_C[15:0]) ,	// BRKs_5
+	.AIN5(ADC_Voltage_C[31:16]) ,	// ILIM1
+	.AIN6(ADC_Voltage_D[15:0]) ,	// ILIM2
+	.AIN7(ADC_Voltage_D[31:16]) ,	// ILIM3
+	.sda(f_sda) ,	// inout  f_sda
+	.scl(f_sck) 	// inout  f_scl
 );
+
+
 
 defparam ADC_Master_inst.input_clk = 100000000;
 defparam ADC_Master_inst.bus_clk = 400000;
+// defparam ADC_Master_inst.dev_id = 7'b0010101;
 //Read Registers MUX
 always @*
     case(addr)
@@ -643,7 +647,7 @@ always @*
 //RCB SPI insertion  
 spi_4mb spi_4mb(
     .clk_100m(clk_100m),       	
-    .rst_n_syn(rst_n_syn),      
+    .rst_n_syn(Master_rstn),      
 	.sclk(mclk_0),
 	.mosi(mosi_0),
 	.miso_t(miso_0),
@@ -659,7 +663,7 @@ spi_4mb spi_4mb(
 //RCB REGISRES insertion  
 registers_4mb registers_4mb(
     .clk_100m(clk_100m),       	
-    .rst_n_syn(rst_n_syn), 
+    .rst_n_syn(Master_rstn), 
 	//.clk_1m(clk_1m),
 	//Rev B regs start
 	.ADC_Alerts_reg(ADC_Alerts_reg),
@@ -723,10 +727,10 @@ motor_control
 #(ADDR_FPGA_M1_INC,ADDR_FPGA_M1_INC_ERROR,ADDR_FPGA_M1_DEF_TICKS,
 	ADDR_FPGA_M1_ABSOLUTE,ADDR_FPGA_M1_MOTION_CONTROL,
 	ADDR_FPGA_M1_PWM_CYCLE,ADDR_FPGA_M1_FEEDBACK,ADDR_FPGA_M1_DRIVER_CONTROL,
-	IEF3_DEF_TICKS,M1_3_ABS_DATA_BITS,M1_3_CLOCK_PERIOD,M1_3_READ_PERIOD)
+	IEF3_DEF_TICKS,M1_3_ABS_DATA_BITS,M1_3_CLOCK_PERIOD,M1_3_READ_PERIOD)//XMARS_CLOCK_PERIOD?,XMARS_READ_PERIOD?
 motor1_control(
     .clk_100m(clk_100m),       	
-    .rst_n_syn(rst_n_syn), 
+    .rst_n_syn(Master_rstn), 
 	//.clk_1m(clk_1m),
     .data_mosi(data_mosi),     
     .data_mosi_rdy(data_mosi_rdy), 
@@ -759,10 +763,10 @@ motor_control
 #(ADDR_FPGA_M2_INC,ADDR_FPGA_M2_INC_ERROR,ADDR_FPGA_M2_DEF_TICKS,
 	ADDR_FPGA_M2_ABSOLUTE,ADDR_FPGA_M2_MOTION_CONTROL,
 	ADDR_FPGA_M2_PWM_CYCLE,ADDR_FPGA_M2_FEEDBACK,ADDR_FPGA_M2_DRIVER_CONTROL,
-	IEF3_DEF_TICKS,M1_3_ABS_DATA_BITS,M1_3_CLOCK_PERIOD,M1_3_READ_PERIOD)
+	IEF3_DEF_TICKS,M1_3_ABS_DATA_BITS,M1_3_CLOCK_PERIOD,M1_3_READ_PERIOD)//XMARS_CLOCK_PERIOD?,XMARS_READ_PERIOD?
 motor2_control(
     .clk_100m(clk_100m),       	
-    .rst_n_syn(rst_n_syn), 
+    .rst_n_syn(Master_rstn), 
 	//.clk_1m(clk_1m),
     .data_mosi(data_mosi),     
     .data_mosi_rdy(data_mosi_rdy), 
@@ -795,10 +799,10 @@ motor_control
 #(ADDR_FPGA_M3_INC,ADDR_FPGA_M3_INC_ERROR,ADDR_FPGA_M3_DEF_TICKS,
 	ADDR_FPGA_M3_ABSOLUTE,ADDR_FPGA_M3_MOTION_CONTROL,
 	ADDR_FPGA_M3_PWM_CYCLE,ADDR_FPGA_M3_FEEDBACK,ADDR_FPGA_M3_DRIVER_CONTROL,
-	IEF3_DEF_TICKS,M1_3_ABS_DATA_BITS,M1_3_CLOCK_PERIOD,M1_3_READ_PERIOD)
+	IEF3_DEF_TICKS,M1_3_ABS_DATA_BITS,M1_3_CLOCK_PERIOD,M1_3_READ_PERIOD)//XMARS_CLOCK_PERIOD?,XMARS_READ_PERIOD?
 motor3_control(
     .clk_100m(clk_100m),       	
-    .rst_n_syn(rst_n_syn), 
+    .rst_n_syn(Master_rstn), 
 	//.clk_1m(clk_1m),
     .data_mosi(data_mosi),     
     .data_mosi_rdy(data_mosi_rdy), 
@@ -834,7 +838,7 @@ motor4_control
 	FLUX_DEF_TICKS,FLUX_DATA_BITS,FLUX_CLOCK_PERIOD,FLUX_READ_PERIOD)
 motor4_control(
     .clk_100m(clk_100m),       	
-    .rst_n_syn(rst_n_syn), 
+    .rst_n_syn(Master_rstn), 
 	//.clk_1m(clk_1m),
     .data_mosi(data_mosi),     
     .data_mosi_rdy(data_mosi_rdy), 

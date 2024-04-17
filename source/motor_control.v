@@ -5,7 +5,7 @@
 //	Description		: Motors 1-3 Control.
 //	Revision		: 1.0
 //	Hierarchy		: top_4mb <- motor_control
-//	Last Update		: 31/05/2023 
+//	Last Update		: 05/03/2023 
 //////////////////////////////////////////////////////////
 
 module motor_control
@@ -112,7 +112,6 @@ reg			ssi_c;
 reg[ENCODER_DATA_BITS-1:0]	ssi_data_reg;
 reg[5:0]	ssi_bit_cnt;
 reg[5:0]	crc_calc;
-//reg			crc_error;
 wire		droff;
 reg[23:0]	pwm_cnt;
 reg			pwm;
@@ -120,7 +119,6 @@ wire		fgout_posedge;
 //reg[5:0]	newcrc;
 reg[7:0]	crc_err_cnt;
 reg[1:0]	status_bits;
-reg[1:0]	ssi_d_deb;
 
 assign brake = motion_control_reg[24];
 assign driver_feedback_reg = {nfault_reg,7'b0,fgout_cnt_reg};
@@ -379,16 +377,7 @@ always @(posedge clk_100m, negedge rst_n_syn)
 			incr_enc_error_reg <= data_mosi[31:0];	//32'b0;
 	end
 
-//SSI Data debounser
-always @(posedge clk_100m, negedge rst_n_syn)
-    if(!rst_n_syn)
-	begin
-		ssi_d_deb <= 2'b0;
-	end
-	else
-	begin
-		ssi_d_deb[1:0] <= {ssi_d_deb[0],ssi_d};
-	end
+	
 //Absolute Encoder(SSI)
 always @(posedge clk_100m, negedge rst_n_syn)
     if(!rst_n_syn)
@@ -451,7 +440,6 @@ always @(posedge clk_100m, negedge rst_n_syn)
 		crc_err_cnt <= 'b0;
 		status_bits <= 'b0;
 		crc_calc <= 0;
-		//crc_error <= 0;
 		//newcrc <= 0;
 		
 	end
@@ -468,11 +456,10 @@ always @(posedge clk_100m, negedge rst_n_syn)
 				ssi_bit_cnt <= 6'b0;
 				ssi_c <= 1'b1;
 				ssi_data_reg <= 'b0;
-				if(ssi_read)// && !crc_error)
+				if(ssi_read)
 				begin
 					state_ssi <= SSI_START;
-					/*if(!crc_calc)
-						ssi_read_quntity <= ssi_read_quntity + 1'b1;*/
+					ssi_read_quntity <= ssi_read_quntity + 1'b1;
 				end
 				else
 				begin
@@ -507,25 +494,21 @@ always @(posedge clk_100m, negedge rst_n_syn)
 					else
 					begin
 						ssi_bit_cnt <= 6'b0;
-						//abs_enc_position_reg[31:0] <= ssi_data_reg[ENCODER_DATA_BITS-5:ENCODER_DATA_BITS-36];
+						abs_enc_position_reg[31:0] <= ssi_data_reg[ENCODER_DATA_BITS-5:ENCODER_DATA_BITS-36];//[39:8]
 						
+						//if((/*newcrc*/nextCRCx43_D1(ssi_data_reg[8],ssi_data_reg[5:0]) != ssi_data_reg[5:0]))// && (abs_enc_staus_reg[31:16] != 16'hFFFF))	//CRC counter.
 						if(crc_calc)
-						begin
 							crc_err_cnt <= crc_err_cnt + 1'b1;
-							//crc_error <= 1'b1;
-						end
-						else
-						begin
-							abs_enc_position_reg[31:0] <= ssi_data_reg[ENCODER_DATA_BITS-5:ENCODER_DATA_BITS-36];
-							ssi_read_quntity <= ssi_read_quntity + 1'b1;
-						end
-						
+							
 						if(ssi_data_reg[7])			//Error Status bit
 							status_bits[1] <= 1'b1;
 						
 						if(ssi_data_reg[6])			//Warning Status bit
 							status_bits[0] <= 1'b1;
-						
+							
+						//abs_enc_staus_reg[7:0] <= ssi_data_reg[7:0];
+						//abs_enc_position_reg[27:24] <= 'b0;
+						//abs_enc_position_reg[31:28] <= ssi_read_quntity;						
 						state_ssi <= SSI_IDLE;
 					end
 				end
@@ -539,14 +522,14 @@ always @(posedge clk_100m, negedge rst_n_syn)
 				if(ssi_clk_negedge)
 				begin
 					ssi_c <= 1'b0;
-					ssi_data_reg[ENCODER_DATA_BITS-1:0] <= {ssi_data_reg[ENCODER_DATA_BITS-2:0],ssi_d_deb[1]};
+					ssi_data_reg[ENCODER_DATA_BITS-1:0] <= {ssi_data_reg[ENCODER_DATA_BITS-2:0],ssi_d};
 					
 					if(ssi_bit_cnt > 4)
 					begin
 						if(ssi_bit_cnt < 39)
-							crc_calc = nextCRCx43_D0(ssi_d_deb[1],crc_calc);
+							crc_calc = nextCRCx43_D0(ssi_d,crc_calc);
 						else
-							crc_calc = nextCRCx43_D0(!ssi_d_deb[1],crc_calc);
+							crc_calc = nextCRCx43_D0(!ssi_d,crc_calc);
 					end
 						
 					state_ssi <= SSI_FALL_EDGE;
