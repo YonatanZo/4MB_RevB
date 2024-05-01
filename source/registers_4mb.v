@@ -15,6 +15,7 @@ module registers_4mb(
 	//clk_1m, 
 	ADC_Alerts_reg,
 	Fault_Flages_reg,
+	ABS_ENC_CTRL_REG,
 	V_ALRT,
 	BRK_ALRT,
 	QC1Bf,
@@ -131,6 +132,7 @@ output[6:0]		io_led;
 ////////////////////////
 output[31:0] 	ADC_Alerts_reg;
 output[31:0] 	Fault_Flages_reg;
+output[31:0]    ABS_ENC_CTRL_REG;
 input	V_ALRT;
 input	BRK_ALRT;
 
@@ -152,7 +154,7 @@ input	flt_S_D4;
 input	flt_S_D1;  
 ////////////////////////
 `include  "parameters_4mb.v"
-
+reg[31:0]    ABS_ENC_CTRL_REG;
 reg[31:0] 	ADC_Alerts_reg;
 reg[31:0] 	Fault_Flages_reg;
 reg[31:0] 	ver_reg;
@@ -190,6 +192,7 @@ always @(posedge clk_100m, negedge rst_n_syn)
 		spare0_io_reg <= 32'b0;
 		diagnostic_led_reg <= 32'b0;
 		ADC_Alerts_reg <= 32'b0;
+		ABS_ENC_CTRL_REG <= 32'b0;
 		Fault_Flages_reg <= 32'b0;
 	end
 	else
@@ -219,7 +222,9 @@ always @(posedge clk_100m, negedge rst_n_syn)
 				ADDR_FPGA_DRAPE_SWITCH:
 					drape_sensor_reg[31:2] <= data_mosi[31:2];
 				ADDR_FPGA_DIAG_LEDS:
-					diagnostic_led_reg[31:0] <= data_mosi[31:0];	
+					diagnostic_led_reg[31:0] <= data_mosi[31:0];
+				ADDR_ABS_ENC_CTRL:
+					ABS_ENC_CTRL_REG[31:0] <= data_mosi[31:0];
 				default:
 					;
 			endcase

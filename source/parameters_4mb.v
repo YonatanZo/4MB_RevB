@@ -12,10 +12,10 @@
 
 //REVISION
 parameter FPGA_MAJOR_VER	= 8'h02;
-parameter FPGA_REV		= 8'h01;
+parameter FPGA_REV		= 8'h02;
 parameter FPGA_REV_YEAR		= 8'h18;
-parameter FPGA_REV_MONTH	= 8'h04;
-parameter FPGA_REV_DAY		= 8'h11;			
+parameter FPGA_REV_MONTH	= 8'h05;
+parameter FPGA_REV_DAY		= 8'h01;			
 parameter FPGA_REV_HOUR		= 8'h0a;
 
 // SPI packet Lenght
@@ -100,6 +100,7 @@ parameter ADDR_ADC_Voltage_A				= 16'h002f;
 parameter ADDR_ADC_Voltage_B				= 16'h0030;
 parameter ADDR_ADC_Voltage_C				= 16'h0031;
 parameter ADDR_ADC_Voltage_D				= 16'h0032;
+parameter ADDR_ABS_ENC_CTRL				= 16'h0033;
 
 parameter NUM_REG	= 44;	//Number of RCB Registers see above
 

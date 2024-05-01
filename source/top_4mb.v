@@ -347,7 +347,14 @@ output[6:0]		io_led;
 */
 
 `include  "parameters_4mb.v"
-
+reg[25:0] M1_POS_sig;
+reg[25:0] M2_POS_sig;
+reg[25:0] M3_POS_sig;
+reg ERR_sig;
+reg WARN_sig;
+reg[5:0] CRC_sig;
+reg RDY_sig;
+reg BUSY_sig;
 wire		clk_100m;       
 wire		clk_100m_1;
 //wire		clk_1m;
@@ -368,6 +375,7 @@ reg[31:0]	ADC_Voltage_A;
 reg[31:0]	ADC_Voltage_B;
 reg[31:0]	ADC_Voltage_C;
 reg[31:0]	ADC_Voltage_D;
+wire[31:0]   ABS_ENC_CTRL_REG;
 //Rev B regs end
 
 wire[31:0]	incr_enc_cnt_reg1;
@@ -448,6 +456,21 @@ wire[1:0]	status_bits_2;
 wire[7:0]	crc_err_cnt_3;
 wire[1:0]	status_bits_3;
  
+reg	old_ssi_d1;
+wire	old_ssi_c1;
+reg	old_ssi_d2;
+wire	old_ssi_c2;
+reg	old_ssi_d3;
+wire	old_ssi_c3;
+reg	biss_d1;
+reg	biss_c1;
+reg	biss_d2;
+reg	biss_c2;
+reg	biss_d3;
+reg	biss_c3;
+reg 	enc_sel;
+reg ssi_c1_ff, ssi_c2_ff, ssi_c3_ff;
+
 /*DE10
 assign hex1 = incr_enc_cnt_reg1;
 assign hex2 = dip_sw_reg;
@@ -476,8 +499,9 @@ begin
 end
 
 
-
-
+assign ssi_c1 = ssi_c1_ff;
+assign ssi_c2 = ssi_c2_ff;
+assign ssi_c3 = ssi_c3_ff;
 assign data_miso = data_miso_reg;
 
 //Unused outputs
@@ -503,7 +527,6 @@ assign fcan_stb = 1'b1;
 assign ftx_0 = 1'b1;
 assign ftx_01 = 1'b1;
 assign ftx_1 = 1'b1;
-
 assign spare0_io = spare0_io_reg[23:0];
 assign Master_rstn = FPGA_rstn & rst_n_syn;
 //ADC Master
@@ -544,6 +567,8 @@ always @*
 		data_miso_reg = ADC_Voltage_C;
 	ADDR_ADC_Voltage_D:
 		data_miso_reg = ADC_Voltage_D;
+	ADDR_ABS_ENC_CTRL:
+		data_miso_reg = ABS_ENC_CTRL_REG;
 	/////////////////////////////////////////////
 	ADDR_FPGA_VER:
 			data_miso_reg = ver_reg;
@@ -559,7 +584,14 @@ always @*
 		ADDR_FPGA_M1_DEF_TICKS:
 			data_miso_reg = incr_enc_def_ticks_reg1;
 		ADDR_FPGA_M1_ABSOLUTE:
-			data_miso_reg = abs_enc_position_reg1;
+			if (enc_sel)
+			begin
+				data_miso_reg ={6'b0,M1_POS_sig};
+			end
+			else
+			begin
+				data_miso_reg = abs_enc_position_reg1;
+			end
 		ADDR_FPGA_M1_MOTION_CONTROL:
 			data_miso_reg = motion_control_reg1;	
 		ADDR_FPGA_M1_PWM_CYCLE:
@@ -568,7 +600,6 @@ always @*
 			data_miso_reg = driver_feedback_reg1;	
 		ADDR_FPGA_M1_DRIVER_CONTROL:
 			data_miso_reg = driver_control_reg1;
-
 		ADDR_FPGA_M2_INC:
 			data_miso_reg = incr_enc_cnt_reg2;
 		ADDR_FPGA_M2_INC_ERROR:
@@ -576,7 +607,14 @@ always @*
 		ADDR_FPGA_M2_DEF_TICKS:
 			data_miso_reg = incr_enc_def_ticks_reg2;
 		ADDR_FPGA_M2_ABSOLUTE:
-			data_miso_reg = abs_enc_position_reg2;
+			if (enc_sel)
+			begin
+				data_miso_reg ={6'b0,M2_POS_sig} ;
+			end
+			else
+			begin
+				data_miso_reg = abs_enc_position_reg2;
+			end
 		ADDR_FPGA_M2_MOTION_CONTROL:
 			data_miso_reg = motion_control_reg2;	
 		ADDR_FPGA_M2_PWM_CYCLE:
@@ -593,7 +631,14 @@ always @*
 		ADDR_FPGA_M3_DEF_TICKS:
 			data_miso_reg = incr_enc_def_ticks_reg3;
 		ADDR_FPGA_M3_ABSOLUTE:
-			data_miso_reg = abs_enc_position_reg3;
+			if (enc_sel)
+			begin
+				data_miso_reg = {6'b0,M3_POS_sig};
+			end
+			else
+			begin
+				data_miso_reg = abs_enc_position_reg3;
+			end
 		ADDR_FPGA_M3_MOTION_CONTROL:
 			data_miso_reg = motion_control_reg3;	
 		ADDR_FPGA_M3_PWM_CYCLE:
@@ -644,6 +689,62 @@ always @*
 			data_miso_reg = 32'hFFFFFFFF;
 	endcase
 
+
+	always @* begin
+		enc_sel <= ABS_ENC_CTRL_REG[0];
+		if (enc_sel) begin
+			ssi_c1_ff = biss_c1;
+			ssi_c2_ff = biss_c2;
+			ssi_c3_ff = biss_c3;
+			biss_d1 = ssi_d1;
+			biss_d2 = ssi_d2;
+			biss_d3 = ssi_d3;
+		end else begin
+			ssi_c1_ff = old_ssi_c1;  // Retain previous value, caution: might infer latch if not handled outside
+			ssi_c2_ff = old_ssi_c2;
+			ssi_c3_ff = old_ssi_c3;
+			old_ssi_d1 = ssi_d1;
+			old_ssi_d2 = ssi_d2;
+			old_ssi_d3 = ssi_d3;
+		end
+	end
+	BISS_Master BISS_Master_inst_M1
+	(
+		.clk(clk_100m) ,	// input  clk_sig
+		.reset_n(Master_rstn) ,	// input  reset_n_sig
+		.POS(M1_POS_sig) ,	// output [25:0] POS_sig
+		.MCLK(biss_c1) ,	// output  MCLK_sig
+		.SLO(biss_d1) 	// input  SLO_sig
+	);
+
+	defparam BISS_Master_inst_M1.input_clk = 100000000;
+	defparam BISS_Master_inst_M1.bus_clk = 1000000;
+
+	BISS_Master BISS_Master_inst_M2
+	(
+		.clk(clk_100m) ,	// input  clk_sig
+		.reset_n(Master_rstn) ,	// input  reset_n_sig
+		.POS(M2_POS_sig) ,	// output [25:0] POS_sig
+		.MCLK(biss_c2) ,	// output  MCLK_sig
+		.SLO(biss_d2) 	// input  SLO_sig
+	);
+
+	defparam BISS_Master_inst_M2.input_clk = 100000000;
+	defparam BISS_Master_inst_M2.bus_clk = 1000000;
+
+	BISS_Master BISS_Master_inst_M3
+	(
+		.clk(clk_100m) ,	// input  clk_sig
+		.reset_n(Master_rstn) ,	// input  reset_n_sig
+		.POS(M3_POS_sig) ,	// output [25:0] POS_sig
+		.MCLK(biss_c3) ,	// output  MCLK_sig
+		.SLO(biss_d3) 	// input  SLO_sig
+	);
+	
+	defparam BISS_Master_inst_M3.input_clk = 100000000;
+	defparam BISS_Master_inst_M3.bus_clk = 1000000;
+	
+
 //RCB SPI insertion  
 spi_4mb spi_4mb(
     .clk_100m(clk_100m),       	
@@ -686,6 +787,7 @@ registers_4mb registers_4mb(
 	.flt_S_D3(flt_S_D3),
 	.flt_S_D4(flt_S_D4),
 	.flt_S_D1(flt_S_D1),
+	.ABS_ENC_CTRL_REG(ABS_ENC_CTRL_REG),
 	//Rev B regs end
     .data_mosi(data_mosi),     
     .data_mosi_rdy(data_mosi_rdy), 
@@ -727,7 +829,7 @@ motor_control
 #(ADDR_FPGA_M1_INC,ADDR_FPGA_M1_INC_ERROR,ADDR_FPGA_M1_DEF_TICKS,
 	ADDR_FPGA_M1_ABSOLUTE,ADDR_FPGA_M1_MOTION_CONTROL,
 	ADDR_FPGA_M1_PWM_CYCLE,ADDR_FPGA_M1_FEEDBACK,ADDR_FPGA_M1_DRIVER_CONTROL,
-	IEF3_DEF_TICKS,M1_3_ABS_DATA_BITS,M1_3_CLOCK_PERIOD,M1_3_READ_PERIOD)//XMARS_CLOCK_PERIOD?,XMARS_READ_PERIOD?
+	IEF3_DEF_TICKS,M1_3_ABS_DATA_BITS,M1_3_CLOCK_PERIOD,M1_3_READ_PERIOD)
 motor1_control(
     .clk_100m(clk_100m),       	
     .rst_n_syn(Master_rstn), 
@@ -738,8 +840,8 @@ motor1_control(
 	.qca(qc1a),
 	.qcb(qc1b),
 	.qci(qc1i),
-	.ssi_d(ssi_d1),
-	.ssi_c(ssi_c1),
+	.ssi_d(old_ssi_d1),
+	.ssi_c(old_ssi_c1),
 	.nfault(nfault1),
 	.droff(droff1),
 	.pwm(pwm1),
@@ -774,8 +876,8 @@ motor2_control(
 	.qca(qc2a),
 	.qcb(qc2b),
 	.qci(qc2i),
-	.ssi_d(ssi_d2),
-	.ssi_c(ssi_c2),
+	.ssi_d(old_ssi_d2),
+	.ssi_c(old_ssi_c2),
 	.nfault(nfault2),
 	.droff(droff2),
 	.pwm(pwm2),
@@ -799,7 +901,7 @@ motor_control
 #(ADDR_FPGA_M3_INC,ADDR_FPGA_M3_INC_ERROR,ADDR_FPGA_M3_DEF_TICKS,
 	ADDR_FPGA_M3_ABSOLUTE,ADDR_FPGA_M3_MOTION_CONTROL,
 	ADDR_FPGA_M3_PWM_CYCLE,ADDR_FPGA_M3_FEEDBACK,ADDR_FPGA_M3_DRIVER_CONTROL,
-	IEF3_DEF_TICKS,M1_3_ABS_DATA_BITS,M1_3_CLOCK_PERIOD,M1_3_READ_PERIOD)//XMARS_CLOCK_PERIOD?,XMARS_READ_PERIOD?
+	IEF3_DEF_TICKS,M1_3_ABS_DATA_BITS,M1_3_CLOCK_PERIOD,M1_3_READ_PERIOD)
 motor3_control(
     .clk_100m(clk_100m),       	
     .rst_n_syn(Master_rstn), 
@@ -810,8 +912,8 @@ motor3_control(
 	.qca(qc3a),
 	.qcb(qc3b),
 	.qci(qc3i),
-	.ssi_d(ssi_d3),
-	.ssi_c(ssi_c3),
+	.ssi_d(old_ssi_d3),
+	.ssi_c(old_ssi_c3),
 	.nfault(nfault3),
 	.droff(droff3),
 	.pwm(pwm3),

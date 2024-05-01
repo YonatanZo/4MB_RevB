@@ -132,8 +132,8 @@ always @(posedge clk_100m, negedge rst_n_syn)
 	end
 	else
 	begin
-		nfault_reg <= nfault_meta;
 		nfault_meta <= nfault;
+		nfault_reg <= nfault_meta;
 	end
 	
 assign fgout_posedge = ~fgout_reg[2] & fgout_reg[1];
@@ -291,7 +291,7 @@ always @(posedge clk_100m, negedge rst_n_syn)
 		incr_enc_error_reg <= 1'b0;
 		qca_del <= 1'b0;
 		qcb_del <= 1'b0;
-		qcb_del <= 1'b0;
+		qci_del <= 1'b0; //was qci_del
 		qci_cnt_en <= 1'b0;
 		qci_cnt_rst <= 1'b0;
 		inc_enc_cnt_dir <= 1'b0;
@@ -420,7 +420,7 @@ always @(posedge clk_100m, negedge rst_n_syn)
 		end
 	end
 	
-
+// SSI Communication State Machine
 reg[1:0]	state_ssi;
 parameter
 	SSI_IDLE		= 0,
@@ -454,12 +454,12 @@ always @(posedge clk_100m, negedge rst_n_syn)
 			SSI_IDLE:
 			begin
 				ssi_bit_cnt <= 6'b0;
-				ssi_c <= 1'b1;
+				ssi_c <= 1'b1; // Keep SSI clock high when idle
 				ssi_data_reg <= 'b0;
 				if(ssi_read)
 				begin
 					state_ssi <= SSI_START;
-					ssi_read_quntity <= ssi_read_quntity + 1'b1;
+					ssi_read_quntity <= ssi_read_quntity + 1'b1; // Increment read count
 				end
 				else
 				begin
@@ -470,7 +470,7 @@ always @(posedge clk_100m, negedge rst_n_syn)
 			begin
 				ssi_bit_cnt <= 6'b0;
 				ssi_c <= 1'b1;
-				crc_calc <= 0;
+				crc_calc <= 0; // Reset CRC calculation
 				if(ssi_clk_negedge)
 				begin
 					state_ssi <= SSI_FALL_EDGE;
@@ -494,7 +494,7 @@ always @(posedge clk_100m, negedge rst_n_syn)
 					else
 					begin
 						ssi_bit_cnt <= 6'b0;
-						abs_enc_position_reg[31:0] <= ssi_data_reg[ENCODER_DATA_BITS-5:ENCODER_DATA_BITS-36];//[39:8]
+						abs_enc_position_reg[31:0] <= ssi_data_reg[ENCODER_DATA_BITS-5:ENCODER_DATA_BITS-36];//[39:8]// Update absolute position
 						
 						//if((/*newcrc*/nextCRCx43_D1(ssi_data_reg[8],ssi_data_reg[5:0]) != ssi_data_reg[5:0]))// && (abs_enc_staus_reg[31:16] != 16'hFFFF))	//CRC counter.
 						if(crc_calc)
@@ -542,6 +542,8 @@ always @(posedge clk_100m, negedge rst_n_syn)
 		endcase
 	end
 
+	
+// CRC calculation logic implemented as a function for reusability
 function reg[5:0] nextCRCx43_D0;
 	input		data;
 	input[5:0]	crc;
