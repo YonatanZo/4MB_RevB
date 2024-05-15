@@ -257,7 +257,7 @@ input	btn2nc;
 input	btn3no;
 input	btn3nc;
 //Diagnostic LEDs
-output	led1_1;
+output reg	led1_1;
 output	led1_2;
 //Plinger LEDs
 output	led3_3;
@@ -529,6 +529,7 @@ assign ftx_01 = 1'b1;
 assign ftx_1 = 1'b1;
 assign spare0_io = spare0_io_reg[23:0];
 assign Master_rstn = FPGA_rstn & rst_n_syn;
+
 //ADC Master
 ADC_Master ADC_Master_inst
 (
@@ -688,6 +689,27 @@ always @*
 		default:
 			data_miso_reg = 32'hFFFFFFFF;
 	endcase
+///////////////////LED Blinking Proccess 
+    localparam integer CLOCK_FREQ = 100_000_000;  // 100MHz
+    localparam integer BLINK_FREQ = 5;            // 5Hz
+    localparam integer COUNT_MAX = (CLOCK_FREQ / (2 * BLINK_FREQ)) - 1;
+
+    reg [24:0] counter;   // Counter register (25 bits to count up to 20,000,000)
+
+	
+    always @(posedge clk_100m or negedge Master_rstn) begin
+        if (!Master_rstn) begin
+            counter <= 0;
+            led1_1 <= 0;
+        end else begin
+            if (counter >= COUNT_MAX) begin
+                counter <= 0;
+                led1_1 <= ~led1_1;  // Toggle LED
+            end else begin
+                counter <= counter + 1;
+            end
+        end
+    end
 
 
 	always @* begin
@@ -745,7 +767,7 @@ always @*
 	defparam BISS_Master_inst_M3.bus_clk = 1000000;
 	
 
-//RCB SPI insertion  
+//SPI insertion  
 spi_4mb spi_4mb(
     .clk_100m(clk_100m),       	
     .rst_n_syn(Master_rstn),      
@@ -761,7 +783,7 @@ spi_4mb spi_4mb(
 	.data_miso_rdy(data_miso_rdy)
 );
 
-//RCB REGISRES insertion  
+//REGISRES insertion  
 registers_4mb registers_4mb(
     .clk_100m(clk_100m),       	
     .rst_n_syn(Master_rstn), 
@@ -798,7 +820,7 @@ registers_4mb registers_4mb(
 	.btn2nc(btn2nc),
 	.btn3no(btn3no),
 	.btn3nc(btn3nc),
-	.led1_1(led1_1),
+	// .led1_1(led1_1),
 	.led1_2(led1_2),
 	.led2_1(led2_1),
 	.led2_2(led2_2),
