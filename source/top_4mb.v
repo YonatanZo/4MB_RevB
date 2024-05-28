@@ -468,7 +468,7 @@ reg	biss_d2;
 reg	biss_c2;
 reg	biss_d3;
 reg	biss_c3;
-reg 	enc_sel;
+wire 	enc_sel;
 reg ssi_c1_ff, ssi_c2_ff, ssi_c3_ff;
 
 /*DE10
@@ -505,6 +505,8 @@ assign ssi_c3 = ssi_c3_ff;
 assign data_miso = data_miso_reg;
 
 //Unused outputs
+assign f_sda = 1'bz;   
+assign f_sck = 1'bz;   
 assign mclk_1 = 1'b1;      	
 assign mosi_1 = 1'b1;     		
 assign cs_1 = 1'b1;     		
@@ -529,7 +531,7 @@ assign ftx_01 = 1'b1;
 assign ftx_1 = 1'b1;
 assign spare0_io = spare0_io_reg[23:0];
 assign Master_rstn = FPGA_rstn & rst_n_syn;
-
+assign enc_sel = 1'b1;//ABS_ENC_CTRL_REG[0]; TODO:change back!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //ADC Master
 ADC_Master ADC_Master_inst
 (
@@ -543,8 +545,8 @@ ADC_Master ADC_Master_inst
 	.AIN5(ADC_Voltage_C[31:16]) ,	// ILIM1
 	.AIN6(ADC_Voltage_D[15:0]) ,	// ILIM2
 	.AIN7(ADC_Voltage_D[31:16]) ,	// ILIM3
-	.sda(f_sda) ,	// inout  f_sda
-	.scl(f_sck) 	// inout  f_scl
+	// .sda(f_sda) ,	// inout  f_sda
+	// .scl(f_sck) 	// inout  f_scl
 );
 
 
@@ -712,24 +714,55 @@ always @*
     end
 
 
-	always @* begin
-		enc_sel <= ABS_ENC_CTRL_REG[0];
+	always @ (enc_sel) begin
+		
 		if (enc_sel) begin
-			ssi_c1_ff = biss_c1;
-			ssi_c2_ff = biss_c2;
-			ssi_c3_ff = biss_c3;
-			biss_d1 = ssi_d1;
-			biss_d2 = ssi_d2;
-			biss_d3 = ssi_d3;
+			ssi_c1_ff <= biss_c1;
+			ssi_c2_ff <= biss_c2;
+			ssi_c3_ff <= biss_c3;
+			biss_d1 <= ssi_d1;
+			biss_d2 <= ssi_d2;
+			biss_d3 <= ssi_d3;
 		end else begin
-			ssi_c1_ff = old_ssi_c1;  // Retain previous value, caution: might infer latch if not handled outside
-			ssi_c2_ff = old_ssi_c2;
-			ssi_c3_ff = old_ssi_c3;
-			old_ssi_d1 = ssi_d1;
-			old_ssi_d2 = ssi_d2;
-			old_ssi_d3 = ssi_d3;
+			ssi_c1_ff <= old_ssi_c1;  // Retain previous value, caution: might infer latch if not handled outside
+			ssi_c2_ff <= old_ssi_c2;
+			ssi_c3_ff <= old_ssi_c3;
+			old_ssi_d1 <= ssi_d1;
+			old_ssi_d2 <= ssi_d2;
+			old_ssi_d3 <= ssi_d3;
 		end
 	end
+
+	// RLS_Top RLS_Top_inst
+	// (
+	// 	.clk(clk_100m) ,	// input  clk_sig
+	// 	.reset_n(Master_rstn) ,	// input  reset_n_sig
+	// 	.RLS_MA_0(biss_c1) ,	// output  RLS_MA_0_sig
+	// 	.RLS_MA_1(biss_c2) ,	// output  RLS_MA_1_sig
+	// 	.RLS_MA_2(biss_c3) ,	// output  RLS_MA_2_sig
+	// 	.RLS_SLO_0(biss_d1) ,	// input  RLS_SLO_0_sig
+	// 	.RLS_SLO_1(biss_d2) ,	// input  RLS_SLO_1_sig
+	// 	.RLS_SLO_2(biss_d3) ,	// input  RLS_SLO_2_sig
+	// 	.POS_0(M1_POS_sig) ,	// output [25:0] POS_0_sig
+	// 	.POS_1(M2_POS_sig) ,	// output [25:0] POS_1_sig
+	// 	.POS_2(M3_POS_sig) ,	// output [25:0] POS_2_sig
+	// 	// .ERR_0(ERR_0_sig) ,	// output [15:0] ERR_0_sig
+	// 	// .ERR_1(ERR_1_sig) ,	// output [15:0] ERR_1_sig
+	// 	// .ERR_2(ERR_2_sig) ,	// output [15:0] ERR_2_sig
+	// 	// .WARN_0(WARN_0_sig) ,	// output [15:0] WARN_0_sig
+	// 	// .WARN_1(WARN_1_sig) ,	// output [15:0] WARN_1_sig
+	// 	// .WARN_2(WARN_2_sig) ,	// output [15:0] WARN_2_sig
+	// 	// .CRC_0(CRC_0_sig) ,	// output [15:0] CRC_0_sig
+	// 	// .CRC_1(CRC_1_sig) ,	// output [15:0] CRC_1_sig
+	// 	// .CRC_2(CRC_2_sig) 	// output [15:0] CRC_2_sig
+	// );
+	
+	// defparam RLS_Top_inst.input_clk = 100000000;
+	// defparam RLS_Top_inst.bus_clk = 1000000;
+	
+
+
+
 	BISS_Master BISS_Master_inst_M1
 	(
 		.clk(clk_100m) ,	// input  clk_sig
