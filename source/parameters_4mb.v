@@ -11,11 +11,11 @@
 //`define DE10;
 
 //REVISION
-parameter FPGA_MAJOR_VER	= 8'h02;
-parameter FPGA_REV		= 8'h01;
+parameter FPGA_MAJOR_VER	= 8'h03;
+parameter FPGA_REV		= 8'h02;
 parameter FPGA_REV_YEAR		= 8'h18;
-parameter FPGA_REV_MONTH	= 8'h05;
-parameter FPGA_REV_DAY		= 8'h0e;			
+parameter FPGA_REV_MONTH	= 8'h06;
+parameter FPGA_REV_DAY		= 8'h02;			
 parameter FPGA_REV_HOUR		= 8'h0c;
 
 // SPI packet Lenght
@@ -101,8 +101,13 @@ parameter ADDR_ADC_Voltage_B				= 16'h0030;
 parameter ADDR_ADC_Voltage_C				= 16'h0031;
 parameter ADDR_ADC_Voltage_D				= 16'h0032;
 parameter ADDR_ABS_ENC_CTRL				= 16'h0033;
-
-parameter NUM_REG	= 44;	//Number of RCB Registers see above
+parameter ADDR_RLS_POS_REG_0				= 16'h0034;
+parameter ADDR_RLS_POS_REG_1				= 16'h0035;
+parameter ADDR_RLS_POS_REG_2				= 16'h0036;
+parameter ADDR_RLS_ERR_REG_0				= 16'h0037;
+parameter ADDR_RLS_ERR_REG_1				= 16'h0038;
+parameter ADDR_RLS_ERR_REG_2				= 16'h0039;
+parameter NUM_REG	= 57;	//Number of RCB Registers see above
 
 
 

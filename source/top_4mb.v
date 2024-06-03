@@ -347,9 +347,12 @@ output[6:0]		io_led;
 */
 
 `include  "parameters_4mb.v"
-reg[25:0] M1_POS_sig;
-reg[25:0] M2_POS_sig;
-reg[25:0] M3_POS_sig;
+reg[31:0] M1_POS_reg;
+reg[31:0] M2_POS_reg;
+reg[31:0] M3_POS_reg;
+reg[31:0] M1_ERR_reg;
+reg[31:0] M2_ERR_reg;
+reg[31:0] M3_ERR_reg;
 reg ERR_sig;
 reg WARN_sig;
 reg[5:0] CRC_sig;
@@ -572,6 +575,18 @@ always @*
 		data_miso_reg = ADC_Voltage_D;
 	ADDR_ABS_ENC_CTRL:
 		data_miso_reg = ABS_ENC_CTRL_REG;
+	ADDR_RLS_POS_REG_0:
+		data_miso_reg = M1_POS_reg;
+	ADDR_RLS_POS_REG_1:
+		data_miso_reg = M2_POS_reg;
+	ADDR_RLS_POS_REG_2:
+		data_miso_reg = M3_POS_reg;
+	ADDR_RLS_ERR_REG_0:
+		data_miso_reg = M1_ERR_reg;
+	ADDR_RLS_ERR_REG_1:
+		data_miso_reg = M2_ERR_reg;
+	ADDR_RLS_ERR_REG_2:
+		data_miso_reg = M3_ERR_reg;	
 	/////////////////////////////////////////////
 	ADDR_FPGA_VER:
 			data_miso_reg = ver_reg;
@@ -587,14 +602,14 @@ always @*
 		ADDR_FPGA_M1_DEF_TICKS:
 			data_miso_reg = incr_enc_def_ticks_reg1;
 		ADDR_FPGA_M1_ABSOLUTE:
-			if (enc_sel)
-			begin
-				data_miso_reg ={6'b0,M1_POS_sig};
-			end
-			else
-			begin
+			// if (enc_sel)
+			// begin
+			// 	data_miso_reg ={6'b0,M1_POS_sig};
+			// end
+			// else
+			// begin
 				data_miso_reg = abs_enc_position_reg1;
-			end
+			// end
 		ADDR_FPGA_M1_MOTION_CONTROL:
 			data_miso_reg = motion_control_reg1;	
 		ADDR_FPGA_M1_PWM_CYCLE:
@@ -610,14 +625,14 @@ always @*
 		ADDR_FPGA_M2_DEF_TICKS:
 			data_miso_reg = incr_enc_def_ticks_reg2;
 		ADDR_FPGA_M2_ABSOLUTE:
-			if (enc_sel)
-			begin
-				data_miso_reg ={6'b0,M2_POS_sig} ;
-			end
-			else
-			begin
+			// if (enc_sel)
+			// begin
+			// 	data_miso_reg ={6'b0,M2_POS_sig} ;
+			// end
+			// else
+			// begin
 				data_miso_reg = abs_enc_position_reg2;
-			end
+			// end
 		ADDR_FPGA_M2_MOTION_CONTROL:
 			data_miso_reg = motion_control_reg2;	
 		ADDR_FPGA_M2_PWM_CYCLE:
@@ -634,14 +649,14 @@ always @*
 		ADDR_FPGA_M3_DEF_TICKS:
 			data_miso_reg = incr_enc_def_ticks_reg3;
 		ADDR_FPGA_M3_ABSOLUTE:
-			if (enc_sel)
-			begin
-				data_miso_reg = {6'b0,M3_POS_sig};
-			end
-			else
-			begin
+			// if (enc_sel)
+			// begin
+			// 	data_miso_reg = {6'b0,M3_POS_sig};
+			// end
+			// else
+			// begin
 				data_miso_reg = abs_enc_position_reg3;
-			end
+			// end
 		ADDR_FPGA_M3_MOTION_CONTROL:
 			data_miso_reg = motion_control_reg3;	
 		ADDR_FPGA_M3_PWM_CYCLE:
@@ -733,71 +748,65 @@ always @*
 		end
 	end
 
-	// RLS_Top RLS_Top_inst
+	RLS_Top RLS_Top_inst
+	(
+		.clk(clk_100m) ,	// input  clk_sig
+		.reset_n(Master_rstn) ,	// input  reset_n_sig
+		.RLS_MA_0(biss_c1) ,	// output  RLS_MA_0_sig
+		.RLS_MA_1(biss_c2) ,	// output  RLS_MA_1_sig
+		.RLS_MA_2(biss_c3) ,	// output  RLS_MA_2_sig
+		.RLS_SLO_0(biss_d1) ,	// input  RLS_SLO_0_sig
+		.RLS_SLO_1(biss_d2) ,	// input  RLS_SLO_1_sig
+		.RLS_SLO_2(biss_d3) ,	// input  RLS_SLO_2_sig
+		.POS_REG_0(M1_POS_reg) ,	// output [25:0] POS_0_sig
+		.POS_REG_1(M2_POS_reg) ,	// output [25:0] POS_1_sig
+		.POS_REG_2(M3_POS_reg) ,	// output [25:0] POS_2_sig
+		.ERR_REG_0(M1_ERR_reg) ,
+		.ERR_REG_1(M2_ERR_reg) ,
+		.ERR_REG_2(M3_ERR_reg) , 
+	);
+	
+	defparam RLS_Top_inst.input_clk = 100000000;
+	defparam RLS_Top_inst.bus_clk = 1000000;
+	
+
+
+
+	// BISS_Master BISS_Master_inst_M1
 	// (
 	// 	.clk(clk_100m) ,	// input  clk_sig
 	// 	.reset_n(Master_rstn) ,	// input  reset_n_sig
-	// 	.RLS_MA_0(biss_c1) ,	// output  RLS_MA_0_sig
-	// 	.RLS_MA_1(biss_c2) ,	// output  RLS_MA_1_sig
-	// 	.RLS_MA_2(biss_c3) ,	// output  RLS_MA_2_sig
-	// 	.RLS_SLO_0(biss_d1) ,	// input  RLS_SLO_0_sig
-	// 	.RLS_SLO_1(biss_d2) ,	// input  RLS_SLO_1_sig
-	// 	.RLS_SLO_2(biss_d3) ,	// input  RLS_SLO_2_sig
-	// 	.POS_0(M1_POS_sig) ,	// output [25:0] POS_0_sig
-	// 	.POS_1(M2_POS_sig) ,	// output [25:0] POS_1_sig
-	// 	.POS_2(M3_POS_sig) ,	// output [25:0] POS_2_sig
-	// 	// .ERR_0(ERR_0_sig) ,	// output [15:0] ERR_0_sig
-	// 	// .ERR_1(ERR_1_sig) ,	// output [15:0] ERR_1_sig
-	// 	// .ERR_2(ERR_2_sig) ,	// output [15:0] ERR_2_sig
-	// 	// .WARN_0(WARN_0_sig) ,	// output [15:0] WARN_0_sig
-	// 	// .WARN_1(WARN_1_sig) ,	// output [15:0] WARN_1_sig
-	// 	// .WARN_2(WARN_2_sig) ,	// output [15:0] WARN_2_sig
-	// 	// .CRC_0(CRC_0_sig) ,	// output [15:0] CRC_0_sig
-	// 	// .CRC_1(CRC_1_sig) ,	// output [15:0] CRC_1_sig
-	// 	// .CRC_2(CRC_2_sig) 	// output [15:0] CRC_2_sig
+	// 	.POS(M1_POS_sig) ,	// output [25:0] POS_sig
+	// 	.MCLK(biss_c1) ,	// output  MCLK_sig
+	// 	.SLO(biss_d1) 	// input  SLO_sig
+	// );
+
+	// defparam BISS_Master_inst_M1.input_clk = 100000000;
+	// defparam BISS_Master_inst_M1.bus_clk = 1000000;
+
+	// BISS_Master BISS_Master_inst_M2
+	// (
+	// 	.clk(clk_100m) ,	// input  clk_sig
+	// 	.reset_n(Master_rstn) ,	// input  reset_n_sig
+	// 	.POS(M2_POS_sig) ,	// output [25:0] POS_sig
+	// 	.MCLK(biss_c2) ,	// output  MCLK_sig
+	// 	.SLO(biss_d2) 	// input  SLO_sig
+	// );
+
+	// defparam BISS_Master_inst_M2.input_clk = 100000000;
+	// defparam BISS_Master_inst_M2.bus_clk = 1000000;
+
+	// BISS_Master BISS_Master_inst_M3
+	// (
+	// 	.clk(clk_100m) ,	// input  clk_sig
+	// 	.reset_n(Master_rstn) ,	// input  reset_n_sig
+	// 	.POS(M3_POS_sig) ,	// output [25:0] POS_sig
+	// 	.MCLK(biss_c3) ,	// output  MCLK_sig
+	// 	.SLO(biss_d3) 	// input  SLO_sig
 	// );
 	
-	// defparam RLS_Top_inst.input_clk = 100000000;
-	// defparam RLS_Top_inst.bus_clk = 1000000;
-	
-
-
-
-	BISS_Master BISS_Master_inst_M1
-	(
-		.clk(clk_100m) ,	// input  clk_sig
-		.reset_n(Master_rstn) ,	// input  reset_n_sig
-		.POS(M1_POS_sig) ,	// output [25:0] POS_sig
-		.MCLK(biss_c1) ,	// output  MCLK_sig
-		.SLO(biss_d1) 	// input  SLO_sig
-	);
-
-	defparam BISS_Master_inst_M1.input_clk = 100000000;
-	defparam BISS_Master_inst_M1.bus_clk = 1000000;
-
-	BISS_Master BISS_Master_inst_M2
-	(
-		.clk(clk_100m) ,	// input  clk_sig
-		.reset_n(Master_rstn) ,	// input  reset_n_sig
-		.POS(M2_POS_sig) ,	// output [25:0] POS_sig
-		.MCLK(biss_c2) ,	// output  MCLK_sig
-		.SLO(biss_d2) 	// input  SLO_sig
-	);
-
-	defparam BISS_Master_inst_M2.input_clk = 100000000;
-	defparam BISS_Master_inst_M2.bus_clk = 1000000;
-
-	BISS_Master BISS_Master_inst_M3
-	(
-		.clk(clk_100m) ,	// input  clk_sig
-		.reset_n(Master_rstn) ,	// input  reset_n_sig
-		.POS(M3_POS_sig) ,	// output [25:0] POS_sig
-		.MCLK(biss_c3) ,	// output  MCLK_sig
-		.SLO(biss_d3) 	// input  SLO_sig
-	);
-	
-	defparam BISS_Master_inst_M3.input_clk = 100000000;
-	defparam BISS_Master_inst_M3.bus_clk = 1000000;
+	// defparam BISS_Master_inst_M3.input_clk = 100000000;
+	// defparam BISS_Master_inst_M3.bus_clk = 1000000;
 	
 
 //SPI insertion  

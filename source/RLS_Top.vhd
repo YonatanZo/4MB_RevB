@@ -17,18 +17,13 @@ ENTITY RLS_Top IS
     RLS_SLO_0 : IN     STD_LOGIC;        -- Serial clock input for BISS_Master 0
     RLS_SLO_1 : IN     STD_LOGIC;        -- Serial clock input for BISS_Master 1
     RLS_SLO_2 : IN     STD_LOGIC;        -- Serial clock input for BISS_Master 2
-    POS_0     : OUT    STD_LOGIC_VECTOR(25 DOWNTO 0); -- Position output for BISS_Master 0
-    POS_1     : OUT    STD_LOGIC_VECTOR(25 DOWNTO 0); -- Position output for BISS_Master 1
-    POS_2     : OUT    STD_LOGIC_VECTOR(25 DOWNTO 0); -- Position output for BISS_Master 2
-    ERR_0     : OUT    STD_LOGIC_VECTOR(15 DOWNTO 0); -- ERR counter for BISS_Master 0
-    ERR_1     : OUT    STD_LOGIC_VECTOR(15 DOWNTO 0); -- ERR counter for BISS_Master 1
-    ERR_2     : OUT    STD_LOGIC_VECTOR(15 DOWNTO 0); -- ERR counter for BISS_Master 2
-    WARN_0    : OUT    STD_LOGIC_VECTOR(15 DOWNTO 0); -- WARN counter for BISS_Master 0
-    WARN_1    : OUT    STD_LOGIC_VECTOR(15 DOWNTO 0); -- WARN counter for BISS_Master 1
-    WARN_2    : OUT    STD_LOGIC_VECTOR(15 DOWNTO 0); -- WARN counter for BISS_Master 2
-    CRC_0     : OUT    STD_LOGIC_VECTOR(15 DOWNTO 0); -- CRC error counter for BISS_Master 0
-    CRC_1     : OUT    STD_LOGIC_VECTOR(15 DOWNTO 0); -- CRC error counter for BISS_Master 1
-    CRC_2     : OUT    STD_LOGIC_VECTOR(15 DOWNTO 0)  -- CRC error counter for BISS_Master 2
+    POS_REG_0     : OUT    STD_LOGIC_VECTOR(31 DOWNTO 0); -- Position output for BISS_Master 0
+    POS_REG_1     : OUT    STD_LOGIC_VECTOR(31 DOWNTO 0); -- Position output for BISS_Master 1
+    POS_REG_2     : OUT    STD_LOGIC_VECTOR(31 DOWNTO 0); -- Position output for BISS_Master 2
+    ERR_REG_0     : OUT    STD_LOGIC_VECTOR(31 DOWNTO 0); -- ERR counter for BISS_Master 0
+    ERR_REG_1     : OUT    STD_LOGIC_VECTOR(31 DOWNTO 0); -- ERR counter for BISS_Master 1
+    ERR_REG_2     : OUT    STD_LOGIC_VECTOR(31 DOWNTO 0) -- ERR counter for BISS_Master 2
+
   );                  
 END RLS_Top;
 
@@ -55,8 +50,10 @@ ARCHITECTURE logic OF RLS_Top IS
   END COMPONENT;
 
   -- State machine states
-  TYPE state_type IS (IDLE, START_M, WAIT_M);
-  SIGNAL state       : state_type;       -- Current state of the FSM
+  TYPE state_type IS (IDLE, START_M, WAIT_M,SLEEP);
+  SIGNAL state_m1       : state_type;       -- Current state of the FSM
+  SIGNAL state_m2       : state_type;       -- Current state of the FSM
+  SIGNAL state_m3       : state_type;       -- Current state of the FSM
   SIGNAL start_m1    : STD_LOGIC := '0'; -- Start signal for BISS_Master 1
   SIGNAL start_m2    : STD_LOGIC := '0'; -- Start signal for BISS_Master 2
   SIGNAL start_m3    : STD_LOGIC := '0'; -- Start signal for BISS_Master 3
@@ -85,22 +82,21 @@ ARCHITECTURE logic OF RLS_Top IS
   SIGNAL busy_2      : STD_LOGIC;
 
   -- Error and warning counters for each BISS_Master instance
-  SIGNAL crc_counter_0  : STD_LOGIC_VECTOR(15 DOWNTO 0) := (others => '0');
-  SIGNAL crc_counter_1  : STD_LOGIC_VECTOR(15 DOWNTO 0) := (others => '0');
-  SIGNAL crc_counter_2  : STD_LOGIC_VECTOR(15 DOWNTO 0) := (others => '0');
-  SIGNAL err_counter_0  : STD_LOGIC_VECTOR(15 DOWNTO 0) := (others => '0');
-  SIGNAL err_counter_1  : STD_LOGIC_VECTOR(15 DOWNTO 0) := (others => '0');
-  SIGNAL err_counter_2  : STD_LOGIC_VECTOR(15 DOWNTO 0) := (others => '0');
-  SIGNAL warn_counter_0 : STD_LOGIC_VECTOR(15 DOWNTO 0) := (others => '0');
-  SIGNAL warn_counter_1 : STD_LOGIC_VECTOR(15 DOWNTO 0) := (others => '0');
-  SIGNAL warn_counter_2 : STD_LOGIC_VECTOR(15 DOWNTO 0) := (others => '0');
+  SIGNAL crc_counter_0  : STD_LOGIC_VECTOR(27 DOWNTO 0) := (others => '0');
+  SIGNAL crc_counter_1  : STD_LOGIC_VECTOR(27 DOWNTO 0) := (others => '0');
+  SIGNAL crc_counter_2  : STD_LOGIC_VECTOR(27 DOWNTO 0) := (others => '0');
+  SIGNAL rdy_counter_0  : STD_LOGIC_VECTOR(5 DOWNTO 0) := (others => '0');
+  SIGNAL rdy_counter_1  : STD_LOGIC_VECTOR(5 DOWNTO 0) := (others => '0');
+  SIGNAL rdy_counter_2  : STD_LOGIC_VECTOR(5 DOWNTO 0) := (others => '0');
   SIGNAL rdy_0_div      : STD_LOGIC;
   SIGNAL rdy_0_f    : STD_LOGIC;
   SIGNAL rdy_1_div      : STD_LOGIC;
   SIGNAL rdy_1_f    : STD_LOGIC;
   SIGNAL rdy_2_div      : STD_LOGIC;
   SIGNAL rdy_2_f    : STD_LOGIC;
-  SIGNAL busy_bus : STD_LOGIC_VECTOR(2 DOWNTO 0);
+  SIGNAL sleep_100us_cnt_m1  : INTEGER RANGE 0 TO 10000 := 0;
+  SIGNAL sleep_100us_cnt_m2  : INTEGER RANGE 0 TO 10000 := 0;
+  SIGNAL sleep_100us_cnt_m3  : INTEGER RANGE 0 TO 10000 := 0;
 BEGIN
 
 -- Instantiation of BISS_Master 0
@@ -171,107 +167,183 @@ begin
     crc_counter_0 <= (others => '0');
     crc_counter_1 <= (others => '0');
     crc_counter_2 <= (others => '0');
-    err_counter_0 <= (others => '0');
-    err_counter_1 <= (others => '0');
-    err_counter_2 <= (others => '0');
-    warn_counter_0 <= (others => '0');
-    warn_counter_1 <= (others => '0');
-    warn_counter_2 <= (others => '0');
+    rdy_counter_0 <= (others => '0');
+    rdy_counter_1 <= (others => '0');
+    rdy_counter_2 <= (others => '0');
+
   elsif rising_edge(clk) then
     -- Update CRC, ERR, and WARN counters based on the RDY signals
     if rdy_0_div = '1' then
       if crc_err_0 = '1' then
         crc_counter_0 <= std_logic_vector(unsigned(crc_counter_0) + 1);
       end if;
-      if err_0_f = '1' then
-        err_counter_0 <= std_logic_vector(unsigned(err_counter_0) + 1);
-      end if;
-      if warn_0_f = '1' then
-        warn_counter_0 <= std_logic_vector(unsigned(warn_counter_0) + 1);
-      end if;
+      rdy_counter_0 <= std_logic_vector(unsigned(rdy_counter_0) + 1);
     end if;
 
     if rdy_1_div = '1' then
       if crc_err_1 = '1' then
         crc_counter_1 <= std_logic_vector(unsigned(crc_counter_1) + 1);
       end if;
-      if err_1_f = '1' then
-        err_counter_1 <= std_logic_vector(unsigned(err_counter_1) + 1);
-      end if;
-      if warn_1_f = '1' then
-        warn_counter_1 <= std_logic_vector(unsigned(warn_counter_1) + 1);
-      end if;
+      rdy_counter_1 <= std_logic_vector(unsigned(rdy_counter_1) + 1);
     end if;
-
     if rdy_2_div = '1' then
       if crc_err_2 = '1' then
         crc_counter_2 <= std_logic_vector(unsigned(crc_counter_2) + 1);
       end if;
-      if err_2_f = '1' then
-        err_counter_2 <= std_logic_vector(unsigned(err_counter_2) + 1);
-      end if;
-      if warn_2_f = '1' then
-        warn_counter_2 <= std_logic_vector(unsigned(warn_counter_2) + 1);
-      end if;
+      rdy_counter_2 <= std_logic_vector(unsigned(rdy_counter_2) + 1);
     end if;
   end if;
 end process;
 
--- FSM to manage BISS_Masters
 process(clk, reset_n)
 begin
   if reset_n = '0' then
     -- Reset FSM state and control signals
-    state <= IDLE;
+    state_m1 <= IDLE;
     start_m1 <= '0';
-    start_m2 <= '0';
-    start_m3 <= '0';
     rdy_0_sig <= '0';
-    rdy_1_sig <= '0';
-    rdy_2_sig <= '0';
+    sleep_100us_cnt_m1 <= 0;
   elsif rising_edge(clk) then
-    case state is
+    case state_m1 is
       when IDLE =>
+        sleep_100us_cnt_m1 <= 0;
         -- Initialize control signals and transition to START_M state
         start_m1 <= '0';
-        start_m2 <= '0';
-        start_m3 <= '0';
-        state <= START_M;
+        state_m1 <= START_M;
       when START_M =>
         -- Start all BISS_Masters and transition to WAIT_M state
         start_m1 <= '1';
-        start_m2 <= '1';
-        start_m3 <= '1';
-        state <= WAIT_M;
+        if busy_0 = '1' then
+          state_m1 <= WAIT_M;
+        else 
+          state_m1 <= START_M;
+        end if;
       when WAIT_M =>
         -- Stop starting signals and check RDY signals
         start_m1 <= '0';
-        start_m2 <= '0';
-        start_m3 <= '0';
         if rdy_0 = '1' then
           rdy_0_sig <= '1';
         end if;
+        -- Transition back to IDLE when all RDY signals are set
+        if busy_0 = '0' then
+          rdy_0_sig <= '0';
+          state_m1 <= SLEEP;
+        else 
+          state_m1 <= WAIT_M;
+        end if;
+      when SLEEP =>
+        if  sleep_100us_cnt_m1 = 999 then
+          state_m1 <= IDLE;
+          sleep_100us_cnt_m1 <= 0;
+        else 
+          sleep_100us_cnt_m1 <= sleep_100us_cnt_m1 +1;
+          state_m1 <= SLEEP;
+        end if;
+      when others =>
+        state_m1 <= IDLE;
+    end case;
+  end if;
+end process;
+
+process(clk, reset_n)
+begin
+  if reset_n = '0' then
+    -- Reset FSM state and control signals
+    state_m2 <= IDLE;
+    start_m2 <= '0';
+    rdy_1_sig <= '0';
+    sleep_100us_cnt_m2 <= 0;
+  elsif rising_edge(clk) then
+    case state_m2 is
+      when IDLE =>
+        sleep_100us_cnt_m2 <= 0;
+        -- Initialize control signals and transition to START_M state
+        start_m2 <= '0';
+        state_m2 <= START_M;
+      when START_M =>
+        -- Start all BISS_Masters and transition to WAIT_M state
+        start_m2 <= '1';
+        if busy_1 = '1' then
+          state_m2 <= WAIT_M;
+        else 
+          state_m2 <= START_M;
+        end if;
+      when WAIT_M =>
+        -- Stop starting signals and check RDY signals
+        start_m2 <= '0';
         if rdy_1 = '1' then
           rdy_1_sig <= '1';
         end if;
+        -- Transition back to IDLE when all RDY signals are set
+        if busy_1 = '0' then
+          rdy_1_sig <= '0';
+          state_m2 <= SLEEP;
+        else 
+          state_m2 <= WAIT_M;
+        end if;
+      when SLEEP =>
+        if  sleep_100us_cnt_m2 = 999 then
+          state_m2 <= IDLE;
+          sleep_100us_cnt_m2 <= 0;
+        else 
+          sleep_100us_cnt_m2 <= sleep_100us_cnt_m2 +1;
+          state_m2 <= SLEEP;
+        end if;
+      when others =>
+        state_m2 <= IDLE;
+    end case;
+  end if;
+end process;
+
+process(clk, reset_n)
+begin
+  if reset_n = '0' then
+    -- Reset FSM state and control signals
+    state_m3 <= IDLE;
+    start_m3 <= '0';
+    rdy_2_sig <= '0';
+    sleep_100us_cnt_m3 <= 0;
+  elsif rising_edge(clk) then
+    case state_m3 is
+      when IDLE =>
+        -- Initialize control signals and transition to START_M state
+        start_m3 <= '0';
+        state_m3 <= START_M;
+        sleep_100us_cnt_m3 <= 0;
+      when START_M =>
+        -- Start all BISS_Masters and transition to WAIT_M state
+        start_m3 <= '1';
+        if busy_2 = '1' then
+          state_m3 <= WAIT_M;
+        else 
+          state_m3 <= START_M;
+        end if;
+      when WAIT_M =>
+        -- Stop starting signals and check RDY signals
+        start_m3 <= '0';
         if rdy_2 = '1' then
           rdy_2_sig <= '1';
         end if;
         -- Transition back to IDLE when all RDY signals are set
-        if busy_bus /= "111" then
-          rdy_0_sig <= '0';
-          rdy_1_sig <= '0';
+        if busy_2 = '0' then
           rdy_2_sig <= '0';
-          state <= IDLE;
+          state_m3 <= SLEEP;
         else 
-          state <= WAIT_M;
+          state_m3 <= WAIT_M;
+        end if;
+      when SLEEP =>
+        if  sleep_100us_cnt_m3 = 999 then
+          state_m3 <= IDLE;
+          sleep_100us_cnt_m3 <= 0;
+        else 
+          sleep_100us_cnt_m3 <= sleep_100us_cnt_m3 +1;
+          state_m3 <= SLEEP;
         end if;
       when others =>
-        state <= IDLE;
+        state_m3 <= IDLE;
     end case;
   end if;
 end process;
-busy_bus <= busy_0 & busy_1 & busy_2;
 -- Register RDY signal changes
 process(clk)
 begin
@@ -287,21 +359,31 @@ rdy_0_div <= rdy_0 and (not rdy_0_f);
 rdy_1_div <= rdy_1 and (not rdy_1_f);
 rdy_2_div <= rdy_2 and (not rdy_2_f);
 
--- Combine outputs
-POS_0 <= pos_0_f;
-POS_1 <= pos_1_f;
-POS_2 <= pos_2_f;
-
-ERR_0 <= err_counter_0;
-ERR_1 <= err_counter_1;
-ERR_2 <= err_counter_2;
-
-WARN_0 <= warn_counter_0;
-WARN_1 <= warn_counter_1;
-WARN_2 <= warn_counter_2;
-
-CRC_0 <= crc_counter_0;
-CRC_1 <= crc_counter_1;
-CRC_2 <= crc_counter_2;
-
+process(clk,reset_n)
+begin
+  if reset_n = '0' then
+    POS_REG_0 <= (others => '0');
+    POS_REG_1 <= (others => '0');
+    POS_REG_2 <= (others => '0');
+    ERR_REG_0 <= (others => '0');
+    ERR_REG_1 <= (others => '0');
+    ERR_REG_2 <= (others => '0');
+  elsif rising_edge(clk) then
+    POS_REG_0(25 downto 0)  <= pos_0_f;
+    POS_REG_1(25 downto 0)  <= pos_1_f;
+    POS_REG_2(25 downto 0)  <= pos_2_f;
+    POS_REG_0(31 downto 26)  <= rdy_counter_0;
+    POS_REG_1(31 downto 26)  <= rdy_counter_1;
+    POS_REG_2(31 downto 26)  <= rdy_counter_2;
+    ERR_REG_0(27 downto 0)  <= crc_counter_0;
+    ERR_REG_1(27 downto 0)  <= crc_counter_1;
+    ERR_REG_2(27 downto 0)  <= crc_counter_2;
+    ERR_REG_0(28) <= err_0_f;
+    ERR_REG_1(28) <= err_1_f;
+    ERR_REG_2(28) <= err_2_f;
+    ERR_REG_0(29) <= warn_0_f;
+    ERR_REG_1(29) <= warn_1_f;
+    ERR_REG_2(29) <= warn_2_f;
+  end if;
+  end process;
 END logic;
