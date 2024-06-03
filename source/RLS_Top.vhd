@@ -28,6 +28,15 @@ ENTITY RLS_Top IS
 END RLS_Top;
 
 ARCHITECTURE logic OF RLS_Top IS
+COMPONENT clock_generator
+	GENERIC ( clock_in_speed : INTEGER := 100000000; clock_out_speed : INTEGER := 100000 );
+	PORT
+	(
+		clock_in		:	 IN STD_LOGIC;
+		clock_out		:	 OUT STD_LOGIC
+	);
+END COMPONENT;
+
 
   COMPONENT BISS_Master
     GENERIC(
@@ -88,12 +97,19 @@ ARCHITECTURE logic OF RLS_Top IS
   SIGNAL rdy_counter_0  : STD_LOGIC_VECTOR(5 DOWNTO 0) := (others => '0');
   SIGNAL rdy_counter_1  : STD_LOGIC_VECTOR(5 DOWNTO 0) := (others => '0');
   SIGNAL rdy_counter_2  : STD_LOGIC_VECTOR(5 DOWNTO 0) := (others => '0');
+  SIGNAL rdy_counter_0_ff  : STD_LOGIC_VECTOR(5 DOWNTO 0) := (others => '0');
+  SIGNAL rdy_counter_1_ff  : STD_LOGIC_VECTOR(5 DOWNTO 0) := (others => '0');
+  SIGNAL rdy_counter_2_ff  : STD_LOGIC_VECTOR(5 DOWNTO 0) := (others => '0');
+  SIGNAL last_counter_0  : STD_LOGIC_VECTOR(5 DOWNTO 0) := (others => '0');
+  SIGNAL last_counter_1  : STD_LOGIC_VECTOR(5 DOWNTO 0) := (others => '0');
+  SIGNAL last_counter_2  : STD_LOGIC_VECTOR(5 DOWNTO 0) := (others => '0');
   SIGNAL rdy_0_div      : STD_LOGIC;
   SIGNAL rdy_0_f    : STD_LOGIC;
   SIGNAL rdy_1_div      : STD_LOGIC;
   SIGNAL rdy_1_f    : STD_LOGIC;
   SIGNAL rdy_2_div      : STD_LOGIC;
   SIGNAL rdy_2_f    : STD_LOGIC;
+  SIGNAL clk_100u    : STD_LOGIC;
   SIGNAL sleep_100us_cnt_m1  : INTEGER RANGE 0 TO 10000 := 0;
   SIGNAL sleep_100us_cnt_m2  : INTEGER RANGE 0 TO 10000 := 0;
   SIGNAL sleep_100us_cnt_m3  : INTEGER RANGE 0 TO 10000 := 0;
@@ -159,6 +175,16 @@ M3_ENC: BISS_Master
     SLO       => RLS_SLO_2
   );
 
+
+  CMP_clk_100u: clock_generator
+	GENERIC MAP( clock_in_speed =>100000000,
+              clock_out_speed => 10000 )
+	PORT MAP
+	(
+		clock_in		=> clk,
+		clock_out		=> clk_100u
+	);
+
 -- CRC, ERR, and WARN error counters update process
 process(clk, reset_n)
 begin
@@ -170,27 +196,66 @@ begin
     rdy_counter_0 <= (others => '0');
     rdy_counter_1 <= (others => '0');
     rdy_counter_2 <= (others => '0');
-
+    POS_REG_0(25 downto 0) <= (others => '0');
+    POS_REG_1(25 downto 0) <= (others => '0');
+    POS_REG_2(25 downto 0) <= (others => '0');
   elsif rising_edge(clk) then
     -- Update CRC, ERR, and WARN counters based on the RDY signals
     if rdy_0_div = '1' then
       if crc_err_0 = '1' then
         crc_counter_0 <= std_logic_vector(unsigned(crc_counter_0) + 1);
+      else
+        rdy_counter_0 <= std_logic_vector(unsigned(rdy_counter_0) + 1);
+        POS_REG_0(25 downto 0)  <= pos_0_f;
       end if;
-      rdy_counter_0 <= std_logic_vector(unsigned(rdy_counter_0) + 1);
     end if;
 
     if rdy_1_div = '1' then
       if crc_err_1 = '1' then
         crc_counter_1 <= std_logic_vector(unsigned(crc_counter_1) + 1);
+      else
+        rdy_counter_1 <= std_logic_vector(unsigned(rdy_counter_1) + 1);
+        POS_REG_1(25 downto 0)  <= pos_1_f;
       end if;
-      rdy_counter_1 <= std_logic_vector(unsigned(rdy_counter_1) + 1);
     end if;
     if rdy_2_div = '1' then
       if crc_err_2 = '1' then
         crc_counter_2 <= std_logic_vector(unsigned(crc_counter_2) + 1);
+      else
+        rdy_counter_2 <= std_logic_vector(unsigned(rdy_counter_2) + 1);
+        POS_REG_2(25 downto 0)  <= pos_2_f;
       end if;
-      rdy_counter_2 <= std_logic_vector(unsigned(rdy_counter_2) + 1);
+    end if;
+  end if;
+end process;
+
+last_updata_counter:process(clk_100u, reset_n)
+begin
+  if reset_n = '0'  then
+    rdy_counter_0_ff <= (others => '0');
+    rdy_counter_1_ff <= (others => '0');
+    rdy_counter_2_ff <= (others => '0');
+    last_counter_0 <= (others => '0');
+    last_counter_1 <= (others => '0');
+    last_counter_2 <= (others => '0');
+  elsif rising_edge(clk_100u) then
+    rdy_counter_0_ff <= rdy_counter_0;
+    rdy_counter_1_ff <= rdy_counter_1;
+    rdy_counter_2_ff <= rdy_counter_2;
+    if rdy_counter_0_ff = rdy_counter_0 then
+        last_counter_0 <= std_logic_vector(unsigned(last_counter_0) + 1);
+    else
+        last_counter_0 <= (others => '0');
+    end if;
+    if rdy_counter_1_ff = rdy_counter_1 then
+      last_counter_1 <= std_logic_vector(unsigned(last_counter_1) + 1);
+    else
+        last_counter_1 <= (others => '0');
+    end if;
+    if rdy_counter_2_ff = rdy_counter_2 then
+      last_counter_2 <= std_logic_vector(unsigned(last_counter_2) + 1);
+    else
+        last_counter_2 <= (others => '0');
     end if;
   end if;
 end process;
@@ -221,12 +286,12 @@ begin
       when WAIT_M =>
         -- Stop starting signals and check RDY signals
         start_m1 <= '0';
-        if rdy_0 = '1' then
-          rdy_0_sig <= '1';
-        end if;
+        -- if rdy_0 = '1' then
+        --   rdy_0_sig <= '1';
+        -- end if;
         -- Transition back to IDLE when all RDY signals are set
         if busy_0 = '0' then
-          rdy_0_sig <= '0';
+          -- rdy_0_sig <= '0';
           state_m1 <= SLEEP;
         else 
           state_m1 <= WAIT_M;
@@ -271,12 +336,12 @@ begin
       when WAIT_M =>
         -- Stop starting signals and check RDY signals
         start_m2 <= '0';
-        if rdy_1 = '1' then
-          rdy_1_sig <= '1';
-        end if;
+        -- if rdy_1 = '1' then
+        --   rdy_1_sig <= '1';
+        -- end if;
         -- Transition back to IDLE when all RDY signals are set
         if busy_1 = '0' then
-          rdy_1_sig <= '0';
+          -- rdy_1_sig <= '0';
           state_m2 <= SLEEP;
         else 
           state_m2 <= WAIT_M;
@@ -321,12 +386,12 @@ begin
       when WAIT_M =>
         -- Stop starting signals and check RDY signals
         start_m3 <= '0';
-        if rdy_2 = '1' then
-          rdy_2_sig <= '1';
-        end if;
+        -- if rdy_2 = '1' then
+        --   rdy_2_sig <= '1';
+        -- end if;
         -- Transition back to IDLE when all RDY signals are set
         if busy_2 = '0' then
-          rdy_2_sig <= '0';
+          -- rdy_2_sig <= '0';
           state_m3 <= SLEEP;
         else 
           state_m3 <= WAIT_M;
@@ -362,19 +427,19 @@ rdy_2_div <= rdy_2 and (not rdy_2_f);
 process(clk,reset_n)
 begin
   if reset_n = '0' then
-    POS_REG_0 <= (others => '0');
-    POS_REG_1 <= (others => '0');
-    POS_REG_2 <= (others => '0');
+    POS_REG_0(31 downto 26)   <= (others => '0');
+    POS_REG_1(31 downto 26)   <= (others => '0');
+    POS_REG_2(31 downto 26)   <= (others => '0');
     ERR_REG_0 <= (others => '0');
     ERR_REG_1 <= (others => '0');
     ERR_REG_2 <= (others => '0');
   elsif rising_edge(clk) then
-    POS_REG_0(25 downto 0)  <= pos_0_f;
-    POS_REG_1(25 downto 0)  <= pos_1_f;
-    POS_REG_2(25 downto 0)  <= pos_2_f;
-    POS_REG_0(31 downto 26)  <= rdy_counter_0;
-    POS_REG_1(31 downto 26)  <= rdy_counter_1;
-    POS_REG_2(31 downto 26)  <= rdy_counter_2;
+    -- POS_REG_0(25 downto 0)  <= pos_0_f;
+    -- POS_REG_1(25 downto 0)  <= pos_1_f;
+    -- POS_REG_2(25 downto 0)  <= pos_2_f;
+    POS_REG_0(31 downto 26)  <= last_counter_0;
+    POS_REG_1(31 downto 26)  <= last_counter_1;
+    POS_REG_2(31 downto 26)  <= last_counter_2;
     ERR_REG_0(27 downto 0)  <= crc_counter_0;
     ERR_REG_1(27 downto 0)  <= crc_counter_1;
     ERR_REG_2(27 downto 0)  <= crc_counter_2;

@@ -62,7 +62,7 @@ ARCHITECTURE logic OF BISS_Master IS
   SIGNAL SLO_d     :     STD_LOGIC := '0';
 BEGIN
 
-process(clk, reset_n)
+process(clk, reset_n,tmp_clk)
 begin
   if reset_n = '0' then
     tmp_clk <= '0';

@@ -547,7 +547,7 @@ ADC_Master ADC_Master_inst
 	.AIN4(ADC_Voltage_C[15:0]) ,	// BRKs_5
 	.AIN5(ADC_Voltage_C[31:16]) ,	// ILIM1
 	.AIN6(ADC_Voltage_D[15:0]) ,	// ILIM2
-	.AIN7(ADC_Voltage_D[31:16]) ,	// ILIM3
+	.AIN7(ADC_Voltage_D[31:16])	// ILIM3
 	// .sda(f_sda) ,	// inout  f_sda
 	// .scl(f_sck) 	// inout  f_scl
 );
@@ -731,21 +731,21 @@ always @*
 
 	always @ (enc_sel) begin
 		
-		if (enc_sel) begin
+		// if (enc_sel) begin
 			ssi_c1_ff <= biss_c1;
 			ssi_c2_ff <= biss_c2;
 			ssi_c3_ff <= biss_c3;
 			biss_d1 <= ssi_d1;
 			biss_d2 <= ssi_d2;
 			biss_d3 <= ssi_d3;
-		end else begin
-			ssi_c1_ff <= old_ssi_c1;  // Retain previous value, caution: might infer latch if not handled outside
-			ssi_c2_ff <= old_ssi_c2;
-			ssi_c3_ff <= old_ssi_c3;
-			old_ssi_d1 <= ssi_d1;
-			old_ssi_d2 <= ssi_d2;
-			old_ssi_d3 <= ssi_d3;
-		end
+		// end else begin
+		// 	ssi_c1_ff <= old_ssi_c1;  // Retain previous value, caution: might infer latch if not handled outside
+		// 	ssi_c2_ff <= old_ssi_c2;
+		// 	ssi_c3_ff <= old_ssi_c3;
+		// 	old_ssi_d1 <= ssi_d1;
+		// 	old_ssi_d2 <= ssi_d2;
+		// 	old_ssi_d3 <= ssi_d3;
+		// end
 	end
 
 	RLS_Top RLS_Top_inst
@@ -763,7 +763,7 @@ always @*
 		.POS_REG_2(M3_POS_reg) ,	// output [25:0] POS_2_sig
 		.ERR_REG_0(M1_ERR_reg) ,
 		.ERR_REG_1(M2_ERR_reg) ,
-		.ERR_REG_2(M3_ERR_reg) , 
+		.ERR_REG_2(M3_ERR_reg) 
 	);
 	
 	defparam RLS_Top_inst.input_clk = 100000000;
