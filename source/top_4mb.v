@@ -533,7 +533,7 @@ assign ftx_0 = 1'b1;
 assign ftx_01 = 1'b1;
 assign ftx_1 = 1'b1;
 assign spare0_io = spare0_io_reg[23:0];
-assign Master_rstn = FPGA_rstn & rst_n_syn;
+assign Master_rstn = 1'B1;//FPGA_rstn & rst_n_syn;
 assign enc_sel = 1'b1;//ABS_ENC_CTRL_REG[0]; TODO:change back!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //ADC Master
 ADC_Master ADC_Master_inst

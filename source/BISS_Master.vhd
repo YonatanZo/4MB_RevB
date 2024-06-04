@@ -226,15 +226,17 @@ begin
         end if;
       WHEN S_START => 
         state <= S_START;
-        if SLO = '0' then
+        if SLO = '0' and prev_state = S_WAIT_ACK then
           state <= S_CDS;
+        else
+          state <= S_TIMEOUT;
         end if;
       WHEN S_CDS => 
-        if SLO = '0' then
+        -- if SLO = '0' then
           pos_cnt <= pos_cnt + 1;
           POS_ff(25 - pos_cnt) <= SLO;
           state <= S_GET_POS;
-        end if;
+        -- end if;
       WHEN S_GET_POS => 
         pos_cnt <= pos_cnt + 1;
         POS_ff(25 - pos_cnt) <= SLO;
