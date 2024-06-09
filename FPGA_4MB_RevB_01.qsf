@@ -387,12 +387,15 @@ set_location_assignment PIN_J12 -to FPGA_rstn
 set_global_assignment -name FLOW_ENABLE_RTL_VIEWER ON
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
 set_global_assignment -name OPTIMIZATION_MODE BALANCED
+set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name STATE_MACHINE_PROCESSING GRAY
+set_global_assignment -name SAFE_STATE_MACHINE ON
+set_global_assignment -name VHDL_FILE source/i2c_master.vhd
+set_global_assignment -name VHDL_FILE source/i2c_top.vhd
 set_global_assignment -name VHDL_FILE source/RLS_Master.vhd
 set_global_assignment -name VHDL_FILE source/clock_generator.vhd
 set_global_assignment -name VHDL_FILE source/RLS_Top.vhd
 set_global_assignment -name VHDL_FILE source/BISS_Master.vhd
-set_global_assignment -name VHDL_FILE source/ads_master.vhd
-set_global_assignment -name VHDL_FILE source/ADC_Master.vhd
 set_global_assignment -name SDC_FILE FPGA_4MB.out.sdc
 set_global_assignment -name VERILOG_FILE source/top_4mb.v
 set_global_assignment -name VERILOG_FILE source/spi_4mb.v
@@ -404,7 +407,4 @@ set_global_assignment -name QIP_FILE pll_100x1.qip
 set_global_assignment -name SIGNALTAP_FILE stp1.stp
 set_global_assignment -name CDF_FILE ../../Chain5.cdf
 set_global_assignment -name SIGNALTAP_FILE BISS.stp
-set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
-set_global_assignment -name STATE_MACHINE_PROCESSING GRAY
-set_global_assignment -name SAFE_STATE_MACHINE ON
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -12,10 +12,10 @@
 
 //REVISION
 parameter FPGA_MAJOR_VER	= 8'h03;
-parameter FPGA_REV		= 8'h03;
+parameter FPGA_REV		= 8'h04;
 parameter FPGA_REV_YEAR		= 8'h18;
 parameter FPGA_REV_MONTH	= 8'h06;
-parameter FPGA_REV_DAY		= 8'h04;			
+parameter FPGA_REV_DAY		= 8'h09;			
 parameter FPGA_REV_HOUR		= 8'h0c;
 
 // SPI packet Lenght
@@ -96,10 +96,10 @@ parameter ADDR_FPGA_M1_3_ABS_ENC_COUNT	= 16'h002B;
 parameter ADDR_FPGA_M1_3_ABS_ENC_STATUS	= 16'h002C;
 parameter ADDR_ADC_Alerts 				= 16'h002d;
 parameter ADDR_Fault_Flages_reg 		= 16'h002e;
-parameter ADDR_ADC_Voltage_A				= 16'h002f;
-parameter ADDR_ADC_Voltage_B				= 16'h0030;
-parameter ADDR_ADC_Voltage_C				= 16'h0031;
-parameter ADDR_ADC_Voltage_D				= 16'h0032;
+parameter ADDR_ADC0_Voltage_A				= 16'h002f;
+parameter ADDR_ADC0_Voltage_B				= 16'h0030;
+parameter ADDR_ADC0_Voltage_C				= 16'h0031;
+parameter ADDR_ADC0_Voltage_D				= 16'h0032;
 parameter ADDR_ABS_ENC_CTRL				= 16'h0033;
 parameter ADDR_RLS_POS_REG_0				= 16'h0034;
 parameter ADDR_RLS_POS_REG_1				= 16'h0035;
@@ -107,7 +107,11 @@ parameter ADDR_RLS_POS_REG_2				= 16'h0036;
 parameter ADDR_RLS_ERR_REG_0				= 16'h0037;
 parameter ADDR_RLS_ERR_REG_1				= 16'h0038;
 parameter ADDR_RLS_ERR_REG_2				= 16'h0039;
-parameter NUM_REG	= 57;	//Number of RCB Registers see above
+parameter ADDR_ADC1_Voltage_A				= 16'h003a;
+parameter ADDR_ADC1_Voltage_B				= 16'h003b;
+parameter ADDR_ADC1_Voltage_C				= 16'h003c;
+parameter ADDR_ADC1_Voltage_D				= 16'h003d;
+parameter NUM_REG	= 61;	//Number of RCB Registers see above
 
 
 

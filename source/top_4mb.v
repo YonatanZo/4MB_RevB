@@ -374,10 +374,14 @@ reg[31:0]	data_miso_reg;
 //Rev B regs start
 wire[31:0]	ADC_Alerts_reg;
 wire[31:0]	Fault_Flages_reg;
-reg[31:0]	ADC_Voltage_A;
-reg[31:0]	ADC_Voltage_B;
-reg[31:0]	ADC_Voltage_C;
-reg[31:0]	ADC_Voltage_D;
+reg[31:0]	ADC0_Voltage_A;
+reg[31:0]	ADC0_Voltage_B;
+reg[31:0]	ADC0_Voltage_C;
+reg[31:0]	ADC0_Voltage_D;
+reg[31:0]	ADC1_Voltage_A;
+reg[31:0]	ADC1_Voltage_B;
+reg[31:0]	ADC1_Voltage_C;
+reg[31:0]	ADC1_Voltage_D;
 wire[31:0]   ABS_ENC_CTRL_REG;
 //Rev B regs end
 
@@ -474,6 +478,24 @@ reg	biss_c3;
 wire 	enc_sel;
 reg ssi_c1_ff, ssi_c2_ff, ssi_c3_ff;
 
+
+// wire[15:0] BRKs_1;
+// wire[15:0] BRKs_2;
+// wire[15:0] BRKs_3;
+// wire[15:0] BRKs_4;
+// wire[15:0] BRKs_5;
+// wire[15:0] ILIM1;
+// wire[15:0] ILIM2;
+// wire[15:0] ILIM3;
+wire[15:0] ILIM4;
+wire[15:0] V32s;
+wire[15:0] V24s;
+wire[15:0] V12s;
+wire[15:0] V5s;
+wire[15:0] V3_3s;
+wire[15:0] V2_5s;
+wire[15:0] V1_2s;
+
 /*DE10
 assign hex1 = incr_enc_cnt_reg1;
 assign hex2 = dip_sw_reg;
@@ -535,28 +557,9 @@ assign ftx_1 = 1'b1;
 assign spare0_io = spare0_io_reg[23:0];
 assign Master_rstn = FPGA_rstn & rst_n_syn;
 assign enc_sel = 1'b1;//ABS_ENC_CTRL_REG[0]; TODO:change back!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//ADC Master
-ADC_Master ADC_Master_inst
-(
-	.clk(clk_100m) ,	// input  clk_sig
-	.reset_n(Master_rstn) ,	// input  reset_n_sig
-	.AIN0(ADC_Voltage_A[15:0]) ,	// BRKs_1
-	.AIN1(ADC_Voltage_A[31:16]) ,	// BRKs_2
-	.AIN2(ADC_Voltage_B[15:0]) ,	// BRKs_3
-	.AIN3(ADC_Voltage_B[31:16]) ,	// BRKs_4
-	.AIN4(ADC_Voltage_C[15:0]) ,	// BRKs_5
-	.AIN5(ADC_Voltage_C[31:16]) ,	// ILIM1
-	.AIN6(ADC_Voltage_D[15:0]) ,	// ILIM2
-	.AIN7(ADC_Voltage_D[31:16])	// ILIM3
-	// .sda(f_sda) ,	// inout  f_sda
-	// .scl(f_sck) 	// inout  f_scl
-);
 
 
 
-defparam ADC_Master_inst.input_clk = 100000000;
-defparam ADC_Master_inst.bus_clk = 400000;
-// defparam ADC_Master_inst.dev_id = 7'b0010101;
 //Read Registers MUX
 always @*
     case(addr)
@@ -565,14 +568,22 @@ always @*
 		data_miso_reg = ADC_Alerts_reg;
 	ADDR_Fault_Flages_reg:
 		data_miso_reg = Fault_Flages_reg;
-	ADDR_ADC_Voltage_A:
-		data_miso_reg = ADC_Voltage_A;
-	ADDR_ADC_Voltage_B:
-		data_miso_reg = ADC_Voltage_B;
-	ADDR_ADC_Voltage_C:
-		data_miso_reg = ADC_Voltage_C;
-	ADDR_ADC_Voltage_D:
-		data_miso_reg = ADC_Voltage_D;
+	ADDR_ADC0_Voltage_A:
+		data_miso_reg = ADC0_Voltage_A;
+	ADDR_ADC0_Voltage_B:
+		data_miso_reg = ADC0_Voltage_B;
+	ADDR_ADC0_Voltage_C:
+		data_miso_reg = ADC0_Voltage_C;
+	ADDR_ADC0_Voltage_D:
+		data_miso_reg = ADC0_Voltage_D;
+	ADDR_ADC1_Voltage_A:
+		data_miso_reg = ADC1_Voltage_A;
+	ADDR_ADC1_Voltage_B:
+		data_miso_reg = ADC1_Voltage_B;
+	ADDR_ADC1_Voltage_C:
+		data_miso_reg = ADC1_Voltage_C;
+	ADDR_ADC1_Voltage_D:
+		data_miso_reg = ADC1_Voltage_D;
 	ADDR_ABS_ENC_CTRL:
 		data_miso_reg = ABS_ENC_CTRL_REG;
 	ADDR_RLS_POS_REG_0:
@@ -748,6 +759,45 @@ always @*
 		// end
 	end
 
+	i2c_top brakes_currnt_adc  //Brakes cur mes
+	(
+		.clk(clk_sig) ,	// input  clk_sig
+		.reset_n(reset_n_sig) ,	// input  reset_n_sig
+		.scl(scl_sig) ,	// inout  scl_sig
+		.sda(sda_sig) ,	// inout  sda_sig
+		.AIN0(ADC0_Voltage_A[15:0]) ,	// BRKs_1
+		.AIN1(ADC0_Voltage_A[31:16]) ,	// BRKs_2
+		.AIN2(ADC0_Voltage_B[15:0]) ,	// BRKs_3
+		.AIN3(ADC0_Voltage_B[31:16]) ,	// BRKs_4
+		.AIN4(ADC0_Voltage_C[15:0]) ,	// BRKs_5
+		.AIN5(ADC0_Voltage_C[31:16]) ,	// ILIM1
+		.AIN6(ADC0_Voltage_D[15:0]) ,	// ILIM2
+		.AIN7(ADC0_Voltage_D[31:16])	// ILIM3
+	);
+	
+	defparam brakes_currnt_adc.DEV_ID = 7'b0010010;
+	
+	i2c_top analog_voltage_adc  //Brakes cur mes
+	(
+		.clk(clk_sig) ,	// input  clk_sig
+		.reset_n(reset_n_sig) ,	// input  reset_n_sig
+		.scl(scl_sig) ,	// inout  scl_sig
+		.sda(sda_sig) ,	// inout  sda_sig
+		.AIN0(ADC1_Voltage_A[15:0]) ,	// 32s
+		.AIN1(ADC1_Voltage_A[31:16]) ,	// 24s
+		.AIN2(ADC1_Voltage_B[15:0]) ,	// 12s
+		.AIN3(ADC1_Voltage_B[31:16]) ,		// 5s
+		.AIN4(ADC1_Voltage_C[15:0]) ,	// 3_3s
+		.AIN5(ADC1_Voltage_C[31:16]) ,	// 2_5s
+		.AIN6(ADC1_Voltage_D[15:0]) ,	// 1_2s
+		.AIN7(ADC1_Voltage_D[31:16]) 	// ILIM4
+	);
+
+
+	defparam analog_voltage_adc.DEV_ID = 7'b0010101;
+	
+
+
 	RLS_Top RLS_Top_inst
 	(
 		.clk(clk_100m) ,	// input  clk_sig
@@ -768,46 +818,6 @@ always @*
 	
 	defparam RLS_Top_inst.input_clk = 100000000;
 	defparam RLS_Top_inst.bus_clk = 1000000;
-	
-
-
-
-	// BISS_Master BISS_Master_inst_M1
-	// (
-	// 	.clk(clk_100m) ,	// input  clk_sig
-	// 	.reset_n(Master_rstn) ,	// input  reset_n_sig
-	// 	.POS(M1_POS_sig) ,	// output [25:0] POS_sig
-	// 	.MCLK(biss_c1) ,	// output  MCLK_sig
-	// 	.SLO(biss_d1) 	// input  SLO_sig
-	// );
-
-	// defparam BISS_Master_inst_M1.input_clk = 100000000;
-	// defparam BISS_Master_inst_M1.bus_clk = 1000000;
-
-	// BISS_Master BISS_Master_inst_M2
-	// (
-	// 	.clk(clk_100m) ,	// input  clk_sig
-	// 	.reset_n(Master_rstn) ,	// input  reset_n_sig
-	// 	.POS(M2_POS_sig) ,	// output [25:0] POS_sig
-	// 	.MCLK(biss_c2) ,	// output  MCLK_sig
-	// 	.SLO(biss_d2) 	// input  SLO_sig
-	// );
-
-	// defparam BISS_Master_inst_M2.input_clk = 100000000;
-	// defparam BISS_Master_inst_M2.bus_clk = 1000000;
-
-	// BISS_Master BISS_Master_inst_M3
-	// (
-	// 	.clk(clk_100m) ,	// input  clk_sig
-	// 	.reset_n(Master_rstn) ,	// input  reset_n_sig
-	// 	.POS(M3_POS_sig) ,	// output [25:0] POS_sig
-	// 	.MCLK(biss_c3) ,	// output  MCLK_sig
-	// 	.SLO(biss_d3) 	// input  SLO_sig
-	// );
-	
-	// defparam BISS_Master_inst_M3.input_clk = 100000000;
-	// defparam BISS_Master_inst_M3.bus_clk = 1000000;
-	
 
 //SPI insertion  
 spi_4mb spi_4mb(
