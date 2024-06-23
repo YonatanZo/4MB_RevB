@@ -44,7 +44,6 @@ output			data_miso_rdy;
 `include  "parameters_4mb.v"	
 
 reg 		miso;
-//reg[31:0] data_mosi;
 reg 		data_mosi_rdy;
 reg 		addr_rdy;
 reg 		com_rdy;
@@ -58,11 +57,9 @@ reg 		data_miso_rdy;
 reg[55:0] 	shift_reg;
 reg[31:0]	miso_shift;
 reg			send_miso;
-
 reg[1:0]	spi_mode;	//00-Write(0A), 01-Read(0F), else- undefined command, do write cycle without saving result.
 reg			miso_en;
 wire		miso_t;
-
 reg[DEB_DEEP:0]	sclk_deb_cnt;
 reg[DEB_DEEP:0]	cs_deb_cnt;
 reg[DEB_DEEP:0]	mosi_deb_cnt;
@@ -95,27 +92,7 @@ always @(posedge clk_100m, negedge rst_n_syn)
 		mosi_syn  <= mosi_meta & mosi;
 		mosi_meta <= mosi;
 	end
-/*
-always @(posedge clk_100m, negedge rst_n_syn)
-    if(!rst_n_syn)
-	begin
-		sclk_deb_cnt	<= 'b0;
-		sclk_syn		<= 1'b0;
-		cs_deb_cnt		<= 'b0;
-		cs_n_syn		<= 1'b0;
-		mosi_deb_cnt	<= 'b0;
-		mosi_syn 		<= 1'b0;
-	end
-    else
-	begin
-		sclk_deb_cnt[DEB_DEEP:0]  <= {sclk_deb_cnt[DEB_DEEP-1:0],sclk};
-		sclk_syn <= &sclk_deb_cnt;
-		cs_deb_cnt[DEB_DEEP:0]  <= {cs_deb_cnt[DEB_DEEP-1:0],cs_n};
-		cs_n_syn <= &cs_deb_cnt;
-		mosi_deb_cnt[DEB_DEEP:0]  <= {mosi_deb_cnt[DEB_DEEP-1:0],mosi};
-		mosi_syn <= &mosi_deb_cnt;
-	end
-*/
+
 // -------------------------------------------------------------------------
 //  SPI CLOCK REGISTER
 // -------------------------------------------------------------------------
@@ -141,7 +118,6 @@ parameter
     ADDR		= 2,
 	MOSI_DATA	= 3,
     MISO_DATA	= 4;
-	//END_PACKET 	= 5;
 
 //------------------- SPI FSM --------------------------	
 always @(posedge clk_100m, negedge rst_n_syn)
@@ -152,7 +128,6 @@ always @(posedge clk_100m, negedge rst_n_syn)
 		if(sclk_posedge)
 			state <= next_state;
 	end
-
 always @*
 	case(state)
 		IDLE:
@@ -178,39 +153,28 @@ always @*
 						next_state = MOSI_DATA;
 					READ_MODE:
 						next_state = MISO_DATA;
-					default:	//UNDEF_MODE:
-						//if(cs_n_syn)
-							next_state = IDLE;//Undefined command. 
-						/*else
-							next_state = ADDR;*/
+					default:	
+							next_state = IDLE;
 				endcase
 			else
 				next_state = ADDR;
 		MOSI_DATA:
 			if(cs_n_syn)
 				next_state = IDLE;
-			else if(data_cnt == SPI_DATA_LEN - 1'b1)//(data_mosi_rdy)
-				next_state = IDLE;//END_PACKET;
+			else if(data_cnt == SPI_DATA_LEN - 1'b1)
+				next_state = IDLE;
 			else
 				next_state = MOSI_DATA;			
 		MISO_DATA:
 			if(cs_n_syn) 
 				next_state = IDLE;
-			else if(data_cnt == (SPI_DATA_LEN - 1'b1))//(!send_miso)//data_miso_rdy)
-				next_state = IDLE;//END_PACKET;
-			else
-				next_state = MISO_DATA;
-/*		END_PACKET:
-			if(cs_n_syn)
+			else if(data_cnt == (SPI_DATA_LEN - 1'b1))
 				next_state = IDLE;
 			else
-				next_state = END_PACKET;*/
+				next_state = MISO_DATA;
 		default:
 			if(cs_n_syn)
 				next_state = IDLE;
-			/*else	
-				next_state = default;*/
-			
 	endcase
  
 always @(posedge clk_100m, negedge rst_n_syn)
@@ -219,8 +183,6 @@ always @(posedge clk_100m, negedge rst_n_syn)
 		data_cnt 		<= 6'b0;
 		addr_rdy 		<= 1'b0;
 		com_rdy 		<= 1'b0;
-		//data_mosi_rdy	<= 1'b0;
-		//data_miso_rdy	<= 1'b0;
 		miso 			<= 1'b1;
 		shift_reg 		<= 56'b0;
 		send_miso		<= 1'b0;
@@ -234,7 +196,6 @@ always @(posedge clk_100m, negedge rst_n_syn)
 			shift_reg[55:0] <= {shift_reg[54:0], mosi_syn};
 			com_rdy 		<= 1'b0;
 			addr_rdy 		<= 1'b0;
-			//data_miso_rdy	<= 1'b0;
 			miso_en			<= 1'b0;
 			case(next_state)
 				IDLE:
@@ -243,8 +204,6 @@ always @(posedge clk_100m, negedge rst_n_syn)
 					miso 			<= 1'b1;
 					addr_rdy 		<= 1'b0;
 					com_rdy 		<= 1'b0;
-					//data_mosi_rdy 	<= 1'b0;
-					//data_miso_rdy 	<= 1'b0;
 					send_miso		<= 1'b0;
 				end
 				CMD:
@@ -272,10 +231,9 @@ always @(posedge clk_100m, negedge rst_n_syn)
 				begin
 					if(data_cnt == SPI_DATA_LEN - 1'b1)
 					begin
-						data_cnt <= 6'b0;//data_cnt + 1'b1;
+						data_cnt <= 6'b0;
 						if(spi_mode == WRITE_MODE)
 						begin
-							//data_mosi_rdy <= 1'b1;
 							data_cnt <= 6'b0;
 						end
 					end
@@ -284,35 +242,18 @@ always @(posedge clk_100m, negedge rst_n_syn)
 				end
 				MISO_DATA:
 				begin
-					//{miso, shift_reg[31:1]} <= shift_reg[31:0];
 					data_cnt <= data_cnt + 1'b1;
-					/*if(data_cnt == (SPI_DATA_LEN - 2'b10))
-					begin
-						data_miso_rdy <= 1'b1;
-						//send_miso <= 1'b0;
-						//miso <= 1'b1;
-						//data_cnt <= 6'b0;//data_cnt + 1'b1;
-					end*/
+
 					miso_en <= 1'b1;
 				end
-/*				END_PACKET:
-				begin
-					miso <= 1;
-					data_cnt <= 6'b0;
-				end*/
 			endcase
 		end
 		else if(sclk_negedge && send_miso)
 		begin
-			if(addr_rdy)// && spi_mode == READ_MODE)
+			if(addr_rdy)
 				{miso,miso_shift[31:0]} <= {data_miso,1'b0};
 			else
 				{miso,miso_shift[31:1]} <= miso_shift[31:0];
-/*				
-			if(data_cnt == (SPI_DATA_LEN - 1'b1))
-				data_miso_rdy <= 1'b1;
-			else
-				data_miso_rdy <= 1'b0;*/
 		end
 	end
 	
@@ -369,6 +310,6 @@ always @(posedge clk_100m, negedge rst_n_syn)
 		else
 			data_miso_rdy <= 1'b0;
 	end
-	
+
 endmodule	
 	

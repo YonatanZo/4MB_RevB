@@ -11,14 +11,16 @@ ENTITY i2c_top IS
     reset_n  : IN  STD_LOGIC;
     scl      : INOUT  STD_LOGIC;
     sda      : INOUT  STD_LOGIC;
-    AIN0 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
-    AIN1 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
-    AIN2 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
-    AIN3 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
-    AIN4 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
-    AIN5 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
-    AIN6 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
-    AIN7 : out STD_LOGIC_VECTOR(15 DOWNTO 0)
+    START    : IN  STD_LOGIC;
+    BUSY     : OUT  STD_LOGIC;
+    AIN0 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
+    AIN1 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
+    AIN2 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
+    AIN3 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
+    AIN4 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
+    AIN5 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
+    AIN6 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
+    AIN7 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0')
   );
 END i2c_top;
 
@@ -35,7 +37,7 @@ ARCHITECTURE behavior OF i2c_top IS
   SIGNAL addr        : STD_LOGIC_VECTOR(6 DOWNTO 0) := DEV_ID;
   SIGNAL data_wr     : STD_LOGIC_VECTOR(7 DOWNTO 0);
   SIGNAL data_rd     : STD_LOGIC_VECTOR(7 DOWNTO 0);
-  SIGNAL busy        : STD_LOGIC;
+  SIGNAL busy_bus        : STD_LOGIC;
   type t_data is array (0 to 7) of std_logic_vector(15 downto 0);
   signal ADC_data  : t_data;
   TYPE machine IS (
@@ -93,21 +95,21 @@ BEGIN
       addr      => DEV_ID,
       data_wr   => data_wr_dly,
       data_rd   => data_rd,
-      busy      => busy,
+      busy      => busy_bus,
       ack_error => OPEN,
       scl       => scl,
       sda       => sda
     );
 
 
-    AIN0 <= ADC_data(0);
-    AIN1 <= ADC_data(1);
-    AIN2 <= ADC_data(2);
-    AIN3 <= ADC_data(3);
-    AIN4 <= ADC_data(4);
-    AIN5 <= ADC_data(5);
-    AIN6 <= ADC_data(6);
-    AIN7 <= ADC_data(7);
+    AIN0(11 downto 0) <= ADC_data(0)(15 downto 4);
+    AIN1(11 downto 0) <= ADC_data(1)(15 downto 4);
+    AIN2(11 downto 0) <= ADC_data(2)(15 downto 4);
+    AIN3(11 downto 0) <= ADC_data(3)(15 downto 4);
+    AIN4(11 downto 0) <= ADC_data(4)(15 downto 4);
+    AIN5(11 downto 0) <= ADC_data(5)(15 downto 4);
+    AIN6(11 downto 0) <= ADC_data(6)(15 downto 4);
+    AIN7(11 downto 0) <= ADC_data(7)(15 downto 4);
   PROCESS (clk, reset_n)
   BEGIN
     IF reset_n = '0' THEN
@@ -121,21 +123,25 @@ BEGIN
       wr_cnt <= 0;
       ADC_data <= (others => (others =>'0'));
     ELSIF rising_edge(clk) THEN   
-    busy_f  <= busy;                       
+    busy_f  <= busy_bus;                       
 		CASE state IS
       WHEN S_IDLE =>
         
         ena <= '0';
         wr_cnt <= 0;
         rw <= '0';
-        state <= S_CONFIG_ADC;
+        BUSY <= '0';
+        if START = '1' then
+          BUSY <= '1';
+          state <= S_CONFIG_ADC;
+        end if;
         byte_cnt <= 0;
         reg_cnt <= 0;
-    
+        data_wr_dly <= (others =>'0');
       WHEN S_CONFIG_ADC =>
         ena <= '1';
         data_wr_dly <= data_wr;
-        if busy = '0' and busy_f = '1' then 
+        if busy_bus = '0' and busy_f = '1' then 
           reg_cnt <= reg_cnt +1;
           if reg_cnt = 2 or reg_cnt = 5  then
             state <= S_DLY;
@@ -152,18 +158,19 @@ BEGIN
       WHEN S_DATA_READ =>
         ena <= '1';
         rw <= '1';
-        if busy = '0' and busy_f = '1' then 
+        if busy_bus = '0' and busy_f = '1' then 
           rd_cnt <= rd_cnt +1;
           -- state <= S_DLY;
         end if;
         if rd_cnt = 1 then
           ena <= '0';
           state <= S_DLY;
-          ADC_data(rd_ch) <= data_rd;
+          ADC_data(rd_ch)(15 downto 8) <= data_rd;
           if rd_ch = 7 then
+            BUSY <= '0';
             rd_ch <= 0;
             data_wr_dly <= OP_SIN_REG_WR;
-            next_state <= S_SET_RD;
+            next_state <= S_IDLE;
           else
             rd_ch <= rd_ch +1;
             data_wr_dly <= OP_SIN_REG_WR;
@@ -172,13 +179,14 @@ BEGIN
           
           rw <= '0';
           rd_cnt <= 0;
-
+          else
+            null;
         end if;
         
       WHEN S_SET_RD =>
       rw <= '0';
       ena <= '1';
-      if busy = '0' and busy_f = '1' then 
+      if busy_bus = '0' and busy_f = '1' then 
           wr_cnt <= wr_cnt +1;
           case wr_cnt is
             when 0 =>
@@ -199,6 +207,9 @@ BEGIN
       WHEN S_DLY =>
         if delay_cnt = 99999 then
           delay_cnt <= 0;
+          if next_state = S_SET_RD then
+            ADC_data(rd_ch)(7 downto 0) <= data_rd;
+          end if;
           state <= next_state;
         else
           delay_cnt <= delay_cnt +1;

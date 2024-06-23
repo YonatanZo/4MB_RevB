@@ -11,11 +11,11 @@
 //`define DE10;
 
 //REVISION
-parameter FPGA_MAJOR_VER	= 8'h03;
+parameter FPGA_MAJOR_VER	= 8'h04;
 parameter FPGA_REV		= 8'h04;
 parameter FPGA_REV_YEAR		= 8'h18;
 parameter FPGA_REV_MONTH	= 8'h06;
-parameter FPGA_REV_DAY		= 8'h09;			
+parameter FPGA_REV_DAY		= 8'h17;			
 parameter FPGA_REV_HOUR		= 8'h0c;
 
 // SPI packet Lenght
@@ -49,7 +49,7 @@ parameter MOTOR_PWM_MAX_FREQ	= 500;			// maximum frequensy of motor's PWM(500x10
 parameter ENCODER_DEB_TIME		= 3;//5000000;		//Debounce time for incremental encoders. 5000000 = 5ms
 
 // Addreses of FPGA rgisters
-parameter ADDR_FPGA_VER 				= 16'h0000;
+parameter ADDR_FPGA_VER 				= 16'h0000; 
 parameter ADDR_FPGA_REV_DATA			= 16'h0001;
 parameter ADDR_FPGA_DIP_SWITCH 			= 16'h0002;
 parameter ADDR_FPGA_M1_INC				= 16'h0003;
