@@ -12,7 +12,8 @@
 
 //REVISION
 parameter FPGA_MAJOR_VER	= 8'h04;
-parameter FPGA_REV		= 8'h04;
+parameter FPGA_REV		= 8'h05;
+parameter SYSTEM_REV		= 8'h03;
 parameter FPGA_REV_YEAR		= 8'h18;
 parameter FPGA_REV_MONTH	= 8'h06;
 parameter FPGA_REV_DAY		= 8'h17;			

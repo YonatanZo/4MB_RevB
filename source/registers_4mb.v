@@ -179,7 +179,7 @@ assign {io_led,led1_2,led1_1} = diagnostic_led_reg[8:0];
 always @(posedge clk_100m, negedge rst_n_syn)
 	if(!rst_n_syn)
 	begin
-		ver_reg <= {16'b0,FPGA_MAJOR_VER,FPGA_REV};
+		ver_reg <= {8'b0,SYSTEM_REV,FPGA_MAJOR_VER,FPGA_REV};
 		rev_data_reg <= {FPGA_REV_YEAR,FPGA_REV_MONTH,FPGA_REV_DAY,FPGA_REV_HOUR};
 		dip_sw_reg <= 32'b0;
 		buttons_reg <= 32'b0;

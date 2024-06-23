@@ -3,24 +3,23 @@ USE ieee.std_logic_1164.all;
 USE ieee.std_logic_unsigned.all;
 USE ieee.Numeric_Std.all;
 ENTITY i2c_top IS
-  generic (
-    DEV_ID : STD_LOGIC_VECTOR(6 DOWNTO 0) := "0010000"
-  );
+
   PORT (
     clk      : IN  STD_LOGIC;
     reset_n  : IN  STD_LOGIC;
     scl      : INOUT  STD_LOGIC;
     sda      : INOUT  STD_LOGIC;
+    DEV_ID   : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
     START    : IN  STD_LOGIC;
     BUSY     : OUT  STD_LOGIC;
-    AIN0 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
-    AIN1 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
-    AIN2 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
-    AIN3 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
-    AIN4 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
-    AIN5 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
-    AIN6 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0');
-    AIN7 : out STD_LOGIC_VECTOR(15 DOWNTO 0):= (others => '0')
+    AIN0 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
+    AIN1 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
+    AIN2 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
+    AIN3 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
+    AIN4 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
+    AIN5 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
+    AIN6 : out STD_LOGIC_VECTOR(15 DOWNTO 0);
+    AIN7 : out STD_LOGIC_VECTOR(15 DOWNTO 0)
   );
 END i2c_top;
 
@@ -34,7 +33,6 @@ ARCHITECTURE behavior OF i2c_top IS
   CONSTANT CHANNEL_SEL : STD_LOGIC_VECTOR(7 DOWNTO 0) := x"11";
   SIGNAL ena         : STD_LOGIC := '0';
   SIGNAL rw          : STD_LOGIC := '0';
-  SIGNAL addr        : STD_LOGIC_VECTOR(6 DOWNTO 0) := DEV_ID;
   SIGNAL data_wr     : STD_LOGIC_VECTOR(7 DOWNTO 0);
   SIGNAL data_rd     : STD_LOGIC_VECTOR(7 DOWNTO 0);
   SIGNAL busy_bus        : STD_LOGIC;

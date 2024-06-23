@@ -374,14 +374,14 @@ reg[31:0]	data_miso_reg;
 //Rev B regs start
 wire[31:0]	ADC_Alerts_reg;
 wire[31:0]	Fault_Flages_reg;
-reg[31:0]	ADC0_Voltage_A;
-reg[31:0]	ADC0_Voltage_B;
-reg[31:0]	ADC0_Voltage_C;
-reg[31:0]	ADC0_Voltage_D;
-reg[31:0]	ADC1_Voltage_A;
-reg[31:0]	ADC1_Voltage_B;
-reg[31:0]	ADC1_Voltage_C;
-reg[31:0]	ADC1_Voltage_D;
+wire[31:0]	ADC0_Voltage_A;
+wire[31:0]	ADC0_Voltage_B;
+wire[31:0]	ADC0_Voltage_C;
+wire[31:0]	ADC0_Voltage_D;
+wire[31:0]	ADC1_Voltage_A;
+wire[31:0]	ADC1_Voltage_B;
+wire[31:0]	ADC1_Voltage_C;
+wire[31:0]	ADC1_Voltage_D;
 wire[31:0]   ABS_ENC_CTRL_REG;
 //Rev B regs end
 
@@ -757,65 +757,21 @@ always @*
 		// 	old_ssi_d3 <= ssi_d3;
 		// end
 	end
-// 	adc_manger adc_manger_inst
-// (
-// 	.clk(clk_100m) ,	// input  clk_sig
-// 	.reset_n(Master_rstn) ,	// input  reset_n_sig
-// 	.scl(f_sck) ,	// inout  scl_sig
-// 	.sda(f_sda) ,	// inout  sda_sig
-// 	.ADC0_Voltage_A(ADC0_Voltage_A) ,	// output [31:0] ADC0_Voltage_A_sig
-// 	.ADC0_Voltage_B(ADC0_Voltage_B) ,	// output [31:0] ADC0_Voltage_B_sig
-// 	.ADC0_Voltage_C(ADC0_Voltage_C) ,	// output [31:0] ADC0_Voltage_C_sig
-// 	.ADC0_Voltage_D(ADC0_Voltage_D) ,	// output [31:0] ADC0_Voltage_D_sig
-// 	.ADC1_Voltage_A(ADC1_Voltage_A) ,	// output [31:0] ADC1_Voltage_A_sig
-// 	.ADC1_Voltage_B(ADC1_Voltage_B) ,	// output [31:0] ADC1_Voltage_B_sig
-// 	.ADC1_Voltage_C(ADC1_Voltage_C) ,	// output [31:0] ADC1_Voltage_C_sig
-// 	.ADC1_Voltage_D(ADC1_Voltage_D) 	// output [31:0] ADC1_Voltage_D_sig
-// );
-
-	// assign f_sda = 1'bz;   
-	// assign f_sck = 1'bz;   
-
-	i2c_top brakes_currnt_adc  //Brakes cur mes
-	(
-		.clk(clk_100m) ,	// input  clk_sig
-		.reset_n(Master_rstn) ,	// input  reset_n_sig
-		.scl(f_sck) ,	// inout  scl_sig
-		.sda(f_sda) ,	// inout  sda_sig
-		.START(1'b1) ,
-		.AIN0(ADC0_Voltage_A[15:0]) ,	// BRKs_1
-		.AIN1(ADC0_Voltage_A[31:16]) ,	// BRKs_2
-		.AIN2(ADC0_Voltage_B[15:0]) ,	// BRKs_3
-		.AIN3(ADC0_Voltage_B[31:16]) ,	// BRKs_4
-		.AIN4(ADC0_Voltage_C[15:0]) ,	// BRKs_5
-		.AIN5(ADC0_Voltage_C[31:16]) ,	// ILIM1
-		.AIN6(ADC0_Voltage_D[15:0]) ,	// ILIM2
-		.AIN7(ADC0_Voltage_D[31:16])	// ILIM3
-	);
-	
-	defparam brakes_currnt_adc.DEV_ID =7'b0010101; //7'b0010010;
-	
-	// i2c_top analog_voltage_adc  
-	// (
-	// 	.clk(clk_100m) ,	// input  clk_sig
-	// 	.reset_n(Master_rstn) ,	// input  reset_n_sig
-	// 	.scl(f_sda) ,	// inout  scl_sig
-	// 	.sda(f_sda) ,	// inout  sda_sig
-	// 	.START(1'b1) ,
-	// 	.AIN0(ADC1_Voltage_A[15:0]) ,	// 32s
-	// 	.AIN1(ADC1_Voltage_A[31:16]) ,	// 24s
-	// 	.AIN2(ADC1_Voltage_B[15:0]) ,	// 12s
-	// 	.AIN3(ADC1_Voltage_B[31:16]) ,		// 5s
-	// 	.AIN4(ADC1_Voltage_C[15:0]) ,	// 3_3s
-	// 	.AIN5(ADC1_Voltage_C[31:16]) ,	// 2_5s
-	// 	.AIN6(ADC1_Voltage_D[15:0]) ,	// 1_2s
-	// 	.AIN7(ADC1_Voltage_D[31:16]) 	// ILIM4
-	// );
-
-
-	// defparam analog_voltage_adc.DEV_ID = 7'b0010101;
-	
-
+	adc_manger adc_manger_inst
+(
+	.clk(clk_100m) ,	// input  clk_sig
+	.reset_n(Master_rstn) ,	// input  reset_n_sig
+	.scl(f_sck) ,	// inout  scl_sig
+	.sda(f_sda) ,	// inout  sda_sig
+	.ADC0_Voltage_A(ADC0_Voltage_A) ,	// output [31:0] ADC0_Voltage_A_sig
+	.ADC0_Voltage_B(ADC0_Voltage_B) ,	// output [31:0] ADC0_Voltage_B_sig
+	.ADC0_Voltage_C(ADC0_Voltage_C) ,	// output [31:0] ADC0_Voltage_C_sig
+	.ADC0_Voltage_D(ADC0_Voltage_D) ,	// output [31:0] ADC0_Voltage_D_sig
+	.ADC1_Voltage_A(ADC1_Voltage_A) ,	// output [31:0] ADC1_Voltage_A_sig
+	.ADC1_Voltage_B(ADC1_Voltage_B) ,	// output [31:0] ADC1_Voltage_B_sig
+	.ADC1_Voltage_C(ADC1_Voltage_C) ,	// output [31:0] ADC1_Voltage_C_sig
+	.ADC1_Voltage_D(ADC1_Voltage_D) 	// output [31:0] ADC1_Voltage_D_sig
+);
 
 	RLS_Top RLS_Top_inst
 	(
@@ -839,7 +795,7 @@ always @*
 	defparam RLS_Top_inst.bus_clk = 1000000;
 
 //SPI insertion  
-	spi_if spi_4mb(  //spi_if
+	spi_4mb spi_4mb(  //spi_if
     .clk_100m(clk_100m),       	
     .rst_n_syn(Master_rstn),      
 	.sclk(mclk_0),
@@ -853,6 +809,8 @@ always @*
 	.addr_rdy(addr_rdy),
 	.data_miso_rdy(data_miso_rdy)
 );
+
+
 
 //REGISRES insertion  
 registers_4mb registers_4mb(
